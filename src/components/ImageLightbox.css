@@ -1,0 +1,121 @@
+.image-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(20, 10, 18, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  animation: lightboxFadeIn 0.2s ease;
+}
+
+@keyframes lightboxFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.image-lightbox-bubble {
+  position: relative;
+  background: #FFEBCC;
+  border-radius: var(--radius-lg);
+  max-width: 480px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: lightboxScaleIn 0.25s ease;
+}
+
+@keyframes lightboxScaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #6C265B;
+  color: #FFEBCC;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(108, 38, 91, 0.35);
+  transition: all var(--transition);
+}
+
+.image-lightbox-close:hover {
+  transform: scale(1.05);
+}
+
+.image-lightbox-visual {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--flower-color) 14%, #FFEBCC),
+    color-mix(in srgb, var(--flower-color) 6%, #FFEBCC)
+  );
+  padding: 2rem;
+}
+
+.image-lightbox-flower {
+  width: 70%;
+  height: 70%;
+}
+
+.image-lightbox-info {
+  padding: 1.5rem 1.75rem 1.75rem;
+  text-align: center;
+}
+
+.image-lightbox-info h2 {
+  font-size: 1.5rem;
+  color: #6C265B;
+  margin-bottom: 0.5rem;
+}
+
+.image-lightbox-info p {
+  font-size: 0.95rem;
+  color: rgba(108, 38, 91, 0.75);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.image-lightbox-price {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #6C265B;
+  margin-bottom: 1rem;
+}
+
+.image-lightbox-cta {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .image-lightbox-overlay {
+    padding: 1rem;
+    align-items: center;
+  }
+
+  .image-lightbox-bubble {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .image-lightbox-visual {
+    aspect-ratio: 4 / 3;
+    padding: 1.5rem;
+  }
+}

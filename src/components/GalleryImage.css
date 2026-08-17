@@ -1,0 +1,25 @@
+.gallery-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--flower-color) 12%, white),
+    color-mix(in srgb, var(--flower-color) 6%, var(--color-bg))
+  );
+  padding: 1.5rem;
+}
+
+.gallery-flower-svg {
+  width: 55%;
+  height: 55%;
+}

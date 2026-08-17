@@ -1,0 +1,74 @@
+.social-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 50%;
+  background: rgba(var(--color-ciruela-rgb), 0.1);
+  color: var(--color-ciruela);
+  transition: all var(--transition);
+}
+
+.social-link:hover {
+  background: rgba(var(--color-ciruela-rgb), 0.18);
+  transform: translateY(-2px);
+}
+
+.social-links--sm .social-link {
+  width: 36px;
+  height: 36px;
+  justify-content: center;
+}
+
+.social-links--sm .social-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.social-links--md .social-link {
+  width: 44px;
+  height: 44px;
+  justify-content: center;
+}
+
+.social-links--md .social-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+.social-links--lg .social-link {
+  padding: 0.875rem 1.5rem;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.social-links--lg .social-link svg {
+  width: 22px;
+  height: 22px;
+}
+
+.social-link--instagram:hover {
+  background: rgba(225, 48, 108, 0.15);
+  color: #c13584;
+}
+
+.social-link--facebook:hover {
+  background: rgba(24, 119, 242, 0.15);
+  color: #1877f2;
+}
+
+/* Uso en secciones con fondo ciruela */
+.social-links--on-dark .social-link {
+  background: rgba(var(--color-beige-rgb), 0.14);
+  color: var(--color-beige);
+}
+
+.social-links--on-dark .social-link:hover {
+  background: rgba(var(--color-beige-rgb), 0.24);
+}

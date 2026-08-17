@@ -1,0 +1,27 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.layout--home {
+  height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.layout--home .main-content {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+}
+
+html.is-home,
+html.is-home body {
+  overflow: hidden;
+  height: 100%;
+}

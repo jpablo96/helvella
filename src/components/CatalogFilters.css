@@ -1,0 +1,96 @@
+.catalog-filters-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-block-lg);
+}
+
+.catalog-filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.catalog-filter-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(108, 38, 91, 0.55);
+  margin: 0;
+}
+
+.catalog-filter-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.catalog-filter-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-align: left;
+  color: rgba(108, 38, 91, 0.85);
+  background: transparent;
+  border: none;
+  transition: all var(--transition);
+}
+
+.catalog-filter-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.catalog-filter-count {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: rgba(108, 38, 91, 0.38);
+  transition: color var(--transition);
+}
+
+.catalog-filter-option:hover:not(.active) .catalog-filter-count {
+  color: rgba(108, 38, 91, 0.55);
+}
+
+.catalog-filter-option.active .catalog-filter-count {
+  color: rgba(255, 235, 204, 0.65);
+}
+
+.catalog-filter-option:hover:not(.active) {
+  background: rgba(108, 38, 91, 0.07);
+  color: #6C265B;
+}
+
+.catalog-filter-option.active {
+  background: #6C265B;
+  color: #FFEBCC;
+  font-weight: 600;
+}
+
+.catalog-filter-soon {
+  font-size: 0.6rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 100px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: rgba(108, 38, 91, 0.1);
+  color: #6C265B;
+  flex-shrink: 0;
+}
+
+.catalog-filter-option.active .catalog-filter-soon {
+  background: rgba(255, 235, 204, 0.2);
+  color: #FFEBCC;
+}

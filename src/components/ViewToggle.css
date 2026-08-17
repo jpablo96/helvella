@@ -1,0 +1,33 @@
+.view-toggle {
+  display: none;
+  gap: 0.35rem;
+  padding: 0.25rem;
+  background: rgba(108, 38, 91, 0.08);
+  border-radius: 100px;
+  margin-bottom: 1.25rem;
+}
+
+.view-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(108, 38, 91, 0.65);
+  background: transparent;
+  transition: all var(--transition);
+}
+
+.view-toggle-btn.active {
+  background: #6C265B;
+  color: #FFEBCC;
+  box-shadow: 0 2px 10px rgba(108, 38, 91, 0.2);
+}
+
+@media (max-width: 768px) {
+  .view-toggle {
+    display: inline-flex;
+  }
+}
