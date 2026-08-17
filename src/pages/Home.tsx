@@ -45,7 +45,12 @@ export default function Home() {
 
   return (
     <>
-      <Seo />
+      <Seo
+        title="Flores Eternas en Costa Rica"
+        socialTitle="Helvella | Flores Eternas en Costa Rica"
+        description="Helvella es tu taller de flores eternas en Costa Rica: piezas hechas a mano con limpiapipas, arreglos personalizados y envíos a todo el país. ¡Haz tu pedido por WhatsApp!"
+        path="/"
+      />
       <div className="home-scroll" ref={scrollRef}>
         <HomePanel
           id="inicio"
@@ -146,7 +151,7 @@ export default function Home() {
             </div>
             <div className="featured-cta home-reveal home-reveal--delay-4">
               <Link to="/catalogo" className="btn btn-primary">
-                Ver todo el catálogo
+                Ver catálogo completo
               </Link>
             </div>
           </div>

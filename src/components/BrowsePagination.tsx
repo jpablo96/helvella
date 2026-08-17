@@ -1,4 +1,5 @@
-import { PAGE_SIZE_OPTIONS, type PageSize } from '../data/catalog'
+import { type PageSize } from '../data/catalog'
+import BrowsePageSize from './BrowsePageSize'
 import './BrowsePagination.css'
 
 interface BrowsePaginationProps {
@@ -25,28 +26,9 @@ export default function BrowsePagination({
 
   return (
     <div className="browse-pagination">
-      <div className="browse-page-size">
-        <label htmlFor="browse-page-size">Mostrar</label>
-        <select
-          id="browse-page-size"
-          className="browse-page-size-select"
-          value={pageSize}
-          onChange={(event) => onPageSizeChange(Number(event.target.value) as PageSize)}
-        >
-          {PAGE_SIZE_OPTIONS.map((size) => (
-            <option key={size} value={size}>
-              {size}
-            </option>
-          ))}
-        </select>
-        <span>por página</span>
-      </div>
+      <BrowsePageSize pageSize={pageSize} onPageSizeChange={onPageSizeChange} />
 
-      <p className="browse-pagination-range">
-        {start}–{end} de {totalItems}
-      </p>
-
-      {totalPages > 1 && (
+      {totalPages > 1 ? (
         <nav className="browse-pagination-nav" aria-label="Paginación">
           <button
             type="button"
@@ -72,7 +54,13 @@ export default function BrowsePagination({
             Siguiente
           </button>
         </nav>
+      ) : (
+        <div className="browse-pagination-nav browse-pagination-nav--placeholder" aria-hidden="true" />
       )}
+
+      <p className="browse-pagination-range">
+        {start}–{end} de {totalItems}
+      </p>
     </div>
   )
 }

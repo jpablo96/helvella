@@ -126,7 +126,6 @@
 @media (max-width: 900px) {
   .order-cta-card {
     grid-template-columns: 1fr;
-    padding: 2.5rem 2rem;
     text-align: center;
   }
 
@@ -141,5 +140,50 @@
 
   .order-cta-btn {
     max-width: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .order-cta-card {
+    padding: 1.25rem 1rem;
+    gap: 1rem;
+  }
+
+  .order-cta-content h2 {
+    font-size: 1.45rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .order-cta-content > p {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    margin-bottom: 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .order-cta-perks {
+    gap: 0.4rem;
+  }
+
+  .order-cta-perks li {
+    font-size: 0.78rem;
+    gap: 0.45rem;
+  }
+
+  .order-cta-perk-icon {
+    width: 1.65rem;
+    height: 1.65rem;
+  }
+
+  .order-cta-btn {
+    font-size: 0.9rem;
+    padding: 0.85rem 1.25rem;
+  }
+
+  .order-cta-note {
+    font-size: 0.72rem;
   }
 }

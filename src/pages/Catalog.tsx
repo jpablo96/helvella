@@ -119,9 +119,9 @@ export default function Catalog() {
   return (
     <>
       <Seo
-        title="Catálogo"
-        socialTitle="Catálogo de Flores Eternas | Helvella — Costa Rica"
-        description="Explora nuestro catálogo de flores eternas artesanales hechas con limpiapipas. Rosas, girasoles, ramos y arreglos personalizados. ¡Haz tu pedido por WhatsApp!"
+        title="Catálogo de Flores Eternas"
+        socialTitle="Flores Eternas en Costa Rica | Catálogo Helvella"
+        description="Catálogo de flores eternas en Costa Rica por Helvella. Rosas, girasoles, ramos y arreglos hechos a mano con limpiapipas. Envíos a todo el país."
         path="/catalogo"
       />
       <PageHero
@@ -169,7 +169,9 @@ export default function Catalog() {
                   {filteredProducts.length}{' '}
                   {filteredProducts.length === 1 ? 'producto' : 'productos'}
                 </p>
-                <ViewToggle value={viewMode} onChange={setViewMode} />
+                <div className="browse-toolbar-actions">
+                  <ViewToggle value={viewMode} onChange={setViewMode} />
+                </div>
               </div>
             }
           >

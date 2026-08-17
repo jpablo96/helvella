@@ -13,6 +13,10 @@
   padding: 3rem 1.5rem 2.25rem;
 }
 
+.footer-aside {
+  display: contents;
+}
+
 .footer-logo {
   font-family: var(--font-heading);
   font-size: calc(1.75rem * 64 / 48);
@@ -84,7 +88,17 @@
   margin-bottom: 0.5rem;
 }
 
+.footer-contact-text {
+  line-height: 1.45;
+}
+
+.footer-contact-line {
+  display: block;
+}
+
 .footer-whatsapp {
+  display: block;
+  margin-top: 0.15rem;
   font-weight: 600;
   color: #2a7a4a;
   font-size: 1rem;
@@ -141,19 +155,68 @@
 
 @media (max-width: 900px) {
   .footer-inner {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    gap: 1.75rem 1rem;
+    padding: 2.5rem 1.25rem 2rem;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-links {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .footer-aside {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2;
+    grid-row: 2;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .footer-contact-text {
+    font-size: 0.82rem;
+  }
+
+  .footer-contact-line {
+    white-space: nowrap;
+  }
+
+  .footer-contact h4,
+  .footer-social h4 {
+    margin-bottom: 0.65rem;
+  }
+
+  .footer-contact p {
+    margin-bottom: 0.35rem;
   }
 }
 
 @media (max-width: 500px) {
-  .footer-inner {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 3rem 1.5rem 2rem;
-  }
-
   .footer-tagline {
     font-size: clamp(0.78rem, 3.4vw, 0.95rem);
+    white-space: normal;
+  }
+
+  .footer-contact p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .footer-contact-text {
+    font-size: 0.78rem;
+  }
+
+  .footer-aside {
+    gap: 0.6rem;
+  }
+
+  .footer-whatsapp {
+    margin-top: 0.25rem;
+    font-size: 0.95rem;
   }
 }

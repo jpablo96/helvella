@@ -1,0 +1,43 @@
+.browse-page-size {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(108, 38, 91, 0.72);
+  flex-shrink: 0;
+}
+
+.browse-page-size-select {
+  padding: 0.4rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid rgba(108, 38, 91, 0.25);
+  background: #FFEBCC;
+  color: #6C265B;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+
+.browse-page-size-select:hover,
+.browse-page-size-select:focus {
+  border-color: #6C265B;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .browse-page-size {
+    font-size: 0.8rem;
+    gap: 0.35rem;
+  }
+
+  .browse-page-size-suffix {
+    display: none;
+  }
+
+  .browse-page-size-select {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}

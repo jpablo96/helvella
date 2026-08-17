@@ -24,9 +24,7 @@ export default function HomePanel({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-        }
+        setVisible(entry.isIntersecting)
       },
       {
         root: scrollRoot?.current ?? null,
@@ -42,7 +40,7 @@ export default function HomePanel({
     <section
       ref={ref}
       id={id}
-      className={`home-panel${visible ? ' is-visible' : ''}${initialVisible ? ' home-panel--instant' : ''}${className ? ` ${className}` : ''}`}
+      className={`home-panel${visible ? ' is-visible' : ''}${className ? ` ${className}` : ''}`}
     >
       {children}
     </section>

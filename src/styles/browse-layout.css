@@ -188,6 +188,14 @@
   flex-shrink: 0;
 }
 
+.browse-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
 .browse-toolbar--end {
   justify-content: flex-end;
 }
@@ -279,10 +287,11 @@
 
   .browse-toolbar {
     flex-wrap: wrap;
+    gap: 0.65rem;
   }
 
-  .browse-toolbar .view-toggle {
-    margin-left: auto;
+  .browse-toolbar-actions {
+    gap: 0.5rem;
   }
 
   .browse-grid--grid {

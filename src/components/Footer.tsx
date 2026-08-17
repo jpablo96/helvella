@@ -38,17 +38,22 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="footer-contact">
-          <h4>Pedidos</h4>
-          <p>Realizamos pedidos por WhatsApp. {NATIONWIDE_SHIPPING_NOTE}</p>
-          <a href={`https://wa.me/${WHATSAPP_NUMBER}`} className="footer-whatsapp">
-            +{formatPhoneNumber(WHATSAPP_NUMBER)}
-          </a>
-        </div>
+        <div className="footer-aside">
+          <div className="footer-contact">
+            <h4>Pedidos</h4>
+            <p className="footer-contact-text">
+              <span className="footer-contact-line">Pedidos por WhatsApp.</span>
+              <span className="footer-contact-line">{NATIONWIDE_SHIPPING_NOTE}</span>
+            </p>
+            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} className="footer-whatsapp">
+              +{formatPhoneNumber(WHATSAPP_NUMBER)}
+            </a>
+          </div>
 
-        <div className="footer-social">
-          <h4>Síguenos</h4>
-          <SocialLinks size="md" />
+          <div className="footer-social">
+            <h4>Síguenos</h4>
+            <SocialLinks size="md" />
+          </div>
         </div>
       </div>
 
@@ -63,7 +68,7 @@ export default function Footer() {
           </p>
           <p className="footer-credit-pitch">
             <span className="footer-credit-pitch-line">
-              No solo sabemos de flores eternas, también sabemos de sitios web.
+              Sabemos de flores eternas y de sitios web.
             </span>
             <span className="footer-credit-pitch-line">
               <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">

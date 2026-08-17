@@ -1,15 +1,15 @@
 export const SITE_URL = import.meta.env.VITE_SITE_URL ?? 'https://helvella.cr'
 
 export const SITE_NAME = 'Helvella'
-export const SITE_TAGLINE = 'Flores eternas artesanales y manualidades hechas a mano en Costa Rica'
+export const SITE_TAGLINE = 'Flores eternas en Costa Rica hechas a mano con limpiapipas'
 
 export const DEFAULT_SEO = {
   title: 'Helvella',
-  socialTitle: 'Helvella — Flores Eternas Artesanales | Costa Rica',
+  socialTitle: 'Helvella | Flores Eternas en Costa Rica',
   description:
-    'Helvella crea flores eternas hechas a mano con limpiapipas en Costa Rica. Arreglos florales personalizados, regalos únicos y manualidades artesanales. ¡Haz tu pedido por WhatsApp!',
+    'Helvella crea flores eternas en Costa Rica, hechas a mano con limpiapipas. Arreglos florales personalizados, regalos únicos y envíos a todo el país. ¡Haz tu pedido por WhatsApp!',
   keywords:
-    'flores eternas, flores de limpiapipas, manualidades Costa Rica, arreglos florales artesanales, regalos personalizados, Helvella, flores artificiales hechas a mano, arte y manualidades',
+    'flores eternas Costa Rica, flores eternas en Costa Rica, Helvella Costa Rica, flores de limpiapipas, manualidades Costa Rica, arreglos florales, regalos personalizados, Helvella, flores artificiales hechas a mano',
   locale: 'es_CR',
 }
 

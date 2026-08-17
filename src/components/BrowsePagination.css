@@ -1,51 +1,37 @@
 .browse-pagination {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-block);
+  gap: 0.75rem 1rem;
+  margin-top: var(--space-block);
   margin-bottom: var(--space-block-lg);
   padding-top: 0;
 }
 
-.browse-page-size {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: rgba(108, 38, 91, 0.72);
-}
-
-.browse-page-size-select {
-  padding: 0.4rem 0.65rem;
-  border-radius: var(--radius-sm);
-  border: 2px solid rgba(108, 38, 91, 0.25);
-  background: #FFEBCC;
-  color: #6C265B;
-  font-size: 0.85rem;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color var(--transition);
-}
-
-.browse-page-size-select:hover,
-.browse-page-size-select:focus {
-  border-color: #6C265B;
-  outline: none;
+.browse-pagination .browse-page-size {
+  justify-self: start;
 }
 
 .browse-pagination-range {
+  justify-self: end;
   margin: 0;
   font-size: 0.85rem;
   color: rgba(108, 38, 91, 0.72);
+  text-align: right;
+  white-space: nowrap;
 }
 
 .browse-pagination-nav {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
-  margin-left: auto;
+  justify-self: center;
+}
+
+.browse-pagination-nav--placeholder {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .browse-pagination-btn {
@@ -80,20 +66,31 @@
 
 @media (max-width: 768px) {
   .browse-pagination {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.65rem;
   }
 
-  .browse-page-size {
-    justify-content: center;
+  .browse-pagination .browse-page-size {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
   }
 
   .browse-pagination-range {
-    text-align: center;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
   }
 
   .browse-pagination-nav {
-    margin-left: 0;
-    justify-content: center;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: stretch;
+    flex-wrap: wrap;
+  }
+
+  .browse-pagination-nav--placeholder {
+    display: none;
   }
 }
