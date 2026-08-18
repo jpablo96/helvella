@@ -9,8 +9,8 @@ export const SOCIAL_URLS = [INSTAGRAM_URL, FACEBOOK_URL] as const
 
 export function getWhatsAppOrderUrl(productName?: string): string {
   const message = productName
-    ? `¡Hola Helvella! Me interesa el producto: ${productName}. ¿Podrían darme más información?`
-    : '¡Hola Helvella! Me gustaría hacer un pedido. ¿Podrían ayudarme?'
+    ? `Me interesa el producto: ${productName}. ¿Podrían darme más información?`
+    : '¡Hola! Me gustaría hacer un pedido. ¿Podrían ayudarme?'
   return `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`
 }
 

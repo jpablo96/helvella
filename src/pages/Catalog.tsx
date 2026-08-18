@@ -164,14 +164,8 @@ export default function Catalog() {
             onClose={closeFilters}
             activeFilterCount={activeFilterCount}
             toolbar={
-              <div className="browse-toolbar">
-                <p className="browse-count">
-                  {filteredProducts.length}{' '}
-                  {filteredProducts.length === 1 ? 'producto' : 'productos'}
-                </p>
-                <div className="browse-toolbar-actions">
-                  <ViewToggle value={viewMode} onChange={setViewMode} />
-                </div>
+              <div className="browse-toolbar browse-toolbar--end">
+                <ViewToggle value={viewMode} onChange={setViewMode} />
               </div>
             }
           >

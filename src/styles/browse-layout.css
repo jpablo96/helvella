@@ -1,10 +1,11 @@
 @import './browse-cards.css';
 
 .browse-shell {
+  --browse-section-gap: 1.5rem;
   display: grid;
   grid-template-columns: 240px minmax(0, 1fr);
   grid-template-rows: auto auto auto;
-  gap: 1.25rem;
+  gap: var(--browse-section-gap);
   max-width: calc(var(--max-width) + 240px + 1.5rem);
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -20,12 +21,19 @@
   grid-column: 2;
   grid-row: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--browse-section-gap);
 }
 
 .browse-toolbar-area {
   grid-column: 2;
   grid-row: 2;
   min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
 }
 
 .browse-sidebar {
@@ -45,6 +53,9 @@
   grid-column: 2;
   grid-row: 3;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--browse-section-gap);
 }
 
 .browse-shell--full .browse-main-header,
@@ -54,7 +65,7 @@
 }
 
 .browse-main-header .category-tabs {
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .browse-main-header .page-description {
@@ -174,7 +185,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: var(--space-block);
+  margin-bottom: 0;
 }
 
 .browse-count {
@@ -205,7 +216,7 @@
   width: 100%;
   min-width: 0;
   gap: 1.5rem;
-  margin-bottom: var(--space-block);
+  margin-bottom: 0;
 }
 
 .browse-grid--grid {
@@ -222,7 +233,7 @@
   padding: 2.5rem 1.5rem;
   background: #6C265B;
   border-radius: var(--radius-lg);
-  margin-bottom: var(--space-block-lg);
+  margin-bottom: 0;
 }
 
 .browse-empty h3 {
@@ -240,7 +251,7 @@
 
 .page-description {
   color: rgba(108, 38, 91, 0.72);
-  margin: 0 0 var(--space-block);
+  margin: 0;
   font-size: 0.95rem;
   line-height: 1.5;
 }
@@ -265,7 +276,7 @@
   }
 
   .browse-main-header {
-    margin-bottom: 1rem;
+    margin-bottom: 0;
   }
 
   .browse-main-header .page-description {
@@ -276,22 +287,27 @@
     display: none;
   }
 
+  .browse-toolbar-area {
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+
   .browse-filter-toggle {
     display: inline-flex;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .browse-toolbar {
+    flex-wrap: nowrap;
+    margin-bottom: 0;
+    width: auto;
+    flex-shrink: 0;
   }
 
   .browse-filter-overlay,
   .browse-filter-drawer {
     display: block;
-  }
-
-  .browse-toolbar {
-    flex-wrap: wrap;
-    gap: 0.65rem;
-  }
-
-  .browse-toolbar-actions {
-    gap: 0.5rem;
   }
 
   .browse-grid--grid {

@@ -3,8 +3,8 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 0.75rem 1rem;
-  margin-top: var(--space-block);
-  margin-bottom: var(--space-block-lg);
+  margin-top: 0;
+  margin-bottom: 0;
   padding-top: 0;
 }
 

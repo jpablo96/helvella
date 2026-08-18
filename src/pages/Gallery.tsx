@@ -53,13 +53,8 @@ export default function Gallery() {
       <section className="section gallery-content bg-beige">
         <div className="browse-shell browse-shell--full">
           <div className="browse-products-area">
-            <div className="browse-toolbar">
-              <p className="browse-count">
-                {galleryItems.length} {galleryItems.length === 1 ? 'pieza' : 'piezas'}
-              </p>
-              <div className="browse-toolbar-actions">
-                <ViewToggle value={viewMode} onChange={setViewMode} />
-              </div>
+            <div className="browse-toolbar browse-toolbar--end">
+              <ViewToggle value={viewMode} onChange={setViewMode} />
             </div>
 
             <div className={`browse-grid browse-grid--${viewMode}`}>
