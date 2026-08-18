@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type CSSProperties } from 'react'
 import type { IllustrationType } from '../data/types'
 import ProductIllustration from './illustrations/ProductIllustration'
 import './GalleryImage.css'
@@ -8,9 +8,20 @@ interface GalleryImageProps {
   color: string
   title: string
   illustration: IllustrationType
+  imageClassName?: string
+  imageStyle?: CSSProperties
+  loading?: 'lazy' | 'eager'
 }
 
-export default function GalleryImage({ image, color, title, illustration }: GalleryImageProps) {
+export default function GalleryImage({
+  image,
+  color,
+  title,
+  illustration,
+  imageClassName,
+  imageStyle,
+  loading = 'lazy',
+}: GalleryImageProps) {
   const [failed, setFailed] = useState(false)
   const showPlaceholder = !image || failed
 
@@ -29,8 +40,10 @@ export default function GalleryImage({ image, color, title, illustration }: Gall
     <img
       src={image}
       alt={title}
-      className="gallery-photo"
-      loading="lazy"
+      className={imageClassName ? `gallery-photo ${imageClassName}` : 'gallery-photo'}
+      style={imageStyle}
+      loading={loading}
+      decoding="async"
       onError={() => setFailed(true)}
     />
   )

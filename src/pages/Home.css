@@ -670,6 +670,12 @@
     line-height: 1.2;
   }
 
+  .home-panel--gallery .gallery-card-desc {
+    font-size: 0.68rem;
+    line-height: 1.35;
+    -webkit-line-clamp: 2;
+  }
+
   .home-panel--gallery .gallery-card-info time {
     font-size: 0.68rem;
   }

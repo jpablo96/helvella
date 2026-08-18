@@ -4,100 +4,125 @@ import type { IllustrationType } from './types'
 export interface GalleryItem {
   id: string
   title: string
-  description?: string
+  description: string
   category: Category
   illustration: IllustrationType
-  /** Ruta a la imagen en public/gallery/, ej: '/gallery/ramo-boda.jpg' */
-  image?: string
-  /** Color de respaldo cuando no hay imagen */
+  images: string[]
   color: string
-  date: string
 }
 
-const gallerySource: GalleryItem[] = [
+function galleryImages(folder: string, filenames: string[]): string[] {
+  return filenames.map((filename) => `/gallery/${folder}/${encodeURIComponent(filename)}`)
+}
+
+export const galleryItems: GalleryItem[] = [
   {
-    id: 'creacion-ramo-primavera',
-    title: 'Ramo Primavera',
-    description: 'Combinación de flores en tonos pastel.',
+    id: 'post1',
+    title: 'Arreglo de rosas',
+    description:
+      'Composición en florero que contiene 3 rosas vino, 1 rosa blanca y 2 ramitas de Gypsophila.',
     category: 'flores-eternas',
     illustration: 'ramo',
+    images: galleryImages('post1', ['post1.png']),
     color: '#D4A5C8',
-    date: '2025-03',
   },
   {
-    id: 'creacion-girasol-solo',
-    title: 'Girasol individual',
-    description: 'Girasol eterno de pie, ideal para repisas.',
-    category: 'flores-eternas',
-    illustration: 'girasol',
-    color: '#F0C040',
-    date: '2025-04',
-  },
-  {
-    id: 'creacion-margaritas',
-    title: 'Margaritas de campo',
-    description: 'Racimo de margaritas blancas con centro dorado.',
-    category: 'flores-eternas',
-    illustration: 'margarita',
-    color: '#F5F0E8',
-    date: '2025-05',
-  },
-  {
-    id: 'creacion-tulipanes',
-    title: 'Tulipanes púrpura',
-    description: 'Par de tulipanes para decoración de escritorio.',
-    category: 'flores-eternas',
-    illustration: 'tulipan',
-    color: '#9B6B9E',
-    date: '2025-06',
-  },
-  {
-    id: 'entrega-arreglo-bautizo',
-    title: 'Arreglo para bautizo',
-    description: 'Pieza delicada en tonos celeste y blanco.',
+    id: 'post2',
+    title: 'Arreglo de girasoles',
+    description: 'Composición en florero que contiene 3 Girasoles Pequeños.',
     category: 'flores-eternas',
     illustration: 'arreglo',
-    color: '#A8C8E8',
-    date: '2025-07',
-  },
-  {
-    id: 'entrega-rosas-rojas',
-    title: 'Rosas rojas',
-    description: 'Ramo de rosas rojas para aniversario.',
-    category: 'flores-eternas',
-    illustration: 'rosa',
-    color: '#B83B4A',
-    date: '2025-08',
-  },
-  {
-    id: 'entrega-girasoles',
-    title: 'Girasoles en jarrón',
-    description: 'Tres girasoles eternos como regalo de cumpleaños.',
-    category: 'flores-eternas',
-    illustration: 'girasol',
-    color: '#E8A838',
-    date: '2025-09',
-  },
-  {
-    id: 'entrega-centro-mesa',
-    title: 'Centro de mesa',
-    description: 'Arreglo floral para celebración familiar.',
-    category: 'flores-eternas',
-    illustration: 'centro-mesa',
+    images: galleryImages('post2', ['post2.png']),
     color: '#C45C6A',
-    date: '2025-10',
   },
   {
-    id: 'entrega-ramo-novia',
-    title: 'Ramo de novia',
-    description: 'Ramo personalizado en tonos blush y blanco para boda íntima.',
+    id: 'post3',
+    title: 'Ramo Rosado',
+    description:
+      'Ramo eterno en tonos suaves, ideal para regalar o decorar con un toque romántico y artesanal.',
     category: 'flores-eternas',
     illustration: 'ramo',
+    images: galleryImages('post3', ['post3.png']),
     color: '#E8B4B8',
-    date: '2025-11',
+  },
+  {
+    id: 'post4',
+    title: 'Centro de Mesa',
+    description:
+      'Pieza central con flores eternas en tonos ciruela, perfecta para celebraciones y espacios especiales.',
+    category: 'flores-eternas',
+    illustration: 'centro-mesa',
+    images: galleryImages('post4', ['post4.png']),
+    color: '#9B6B9E',
+  },
+  {
+    id: 'post5',
+    title: 'Girasol Eterno',
+    description:
+      'Girasol hecho a mano con limpiapipas, lleno de luz y color para alegrar cualquier ambiente.',
+    category: 'flores-eternas',
+    illustration: 'girasol',
+    images: galleryImages('post5', ['post5.png']),
+    color: '#F0C040',
+  },
+  {
+    id: 'post6',
+    title: 'Margarita Artesanal',
+    description:
+      'Margarita eterna con pétalos delicados y acabado cuidado, una pieza sencilla y encantadora.',
+    category: 'flores-eternas',
+    illustration: 'margarita',
+    images: galleryImages('post6', ['post6.png']),
+    color: '#F5F0E8',
+  },
+  {
+    id: 'post7',
+    title: 'Rosa Eterna',
+    description:
+      'Rosa elaborada a mano en tonos profundos, un clásico atemporal que nunca se marchita.',
+    category: 'flores-eternas',
+    illustration: 'rosa',
+    images: galleryImages('post7', ['post7.png']),
+    color: '#B83B4A',
+  },
+  {
+    id: 'post8',
+    title: 'Arreglo Multicolor',
+    description:
+      'Arreglo floral con varias flores eternas en combinación de colores. Cada detalle está hecho a mano.',
+    category: 'flores-eternas',
+    illustration: 'arreglo',
+    images: galleryImages('post8', ['post8-1.png', 'post8-2.png', 'post8-3.png', 'post8-4.png']),
+    color: '#A8C8E8',
+  },
+  {
+    id: 'post9',
+    title: 'Ramo Dorado',
+    description:
+      'Ramo eterno con acentos cálidos y dorados, una creación artesanal llena de carácter.',
+    category: 'flores-eternas',
+    illustration: 'ramo',
+    images: galleryImages('post9', ['post9.png']),
+    color: '#E8A838',
+  },
+  {
+    id: 'post10',
+    title: 'Arreglo Helvella',
+    description:
+      'Pieza representativa del taller Helvella: flores eternas en tonos ciruela con acabado artesanal.',
+    category: 'flores-eternas',
+    illustration: 'arreglo',
+    images: galleryImages('post10', ['post10-1.png', 'post10-2.png']),
+    color: '#6C265B',
+  },
+  {
+    id: 'post11',
+    title: 'Girasol Soleado',
+    description:
+      'Girasol eterno con pétalos radiantes y centro detallado, hecho con dedicación y mucho cariño.',
+    category: 'flores-eternas',
+    illustration: 'girasol',
+    images: galleryImages('post11', ['post11.png']),
+    color: '#C45C6A',
   },
 ]
-
-export const galleryItems: GalleryItem[] = [...gallerySource].sort((a, b) =>
-  a.date.localeCompare(b.date),
-)

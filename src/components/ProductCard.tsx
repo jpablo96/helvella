@@ -1,5 +1,6 @@
 import { getWhatsAppOrderUrl } from '../data/contact'
 import type { Product } from '../data/catalog'
+import ExpandIcon from './icons/ExpandIcon'
 import ProductIllustration from './illustrations/ProductIllustration'
 import './ProductCard.css'
 
@@ -29,6 +30,9 @@ export default function ProductCard({ product, onImageClick }: ProductCardProps)
           style={imageStyle}
         >
           {imageContent}
+          <span className="product-card-expand" aria-hidden="true">
+            <ExpandIcon />
+          </span>
         </button>
       ) : (
         <div className="product-card-image-btn" style={imageStyle}>

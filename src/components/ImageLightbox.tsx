@@ -5,7 +5,7 @@ interface ImageLightboxProps {
   bubbleClassName?: string
   onClose: () => void
   visual: ReactNode
-  info: ReactNode
+  info?: ReactNode
 }
 
 export default function ImageLightbox({

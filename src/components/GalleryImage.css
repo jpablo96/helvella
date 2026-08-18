@@ -23,3 +23,45 @@
   width: 55%;
   height: 55%;
 }
+
+.gallery-card-count {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  z-index: 2;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.4rem;
+  border-radius: 100px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(17, 27, 33, 0.78);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.gallery-card-expand {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 2;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(17, 27, 33, 0.78);
+  color: #fff;
+  pointer-events: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-card:hover .gallery-card-expand,
+.gallery-card-image-btn:hover .gallery-card-expand {
+  background: rgba(108, 38, 91, 0.92);
+  transform: scale(1.05);
+}

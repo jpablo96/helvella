@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { GalleryItem } from '../data/gallery'
-import { formatGalleryDate } from '../utils/formatDate'
+import ExpandIcon from './icons/ExpandIcon'
 import GalleryImage from './GalleryImage'
 
 interface GalleryCardProps {
@@ -12,22 +12,31 @@ interface GalleryCardProps {
 
 export default function GalleryCard({ item, onOpen, to, className }: GalleryCardProps) {
   const cardClass = `gallery-card browse-card${className ? ` ${className}` : ''}`
+  const coverImage = item.images[0]
 
   const image = (
     <div className="gallery-card-image">
       <GalleryImage
-        image={item.image}
+        image={coverImage}
         color={item.color}
         title={item.title}
         illustration={item.illustration}
       />
+      {item.images.length > 1 && (
+        <span className="gallery-card-count" aria-hidden="true">
+          {item.images.length}
+        </span>
+      )}
+      <span className="gallery-card-expand" aria-hidden="true">
+        <ExpandIcon />
+      </span>
     </div>
   )
 
   const info = (
     <div className="gallery-card-info">
       <h3>{item.title}</h3>
-      {item.date && <time dateTime={item.date}>{formatGalleryDate(item.date)}</time>}
+      <p className="gallery-card-desc">{item.description}</p>
     </div>
   )
 

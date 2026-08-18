@@ -14,6 +14,7 @@
 }
 
 .product-card-image-btn {
+  position: relative;
   aspect-ratio: 1;
   width: 100%;
   display: flex;
@@ -45,6 +46,29 @@ div.product-card-image-btn:hover {
 .product-card-image-btn:focus-visible {
   outline: 2px solid #6C265B;
   outline-offset: -2px;
+}
+
+.product-card-expand {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 2;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(17, 27, 33, 0.78);
+  color: #fff;
+  pointer-events: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.product-card:hover .product-card-expand,
+.product-card-image-btn:hover .product-card-expand {
+  background: rgba(108, 38, 91, 0.92);
+  transform: scale(1.05);
 }
 
 .flower-svg {

@@ -73,16 +73,20 @@
   list-style: none;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 0.65rem;
+  width: 100%;
 }
 
 .order-cta-perks li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 0.65rem;
   font-size: 0.95rem;
   font-weight: 500;
   color: #6C265B;
+  text-align: left;
 }
 
 .order-cta-perk-icon {
@@ -135,7 +139,14 @@
   }
 
   .order-cta-perks {
-    align-items: center;
+    align-self: stretch;
+    align-items: flex-start;
+  }
+
+  .order-cta-perks li {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .order-cta-btn {
@@ -176,6 +187,7 @@
   .order-cta-perk-icon {
     width: 1.65rem;
     height: 1.65rem;
+    margin-top: 0.05rem;
   }
 
   .order-cta-btn {
