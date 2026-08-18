@@ -23,6 +23,8 @@ import './Catalog.css'
 const emptyMessages: Partial<Record<FloresEternasSubcategory, string>> = {
   macetitas:
     'Estamos preparando nuestra colección de macetitas. ¡Síguenos en redes para estar al tanto!',
+  arreglos:
+    'Estamos preparando nuestra colección de arreglos. ¡Síguenos en redes para estar al tanto!',
   animalitos:
     'Pronto tendremos animalitos hechos a mano. ¡Síguenos en redes para conocer los lanzamientos!',
 }

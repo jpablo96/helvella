@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactElement, ReactNode } from 'react'
 import type { FlowerVariant, IllustrationType } from './types'
+import { catalogFlowerRenderers } from './flowerCatalogRenderers'
 
 interface ProductIllustrationProps {
   type: IllustrationType
@@ -272,6 +273,21 @@ function Pollito({ color, variant }: RendererProps) {
   )
 }
 
+function Elefante({ color, variant }: RendererProps) {
+  return (
+    <IllustrationSvg viewBox="0 0 120 120" variant={variant} color={color}>
+      <Background color={color} />
+      <ellipse cx="60" cy="70" rx="28" ry="22" fill={color} />
+      <circle cx="60" cy="48" r="18" fill={color} />
+      <ellipse cx="38" cy="54" rx="10" ry="16" fill={color} opacity={0.95} />
+      <ellipse cx="82" cy="54" rx="10" ry="16" fill={color} opacity={0.95} />
+      <circle cx="54" cy="46" r="2.5" fill="#6C265B" />
+      <circle cx="66" cy="46" r="2.5" fill="#6C265B" />
+      <path d="M38 54 Q24 58 22 72 Q28 74 36 66" fill="none" stroke={color} strokeWidth="8" strokeLinecap="round" />
+    </IllustrationSvg>
+  )
+}
+
 function AmigurumiFlor({ color, variant }: RendererProps) {
   return (
     <IllustrationSvg viewBox="0 0 120 120" variant={variant} color={color}>
@@ -459,7 +475,7 @@ function Macetita({ color, variant }: RendererProps) {
   )
 }
 
-const renderers: Record<IllustrationType, (props: RendererProps) => ReactElement> = {
+const baseRenderers: Partial<Record<IllustrationType, (props: RendererProps) => ReactElement>> = {
   rosa: Rosa,
   girasol: Girasol,
   tulipan: Tulipan,
@@ -469,6 +485,7 @@ const renderers: Record<IllustrationType, (props: RendererProps) => ReactElement
   'centro-mesa': CentroMesa,
   arreglo: Arreglo,
   conejo: Conejo,
+  elefante: Elefante,
   osito: Osito,
   mariposa: Mariposa,
   pollito: Pollito,
@@ -493,6 +510,6 @@ export default function ProductIllustration({
   variant = 'card',
   className,
 }: ProductIllustrationProps) {
-  const Renderer = renderers[type] ?? FlorGenerica
+  const Renderer = catalogFlowerRenderers[type] ?? baseRenderers[type] ?? FlorGenerica
   return <Renderer color={color} variant={variant} className={className} />
 }

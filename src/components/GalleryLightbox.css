@@ -81,6 +81,8 @@
 
 .gallery-lightbox-info p {
   margin-bottom: 0;
+  line-height: 1.6;
+  min-height: calc(2 * 1.6em);
 }
 
 .gallery-lightbox-dots {

@@ -1,9 +1,9 @@
-import type { Category, FloresEternasSubcategory } from './types'
+import type { Category } from './types'
 
 export type { Category, FloresEternasSubcategory, Product } from './types'
 
 export const floresEternasSubcategories: {
-  id: FloresEternasSubcategory
+  id: import('./types').FloresEternasSubcategory
   label: string
 }[] = [
   { id: 'todos', label: 'Todos' },
@@ -48,4 +48,4 @@ export const categories: {
 export const PAGE_SIZE_OPTIONS = [8, 16, 24, 32] as const
 export type PageSize = (typeof PAGE_SIZE_OPTIONS)[number]
 
-export { products } from './mockProducts'
+export { products, getProductsByCategory } from './products'

@@ -18,9 +18,9 @@ function galleryImages(folder: string, filenames: string[]): string[] {
 export const galleryItems: GalleryItem[] = [
   {
     id: 'post1',
-    title: 'Arreglo de rosas',
+    title: 'Arreglo de Rosas',
     description:
-      'Composición en florero que contiene 3 rosas vino, 1 rosa blanca y 2 ramitas de Gypsophila.',
+      'Composición en florero que contiene 3 Rosas vino, 1 Rosa blanca y 2 ramitas de Gypsophila.',
     category: 'flores-eternas',
     illustration: 'ramo',
     images: galleryImages('post1', ['post1.webp']),
@@ -28,7 +28,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'post2',
-    title: 'Arreglo de girasoles',
+    title: 'Arreglo de Girasoles',
     description: 'Composición en florero que contiene 3 Girasoles Pequeños.',
     category: 'flores-eternas',
     illustration: 'arreglo',
@@ -37,9 +37,8 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'post3',
-    title: 'Ramo Rosado',
-    description:
-      'Ramo eterno en tonos suaves, ideal para regalar o decorar con un toque romántico y artesanal.',
+    title: 'Hortensia',
+    description: 'Composición en florero que contiene una Hortensia morada.',
     category: 'flores-eternas',
     illustration: 'ramo',
     images: galleryImages('post3', ['post3.webp']),
@@ -47,9 +46,9 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'post4',
-    title: 'Centro de Mesa',
+    title: 'Orquídeas',
     description:
-      'Pieza central con flores eternas en tonos ciruela, perfecta para celebraciones y espacios especiales.',
+      'Composición experimental en candela de madera con 3 Orquídeas blancas.',
     category: 'flores-eternas',
     illustration: 'centro-mesa',
     images: galleryImages('post4', ['post4.webp']),
@@ -57,9 +56,9 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'post5',
-    title: 'Girasol Eterno',
+    title: 'Arreglo de Girasoles y Margaritas',
     description:
-      'Girasol hecho a mano con limpiapipas, lleno de luz y color para alegrar cualquier ambiente.',
+      'Composición en florero que contiene 3 Girasoles Pequeños, 4 Margaritas y 3 ramitas con hojas.',
     category: 'flores-eternas',
     illustration: 'girasol',
     images: galleryImages('post5', ['post5.webp']),
@@ -67,9 +66,8 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'post6',
-    title: 'Margarita Artesanal',
-    description:
-      'Margarita eterna con pétalos delicados y acabado cuidado, una pieza sencilla y encantadora.',
+    title: 'Macetita de Tulipanes',
+    description: 'Composición en macetita que contiene 6 Tulipanes de diferentes colores.',
     category: 'flores-eternas',
     illustration: 'margarita',
     images: galleryImages('post6', ['post6.webp']),
@@ -77,9 +75,9 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'post7',
-    title: 'Rosa Eterna',
+    title: 'Arreglo de Clivias con Cempasúchil',
     description:
-      'Rosa elaborada a mano en tonos profundos, un clásico atemporal que nunca se marchita.',
+      'Composición en florero que contiene varias Clivias, 2 Cempasúchil y 3 Margaritas.',
     category: 'flores-eternas',
     illustration: 'rosa',
     images: galleryImages('post7', ['post7.webp']),
@@ -87,9 +85,9 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'post8',
-    title: 'Arreglo Multicolor',
+    title: 'Macetitas de Gerberas',
     description:
-      'Arreglo floral con varias flores eternas en combinación de colores. Cada detalle está hecho a mano.',
+      'Nuestras macetitas de Gerberas, una rosa, una azul y una roja.',
     category: 'flores-eternas',
     illustration: 'arreglo',
     images: galleryImages('post8', ['post8-1.webp', 'post8-2.webp', 'post8-3.webp', 'post8-4.webp']),
@@ -97,9 +95,8 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'post9',
-    title: 'Ramo Dorado',
-    description:
-      'Ramo eterno con acentos cálidos y dorados, una creación artesanal llena de carácter.',
+    title: 'Rosas',
+    description: 'Nuestras Rosas, una roja y una amarilla.',
     category: 'flores-eternas',
     illustration: 'ramo',
     images: galleryImages('post9', ['post9.webp']),
@@ -107,9 +104,8 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'post10',
-    title: 'Arreglo Helvella',
-    description:
-      'Pieza representativa del taller Helvella: flores eternas en tonos ciruela con acabado artesanal.',
+    title: 'Girasol',
+    description: 'Nuestro Girasol mediano con pétalo grueso.',
     category: 'flores-eternas',
     illustration: 'arreglo',
     images: galleryImages('post10', ['post10-1.webp', 'post10-2.webp']),
@@ -117,9 +113,9 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'post11',
-    title: 'Girasol Soleado',
+    title: 'Arreglo de Girasoles',
     description:
-      'Girasol eterno con pétalos radiantes y centro detallado, hecho con dedicación y mucho cariño.',
+      'Composición en florero con 3 Girasoles medianos de pétalo delgado.',
     category: 'flores-eternas',
     illustration: 'girasol',
     images: galleryImages('post11', ['post11.webp']),
