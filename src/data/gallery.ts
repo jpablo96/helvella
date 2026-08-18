@@ -23,7 +23,7 @@ export const galleryItems: GalleryItem[] = [
       'Composición en florero que contiene 3 rosas vino, 1 rosa blanca y 2 ramitas de Gypsophila.',
     category: 'flores-eternas',
     illustration: 'ramo',
-    images: galleryImages('post1', ['post1.png']),
+    images: galleryImages('post1', ['post1.webp']),
     color: '#D4A5C8',
   },
   {
@@ -32,7 +32,7 @@ export const galleryItems: GalleryItem[] = [
     description: 'Composición en florero que contiene 3 Girasoles Pequeños.',
     category: 'flores-eternas',
     illustration: 'arreglo',
-    images: galleryImages('post2', ['post2.png']),
+    images: galleryImages('post2', ['post2.webp']),
     color: '#C45C6A',
   },
   {
@@ -42,7 +42,7 @@ export const galleryItems: GalleryItem[] = [
       'Ramo eterno en tonos suaves, ideal para regalar o decorar con un toque romántico y artesanal.',
     category: 'flores-eternas',
     illustration: 'ramo',
-    images: galleryImages('post3', ['post3.png']),
+    images: galleryImages('post3', ['post3.webp']),
     color: '#E8B4B8',
   },
   {
@@ -52,7 +52,7 @@ export const galleryItems: GalleryItem[] = [
       'Pieza central con flores eternas en tonos ciruela, perfecta para celebraciones y espacios especiales.',
     category: 'flores-eternas',
     illustration: 'centro-mesa',
-    images: galleryImages('post4', ['post4.png']),
+    images: galleryImages('post4', ['post4.webp']),
     color: '#9B6B9E',
   },
   {
@@ -62,7 +62,7 @@ export const galleryItems: GalleryItem[] = [
       'Girasol hecho a mano con limpiapipas, lleno de luz y color para alegrar cualquier ambiente.',
     category: 'flores-eternas',
     illustration: 'girasol',
-    images: galleryImages('post5', ['post5.png']),
+    images: galleryImages('post5', ['post5.webp']),
     color: '#F0C040',
   },
   {
@@ -72,7 +72,7 @@ export const galleryItems: GalleryItem[] = [
       'Margarita eterna con pétalos delicados y acabado cuidado, una pieza sencilla y encantadora.',
     category: 'flores-eternas',
     illustration: 'margarita',
-    images: galleryImages('post6', ['post6.png']),
+    images: galleryImages('post6', ['post6.webp']),
     color: '#F5F0E8',
   },
   {
@@ -82,7 +82,7 @@ export const galleryItems: GalleryItem[] = [
       'Rosa elaborada a mano en tonos profundos, un clásico atemporal que nunca se marchita.',
     category: 'flores-eternas',
     illustration: 'rosa',
-    images: galleryImages('post7', ['post7.png']),
+    images: galleryImages('post7', ['post7.webp']),
     color: '#B83B4A',
   },
   {
@@ -92,7 +92,7 @@ export const galleryItems: GalleryItem[] = [
       'Arreglo floral con varias flores eternas en combinación de colores. Cada detalle está hecho a mano.',
     category: 'flores-eternas',
     illustration: 'arreglo',
-    images: galleryImages('post8', ['post8-1.png', 'post8-2.png', 'post8-3.png', 'post8-4.png']),
+    images: galleryImages('post8', ['post8-1.webp', 'post8-2.webp', 'post8-3.webp', 'post8-4.webp']),
     color: '#A8C8E8',
   },
   {
@@ -102,7 +102,7 @@ export const galleryItems: GalleryItem[] = [
       'Ramo eterno con acentos cálidos y dorados, una creación artesanal llena de carácter.',
     category: 'flores-eternas',
     illustration: 'ramo',
-    images: galleryImages('post9', ['post9.png']),
+    images: galleryImages('post9', ['post9.webp']),
     color: '#E8A838',
   },
   {
@@ -112,7 +112,7 @@ export const galleryItems: GalleryItem[] = [
       'Pieza representativa del taller Helvella: flores eternas en tonos ciruela con acabado artesanal.',
     category: 'flores-eternas',
     illustration: 'arreglo',
-    images: galleryImages('post10', ['post10-1.png', 'post10-2.png']),
+    images: galleryImages('post10', ['post10-1.webp', 'post10-2.webp']),
     color: '#6C265B',
   },
   {
@@ -122,7 +122,7 @@ export const galleryItems: GalleryItem[] = [
       'Girasol eterno con pétalos radiantes y centro detallado, hecho con dedicación y mucho cariño.',
     category: 'flores-eternas',
     illustration: 'girasol',
-    images: galleryImages('post11', ['post11.png']),
+    images: galleryImages('post11', ['post11.webp']),
     color: '#C45C6A',
   },
 ]
