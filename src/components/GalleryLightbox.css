@@ -5,7 +5,7 @@
   max-width: var(--gallery-image-max-width);
   max-height: calc(100dvh - 2.5rem);
   overflow: auto;
-  background: #FFEBCC;
+  background: var(--color-beige);
 }
 
 .gallery-lightbox-content {
@@ -71,7 +71,7 @@
   caption-side: bottom;
   box-sizing: border-box;
   text-align: left;
-  background: #FFEBCC;
+  background: var(--color-beige);
   overflow-wrap: anywhere;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .gallery-lightbox-dot.is-active {
-  background: #FFEBCC;
+  background: var(--color-beige);
   transform: scale(1.25);
 }
 

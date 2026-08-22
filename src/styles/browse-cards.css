@@ -1,32 +1,32 @@
 /* Shared card styles for gallery browse grids */
 
 .browse-grid .product-card {
-  background: #6C265B;
-  border: 1px solid rgba(255, 235, 204, 0.1);
-  box-shadow: 0 2px 12px rgba(108, 38, 91, 0.12);
+  background: var(--color-card-bg);
+  border: 1px solid rgba(108, 38, 91, 0.12);
+  box-shadow: var(--shadow-sm);
 }
 
 .browse-grid .product-card:hover {
-  border-color: rgba(255, 235, 204, 0.18);
-  box-shadow: 0 10px 28px rgba(108, 38, 91, 0.18);
+  border-color: rgba(108, 38, 91, 0.2);
+  box-shadow: var(--shadow-md);
 }
 
 .browse-grid .product-card-image-btn:focus-visible {
-  outline: 2px solid #FFEBCC;
+  outline: 2px solid #6C265B;
   outline-offset: -2px;
 }
 
 .browse-grid .product-card-name {
   font-family: var(--font-heading);
-  color: #FFEBCC;
+  color: #6C265B;
 }
 
 .browse-grid .product-card-desc {
-  color: rgba(255, 235, 204, 0.75);
+  color: rgba(108, 38, 91, 0.72);
 }
 
 .browse-grid .product-card-price {
-  color: rgba(255, 235, 204, 0.88);
+  color: #6C265B;
 }
 
 .browse-grid .flower-svg {
@@ -36,7 +36,6 @@
 .browse-grid--grid .gallery-card {
   position: relative;
   display: block;
-  aspect-ratio: 4 / 5;
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 235, 204, 0.14);
   overflow: hidden;
@@ -48,7 +47,7 @@
   text-align: left;
   text-decoration: none;
   color: inherit;
-  background: rgba(108, 38, 91, 0.2);
+  background: rgba(17, 27, 33, 0.06);
 }
 
 .browse-grid--grid .gallery-card:hover {
@@ -61,7 +60,6 @@
   position: relative;
   display: block;
   width: 100%;
-  height: 100%;
   border: none;
   padding: 0;
   margin: 0;
@@ -78,8 +76,12 @@
 }
 
 .browse-grid--grid .gallery-card-media {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: rgba(17, 27, 33, 0.08);
 }
 
 .browse-grid--grid .gallery-card-media .gallery-placeholder {
@@ -93,81 +95,19 @@
   animation: none;
 }
 
-.browse-grid--grid .gallery-card-info {
-  --gallery-info-pad-top: 1.35rem;
-  --gallery-info-pad-bottom: 0.75rem;
-  --gallery-info-overlay-top: calc(var(--gallery-info-pad-top) - 0.5rem);
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  z-index: 2;
-  padding: var(--gallery-info-pad-top) 1rem var(--gallery-info-pad-bottom);
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  background: transparent;
-}
-
-.browse-grid--grid .gallery-card-info::before {
-  content: '';
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  top: var(--gallery-info-overlay-top);
-  z-index: 0;
-  pointer-events: none;
-  background: rgba(108, 38, 91, 0.48);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-.browse-grid--grid .gallery-card-info h3 {
-  position: relative;
-  z-index: 1;
-  font-family: var(--font-heading);
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 0;
-  color: #FFEBCC;
-  line-height: 1.3;
-}
-
-.browse-grid--grid .gallery-card-desc {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  font-size: 0.86rem;
-  color: rgba(255, 235, 204, 0.88);
-  line-height: 1.45;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.browse-grid--grid .gallery-card-info time {
-  position: relative;
-  z-index: 1;
-  font-size: 0.9rem;
-  color: rgba(255, 235, 204, 0.78);
-}
-
 /* List mode */
 .browse-grid--list .gallery-card {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
+  display: block;
   width: 100%;
   min-width: 0;
-  aspect-ratio: auto;
-  background: #6C265B;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 235, 204, 0.1);
+  border: 1px solid rgba(255, 235, 204, 0.14);
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(108, 38, 91, 0.12);
   text-align: left;
   text-decoration: none;
   color: inherit;
+  background: rgba(17, 27, 33, 0.06);
 }
 
 .browse-grid--list .gallery-card:hover {
@@ -176,9 +116,7 @@
 }
 
 .browse-grid--list .gallery-card-hitarea {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
+  display: block;
   width: 100%;
   border: none;
   padding: 0;
@@ -197,12 +135,10 @@
 
 .browse-grid--list .gallery-card-media {
   position: relative;
-  width: clamp(96px, 26vw, 136px);
-  min-width: clamp(96px, 26vw, 136px);
-  flex-shrink: 0;
-  aspect-ratio: 1081 / 1351;
+  width: 100%;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: rgba(17, 27, 33, 0.16);
+  background: rgba(17, 27, 33, 0.08);
 }
 
 .browse-grid--list .gallery-card-media .gallery-photo,
@@ -210,49 +146,7 @@
 .browse-grid--list .gallery-card-media .gallery-placeholder {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-}
-
-.browse-grid--list .gallery-card-info {
-  position: static;
-  flex: 1;
-  min-width: 0;
-  padding: 0.85rem 1.1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.35rem;
-  background: transparent;
-}
-
-.browse-grid--list .gallery-card-info h3 {
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0;
-  color: #FFEBCC;
-  line-height: 1.3;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.browse-grid--list .gallery-card-desc {
-  margin: 0;
-  font-size: 0.84rem;
-  color: rgba(255, 235, 204, 0.78);
-  line-height: 1.45;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  white-space: normal;
-}
-
-.browse-grid--list .gallery-card-info time {
-  font-size: 0.9rem;
-  white-space: nowrap;
-  color: rgba(255, 235, 204, 0.78);
+  object-fit: cover;
 }
 
 .browse-grid--list .product-card {
@@ -264,7 +158,7 @@
 
 .browse-grid--list .product-card:hover {
   transform: none;
-  box-shadow: 0 4px 16px rgba(108, 38, 91, 0.14);
+  box-shadow: var(--shadow-md);
 }
 
 .browse-grid--list .product-card-image-btn {
@@ -319,20 +213,4 @@
   font-size: 3rem;
   display: block;
   margin-bottom: 1rem;
-}
-
-@media (max-width: 768px) {
-  .browse-grid--grid .gallery-card-info {
-    --gallery-info-pad-top: 1.1rem;
-    --gallery-info-pad-bottom: 0.65rem;
-    padding: var(--gallery-info-pad-top) 0.85rem var(--gallery-info-pad-bottom);
-  }
-
-  .browse-grid--grid .gallery-card-info h3 {
-    font-size: 1rem;
-  }
-
-  .browse-grid--grid .gallery-card-info time {
-    font-size: 0.9rem;
-  }
 }

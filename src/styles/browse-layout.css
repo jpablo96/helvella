@@ -41,7 +41,7 @@
   grid-row: 3;
   width: 240px;
   padding: 1.25rem;
-  background: #FFEBCC;
+  background: var(--color-card-bg);
   border: 2px solid rgba(108, 38, 91, 0.12);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
@@ -87,7 +87,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: #6C265B;
-  background: #FFEBCC;
+  background: var(--color-card-bg);
   border: 2px solid rgba(108, 38, 91, 0.25);
   margin-bottom: 1rem;
   transition: all var(--transition);
@@ -138,7 +138,7 @@
   bottom: 0;
   width: min(320px, 88vw);
   z-index: 156;
-  background: #FFEBCC;
+  background: var(--color-card-bg);
   padding: 1.25rem 1.5rem 2rem;
   overflow-y: auto;
   transform: translateX(-100%);
@@ -231,7 +231,7 @@
 .browse-empty {
   text-align: center;
   padding: 2.5rem 1.5rem;
-  background: #6C265B;
+  background: var(--color-card-bg);
   border-radius: var(--radius-lg);
   margin-bottom: 0;
 }
@@ -239,11 +239,11 @@
 .browse-empty h3 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
-  color: #FFEBCC;
+  color: #6C265B;
 }
 
 .browse-empty p {
-  color: rgba(255, 235, 204, 0.75);
+  color: rgba(108, 38, 91, 0.72);
   max-width: 400px;
   margin: 0 auto;
   line-height: 1.6;

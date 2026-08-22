@@ -1,5 +1,7 @@
 .order-cta {
-  background: #6C265B;
+  background: var(--color-page-bg);
+  background-image: radial-gradient(rgba(108, 38, 91, 0.035) 1px, transparent 1px);
+  background-size: 22px 22px;
   position: relative;
   overflow: hidden;
 }
@@ -15,7 +17,7 @@
   top: -1rem;
   right: 8%;
   font-size: 8rem;
-  color: rgba(255, 235, 204, 0.06);
+  color: rgba(108, 38, 91, 0.06);
   pointer-events: none;
 }
 
@@ -25,7 +27,7 @@
   bottom: -2rem;
   left: 5%;
   font-size: 6rem;
-  color: rgba(255, 235, 204, 0.05);
+  color: rgba(108, 38, 91, 0.05);
   pointer-events: none;
 }
 
@@ -34,7 +36,7 @@
   grid-template-columns: 1.4fr 0.6fr;
   gap: 2rem;
   align-items: center;
-  background: #FFEBCC;
+  background: var(--color-card-bg);
   border-radius: var(--radius-lg);
   padding: 2.25rem 2.5rem;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
@@ -197,5 +199,30 @@
 
   .order-cta-note {
     font-size: 0.72rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .order-cta-card {
+    padding: 2.75rem 3rem;
+    gap: 2.5rem;
+  }
+
+  .order-cta-content h2 {
+    font-size: clamp(2.25rem, 3vw, 3.15rem);
+  }
+
+  .order-cta-content > p {
+    font-size: 1.15rem;
+    max-width: 580px;
+  }
+
+  .order-cta-perks li {
+    font-size: 1rem;
+  }
+
+  .order-cta-btn {
+    font-size: 1.05rem;
+    padding: 1rem 1.75rem;
   }
 }

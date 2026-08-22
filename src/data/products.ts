@@ -1,8 +1,7 @@
 import type { Product } from './types'
-import { catalogExtraProducts } from './catalogExtras'
-import { catalogTrelloProducts } from './catalogTrelloProducts'
+import { catalogProducts } from './catalogProducts'
 
-export const products: Product[] = [...catalogTrelloProducts, ...catalogExtraProducts].sort((a, b) =>
+export const products: Product[] = [...catalogProducts].sort((a, b) =>
   a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }),
 )
 

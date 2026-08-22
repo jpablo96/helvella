@@ -1,6 +1,8 @@
 :root {
   --color-ciruela: #6c265b;
   --color-beige: #FFEBCC;
+  --color-card-bg: rgba(255, 255, 255, 0.35);
+  --color-page-bg: #FFEBCC;
   --color-ciruela-rgb: 108, 38, 91;
   --color-beige-rgb: 255, 235, 204;
 
@@ -9,9 +11,9 @@
   --text-on-beige: #6c265b;
   --text-muted-on-beige: rgba(108, 38, 91, 0.72);
 
-  --color-bg: #6c265b;
-  --color-bg-alt: #FFEBCC;
-  --color-surface: #FFEBCC;
+  --color-bg: var(--color-page-bg);
+  --color-bg-alt: #6c265b;
+  --color-surface: var(--color-card-bg);
   --color-primary: #FFEBCC;
   --color-primary-light: rgba(255, 235, 204, 0.88);
   --color-on-primary: #6c265b;
@@ -62,8 +64,8 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
-  color: var(--color-text);
-  background-color: var(--color-bg);
+  color: var(--text-on-beige);
+  background-color: var(--color-page-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -158,7 +160,7 @@ button {
 }
 
 .bg-beige {
-  background-color: #FFEBCC;
+  background-color: var(--color-page-bg);
   color: #6c265b;
   background-image: radial-gradient(rgba(108, 38, 91, 0.035) 1px, transparent 1px);
   background-size: 22px 22px;
@@ -194,7 +196,9 @@ button {
 .bg-ciruela,
 .hero,
 .page-hero,
-.order-cta {
+.home-panel--hero,
+.home-panel--closing .footer {
+  --color-card-bg: var(--color-beige);
   --surface-btn-bg: #FFEBCC;
   --surface-btn-fg: #6c265b;
   --surface-btn-bg-hover: rgba(255, 235, 204, 0.88);
@@ -211,12 +215,12 @@ button {
   --surface-btn-shadow: 0 4px 18px rgba(108, 38, 91, 0.28);
 }
 
-/* Tarjetas de catálogo: cuerpo ciruela */
+/* Tarjetas de catálogo */
 .browse-grid .product-card {
-  --surface-btn-bg: #FFEBCC;
-  --surface-btn-fg: #6c265b;
-  --surface-btn-bg-hover: rgba(255, 235, 204, 0.88);
-  --surface-btn-shadow: var(--shadow-sm);
+  --surface-btn-bg: #6c265b;
+  --surface-btn-fg: #FFEBCC;
+  --surface-btn-bg-hover: #5a1f4c;
+  --surface-btn-shadow: 0 4px 18px rgba(108, 38, 91, 0.28);
 }
 
 /* Encabezado de página — fondo ciruela, texto beige */
@@ -305,7 +309,7 @@ button {
 }
 
 .badge-soon {
-  background: rgba(108, 38, 91, 0.12);
+  background: var(--color-card-bg);
   color: #6c265b;
 }
 
@@ -344,5 +348,52 @@ button {
 
   .section {
     padding: var(--space-section-y) 0;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --max-width: 1420px;
+    --space-section-y: 3.5rem;
+    --space-section-y-tight: 2rem;
+    --space-block: 1.5rem;
+    --space-block-lg: 2rem;
+    --radius-md: 18px;
+    --radius-lg: 28px;
+  }
+
+  body {
+    font-size: 17px;
+  }
+
+  .section-title {
+    font-size: clamp(2.25rem, 3.2vw, 3.35rem);
+  }
+
+  .section-subtitle {
+    font-size: 1.2rem;
+    max-width: 640px;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.75rem, 4vw, 4rem);
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --max-width: 1580px;
+    --space-section-y: 4rem;
+    --space-block-lg: 2.25rem;
+    --radius-lg: 32px;
+  }
+
+  .section-title {
+    font-size: clamp(2.5rem, 2.8vw, 3.65rem);
+  }
+
+  .section-subtitle {
+    font-size: 1.25rem;
+    max-width: 700px;
   }
 }

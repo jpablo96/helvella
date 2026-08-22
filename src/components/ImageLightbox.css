@@ -18,7 +18,7 @@
 
 .image-lightbox-bubble {
   position: relative;
-  background: #FFEBCC;
+  background: var(--color-beige);
   border-radius: var(--radius-lg);
   max-width: 480px;
   width: 100%;

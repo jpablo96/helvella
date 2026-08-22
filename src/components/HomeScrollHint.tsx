@@ -1,11 +1,27 @@
+import type { RefObject } from 'react'
+
 interface HomeScrollHintProps {
   targetId: string
   tone?: 'beige' | 'ciruela'
+  scrollRoot?: RefObject<HTMLElement | null>
 }
 
-export default function HomeScrollHint({ targetId, tone = 'beige' }: HomeScrollHintProps) {
+export default function HomeScrollHint({
+  targetId,
+  tone = 'beige',
+  scrollRoot,
+}: HomeScrollHintProps) {
   const scrollToTarget = () => {
-    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' })
+    const root =
+      scrollRoot?.current ?? document.querySelector<HTMLElement>('.home-scroll')
+    const target = document.getElementById(targetId)
+
+    if (!root || !target) return
+
+    root.scrollTo({
+      top: target.offsetTop,
+      behavior: 'smooth',
+    })
   }
 
   return (

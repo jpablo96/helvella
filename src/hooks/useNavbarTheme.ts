@@ -17,17 +17,13 @@ function getSectionTone(): NavbarTheme {
 
   if (
     el.closest(
-      'footer, .bg-beige, .order-cta-card, .home-panel--gallery, .home-intro-features',
+      '.bg-beige, .order-cta-card, .home-panel--featured, .home-panel--gallery, .home-panel--closing',
     )
   ) {
     return 'beige'
   }
 
-  if (
-    el.closest(
-      '.bg-ciruela, .hero, .page-hero, .order-cta, .home-panel--featured, .home-panel--final',
-    )
-  ) {
+  if (el.closest('footer, .footer, .home-panel--hero, .home-panel--closing .footer, .hero, .page-hero')) {
     return 'ciruela'
   }
 

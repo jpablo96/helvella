@@ -45,7 +45,7 @@ export const categories: {
   },
 ]
 
-export const PAGE_SIZE_OPTIONS = [8, 16, 24, 32] as const
+export const PAGE_SIZE_OPTIONS = [10, 20, 30, 40] as const
 export type PageSize = (typeof PAGE_SIZE_OPTIONS)[number]
 
 export { products, getProductsByCategory } from './products'

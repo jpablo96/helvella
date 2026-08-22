@@ -50,7 +50,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section about-founders bg-ciruela">
+      <section className="section about-founders bg-beige">
         <div className="container">
           <h2 className="section-title about-founders-title">Cofundadores</h2>
           <p className="about-founders-lead">
@@ -104,7 +104,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section about-future bg-ciruela">
+      <section className="section about-future bg-beige">
         <div className="container">
           <div className="future-card">
             <h2>Mirando hacia adelante</h2>

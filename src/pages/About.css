@@ -5,7 +5,7 @@
 .about-badge {
   display: inline-block;
   padding: 0.4rem 1rem;
-  background: #FFEBCC;
+  background: var(--color-card-bg);
   color: #6C265B;
   border-radius: 100px;
   font-size: 0.8rem;
@@ -64,10 +64,7 @@
 .about-founders-title,
 .about-values-title {
   text-align: center;
-}
-
-.about-founders.bg-ciruela .about-founders-title {
-  color: #FFEBCC;
+  color: #6C265B;
 }
 
 .about-founders-lead {
@@ -75,14 +72,6 @@
   margin: 0 auto 2.5rem;
   text-align: center;
   line-height: 1.7;
-}
-
-.about-founders.bg-ciruela .about-founders-lead {
-  color: rgba(255, 235, 204, 0.75);
-}
-
-.about-story.bg-beige .about-founders-lead,
-.about-values.bg-beige .about-founders-lead {
   color: rgba(108, 38, 91, 0.72);
 }
 
@@ -97,18 +86,20 @@
 .founder-card {
   padding: 2rem 1.75rem;
   border-radius: var(--radius-md);
-  background: #FFEBCC;
+  background: var(--color-card-bg);
   text-align: center;
-  border: 1px solid rgba(255, 235, 204, 0.2);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  border: 2px solid rgba(108, 38, 91, 0.1);
+  box-shadow: none;
   transition:
     transform 0.3s ease,
+    border-color 0.3s ease,
     box-shadow 0.3s ease;
 }
 
 .founder-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+  border-color: rgba(108, 38, 91, 0.2);
+  box-shadow: 0 8px 24px rgba(108, 38, 91, 0.08);
 }
 
 .founder-avatar {
@@ -159,7 +150,7 @@
 .value-card {
   padding: 2rem 1.75rem;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.35);
+  background: var(--color-card-bg);
   border: 2px solid rgba(108, 38, 91, 0.1);
   transition:
     transform 0.3s ease,
@@ -187,7 +178,7 @@
 }
 
 .future-card {
-  background: #FFEBCC;
+  background: var(--color-card-bg);
   border-radius: var(--radius-lg);
   padding: 3rem;
   text-align: center;
@@ -238,7 +229,7 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.35rem 0.75rem;
-  background: #FFEBCC;
+  background: var(--color-card-bg);
   color: #6C265B;
   border-radius: 100px;
   white-space: nowrap;

@@ -34,7 +34,7 @@ export default function Catalog() {
   const [activeSubcategory, setActiveSubcategory] = useState<FloresEternasSubcategory>('todos')
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const [pageSize, setPageSize] = useState<PageSize>(8)
+  const [pageSize, setPageSize] = useState<PageSize>(10)
   const [currentPage, setCurrentPage] = useState(1)
   const { isOpen: filtersOpen, open: openFilters, close: closeFilters } = useFilterDrawer()
 

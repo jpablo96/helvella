@@ -1,8 +1,8 @@
 .footer {
-  background: #FFEBCC;
-  color: #6C265B;
+  background: #6C265B;
+  color: #FFEBCC;
   margin-top: auto;
-  background-image: radial-gradient(rgba(108, 38, 91, 0.035) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 235, 204, 0.06) 1px, transparent 1px);
   background-size: 22px 22px;
 }
 
@@ -21,7 +21,7 @@
   font-family: var(--font-heading);
   font-size: calc(1.75rem * 64 / 48);
   font-weight: 700;
-  color: var(--color-ciruela);
+  color: #FFEBCC;
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -49,7 +49,7 @@
 
 .footer-tagline {
   font-size: 0.95rem;
-  opacity: 0.75;
+  color: rgba(255, 235, 204, 0.75);
   line-height: 1.5;
   white-space: nowrap;
 }
@@ -57,7 +57,7 @@
 .footer-links h4,
 .footer-contact h4,
 .footer-social h4 {
-  color: var(--color-ciruela);
+  color: #FFEBCC;
   font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 600;
@@ -74,17 +74,17 @@
 
 .footer-links a {
   font-size: 0.95rem;
-  opacity: 0.75;
-  transition: opacity var(--transition);
+  color: rgba(255, 235, 204, 0.75);
+  transition: color var(--transition);
 }
 
 .footer-links a:hover {
-  opacity: 1;
+  color: #FFEBCC;
 }
 
 .footer-contact p {
   font-size: 0.9rem;
-  opacity: 0.7;
+  color: rgba(255, 235, 204, 0.72);
   margin-bottom: 0.5rem;
 }
 
@@ -100,7 +100,7 @@
   display: block;
   margin-top: 0.15rem;
   font-weight: 600;
-  color: #2a7a4a;
+  color: #8fe6ad;
   font-size: 1rem;
   transition: opacity var(--transition);
 }
@@ -110,7 +110,7 @@
 }
 
 .footer-bottom {
-  background: #6C265B;
+  background: rgba(0, 0, 0, 0.14);
   border-top: 1px solid rgba(255, 235, 204, 0.12);
   padding: 1.25rem 0;
 }
@@ -138,11 +138,12 @@
   font-size: 0.72rem;
   color: rgba(255, 235, 204, 0.55);
   text-align: center;
-  max-width: min(100%, 36rem);
+  max-width: min(100%, 52rem);
+  white-space: nowrap;
 }
 
 .footer-credit-pitch-line {
-  display: block;
+  display: inline;
   line-height: 1.45;
 }
 
@@ -218,5 +219,9 @@
   .footer-whatsapp {
     margin-top: 0.25rem;
     font-size: 0.95rem;
+  }
+
+  .footer-credit-pitch {
+    white-space: normal;
   }
 }

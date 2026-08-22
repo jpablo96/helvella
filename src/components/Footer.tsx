@@ -52,7 +52,7 @@ export default function Footer() {
 
           <div className="footer-social">
             <h4>Síguenos</h4>
-            <SocialLinks size="md" />
+            <SocialLinks size="md" onDark />
           </div>
         </div>
       </div>
@@ -67,15 +67,11 @@ export default function Footer() {
             </a>
           </p>
           <p className="footer-credit-pitch">
-            <span className="footer-credit-pitch-line">
-              Sabemos de flores eternas y de sitios web.
-            </span>
-            <span className="footer-credit-pitch-line">
-              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-                Contáctanos
-              </a>{' '}
-              si quieres tu página.
-            </span>
+            Sabemos de flores eternas y de sitios web.{' '}
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+              Contáctanos
+            </a>{' '}
+            si quieres tu página.
           </p>
         </div>
       </div>

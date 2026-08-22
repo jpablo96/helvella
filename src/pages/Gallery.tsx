@@ -12,7 +12,7 @@ import '../styles/browse-layout.css'
 export default function Gallery() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
-  const [pageSize, setPageSize] = useState<PageSize>(8)
+  const [pageSize, setPageSize] = useState<PageSize>(10)
   const [currentPage, setCurrentPage] = useState(1)
 
   const totalPages = Math.max(1, Math.ceil(galleryItems.length / pageSize))
