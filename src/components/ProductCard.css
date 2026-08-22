@@ -130,7 +130,7 @@ div.product-card-image-btn:hover {
 @media (max-width: 768px) {
   .featured-grid .product-card-name,
   .browse-grid--grid .product-card-name {
-    font-size: clamp(0.95rem, 3.6vw, 1.1rem);
+    font-size: clamp(1.05rem, 4.2vw, 1.22rem);
     line-height: 1.3;
     font-weight: 600;
     display: -webkit-box;
@@ -172,7 +172,7 @@ div.product-card-image-btn:hover {
 
   .featured-grid .product-card-price,
   .browse-grid--grid .product-card-price {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
     white-space: nowrap;
   }

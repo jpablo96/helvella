@@ -199,17 +199,17 @@
 
 @media (max-width: 500px) {
   .footer-tagline {
-    font-size: clamp(0.78rem, 3.4vw, 0.95rem);
+    font-size: clamp(0.88rem, 3.6vw, 1rem);
     white-space: normal;
   }
 
   .footer-contact p {
-    font-size: 0.8rem;
+    font-size: 0.88rem;
     line-height: 1.4;
   }
 
   .footer-contact-text {
-    font-size: 0.78rem;
+    font-size: 0.86rem;
   }
 
   .footer-aside {

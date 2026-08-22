@@ -59,4 +59,12 @@
   .category-tabs {
     justify-content: center;
   }
+
+  .category-tab {
+    font-size: 0.95rem;
+  }
+
+  .category-soon {
+    font-size: 0.68rem;
+  }
 }

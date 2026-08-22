@@ -229,7 +229,7 @@
   }
 
   .browse-grid--grid .product-card-price {
-    font-size: 0.85rem;
+    font-size: 0.92rem;
     white-space: normal;
   }
 
@@ -239,7 +239,7 @@
     align-items: center;
     width: 100%;
     padding: 0.48rem 0.55rem;
-    font-size: clamp(0.68rem, 2.9vw, 0.78rem);
+    font-size: clamp(0.78rem, 3.2vw, 0.88rem);
     line-height: 1.2;
     text-align: center;
     white-space: normal;

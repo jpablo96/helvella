@@ -346,6 +346,24 @@ button {
     --space-block-lg: 1.5rem;
   }
 
+  body {
+    font-size: 17px;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .page-hero-lead {
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+  }
+
   .container {
     padding-inline: clamp(1rem, 4vw, 1.5rem);
   }

@@ -160,7 +160,7 @@
 
 .order-cta-feature h3 {
   margin: 0;
-  font-size: clamp(0.9rem, 2.2cqi, 1.15rem);
+  font-size: clamp(0.98rem, 2.6cqi, 1.22rem);
   line-height: 1.2;
   color: #6C265B;
 }
@@ -318,7 +318,7 @@
 
   .order-cta-intro > p,
   .order-cta-content > p {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     line-height: 1.45;
     margin-bottom: 0.75rem;
     display: -webkit-box;
@@ -352,11 +352,11 @@
   }
 
   .order-cta-feature h3 {
-    font-size: clamp(0.82rem, 3.8cqi, 0.98rem);
+    font-size: clamp(0.95rem, 4.5cqi, 1.12rem);
   }
 
   .order-cta-feature p {
-    font-size: clamp(0.62rem, 2.8cqi, 0.72rem);
+    font-size: clamp(0.78rem, 3.2cqi, 0.88rem);
     line-height: 1.25;
   }
 
@@ -365,7 +365,7 @@
   }
 
   .order-cta-perks li {
-    font-size: 0.78rem;
+    font-size: 0.88rem;
     gap: 0.45rem;
   }
 
@@ -376,12 +376,12 @@
   }
 
   .order-cta-btn {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     padding: 0.85rem 1.25rem;
   }
 
   .order-cta-note {
-    font-size: 0.72rem;
+    font-size: 0.82rem;
   }
 }
 

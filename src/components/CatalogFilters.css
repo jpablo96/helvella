@@ -101,6 +101,10 @@
 }
 
 @media (max-width: 768px) {
+  .catalog-filter-option {
+    font-size: 0.98rem;
+  }
+
   .browse-filter-drawer .catalog-filter-option:not(.active) {
     background: rgba(108, 38, 91, 0.06);
   }

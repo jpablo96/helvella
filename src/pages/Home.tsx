@@ -5,6 +5,7 @@ import { getHomeGalleryPreview } from '../data/gallery'
 import OrderCta from '../components/OrderCta'
 import Footer from '../components/Footer'
 import GalleryCard from '../components/GalleryCard'
+import HomeCarousel from '../components/HomeCarousel'
 import HomePanel from '../components/HomePanel'
 import HomeScrollHint from '../components/HomeScrollHint'
 import ProductCard from '../components/ProductCard'
@@ -61,18 +62,9 @@ export default function Home() {
           scrollRoot={scrollRef}
           initialVisible
         >
-          <div className="container hero-inner">
-            <div className="hero-top">
-              <header className="hero-header home-reveal">
-                <span className="hero-badge">Hecho a mano en Costa Rica</span>
-                <h1 className="hero-title">
-                  Flores que el tiempo
-                  <br className="hero-title-break" aria-hidden="true" />
-                  <em>no marchita</em>
-                </h1>
-              </header>
-
-              <div className="hero-video home-reveal home-reveal--delay-1">
+          <div className="hero-inner">
+            <div className="hero-showcase home-reveal">
+              <div className="hero-video">
                 <video
                   className="hero-video__media"
                   autoPlay
@@ -85,6 +77,16 @@ export default function Home() {
                   <source src={HERO_VIDEO_URL} type="video/mp4" />
                 </video>
               </div>
+
+              <header className="hero-header home-reveal home-reveal--delay-1">
+                <span className="hero-badge">Hecho a mano en Costa Rica</span>
+                <h1 className="hero-title">
+                  <span className="hero-title-line">Flores que el tiempo</span>
+                  <span className="hero-title-line">
+                    <em>no marchita</em>
+                  </span>
+                </h1>
+              </header>
             </div>
           </div>
           <HomeScrollHint targetId="destacados" tone="ciruela" scrollRoot={scrollRef} />
@@ -98,7 +100,7 @@ export default function Home() {
                 Las creaciones que más eligen nuestros clientes, disponibles para pedido.
               </p>
             </div>
-            <div className="featured-grid">
+            <HomeCarousel label="Los más vendidos" trackClassName="featured-grid">
               {featured.map((product, index) => (
                 <div
                   key={product.id}
@@ -107,7 +109,7 @@ export default function Home() {
                   <ProductCard product={product} />
                 </div>
               ))}
-            </div>
+            </HomeCarousel>
             <div className="featured-cta home-reveal home-reveal--delay-4">
               <Link to="/catalogo" className="btn btn-primary">
                 Ver catálogo completo
@@ -125,7 +127,10 @@ export default function Home() {
                 Inspírate con nuestras creaciones y trabajos realizados.
               </p>
             </div>
-            <div className="browse-grid browse-grid--grid home-gallery-grid">
+            <HomeCarousel
+              label="Galería"
+              trackClassName="browse-grid browse-grid--grid home-gallery-grid"
+            >
               {galleryPreview.map((item, index) => (
                 <div
                   key={item.id}
@@ -134,7 +139,7 @@ export default function Home() {
                   <GalleryCard item={item} preview />
                 </div>
               ))}
-            </div>
+            </HomeCarousel>
             <div className="featured-cta home-reveal home-reveal--delay-5">
               <Link to="/galeria" className="btn btn-primary">
                 Ver galería completa
