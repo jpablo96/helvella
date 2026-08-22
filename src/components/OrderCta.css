@@ -43,6 +43,29 @@
   position: relative;
 }
 
+.order-cta-card--unified {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(1.1rem, 2.4vh, 1.75rem);
+  padding: clamp(1.35rem, 2.8vh, 2.25rem) clamp(1.25rem, 2.5vw, 2.5rem);
+  text-align: center;
+  container-type: inline-size;
+  container-name: order-cta;
+}
+
+.order-cta-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.order-cta-card--unified .order-cta-intro {
+  align-items: center;
+  text-align: center;
+}
+
 .order-cta-badge {
   display: inline-block;
   padding: 0.35rem 0.9rem;
@@ -56,6 +79,7 @@
   margin-bottom: 1rem;
 }
 
+.order-cta-intro h2,
 .order-cta-content h2 {
   font-size: clamp(1.85rem, 4vw, 2.75rem);
   margin-bottom: 0.75rem;
@@ -63,12 +87,98 @@
   line-height: 1.15;
 }
 
+.order-cta-intro > p,
 .order-cta-content > p {
   font-size: 1.05rem;
   color: rgba(108, 38, 91, 0.78);
   line-height: 1.7;
   margin-bottom: 1.5rem;
   max-width: 520px;
+}
+
+.order-cta-card--unified .order-cta-intro > p {
+  margin-bottom: 0;
+  max-width: 38rem;
+  margin-inline: auto;
+}
+
+.order-cta-card:not(.order-cta-card--unified) .order-cta-intro {
+  grid-column: 1;
+}
+
+.order-cta-card:not(.order-cta-card--unified) .order-cta-perks {
+  grid-column: 1;
+}
+
+.order-cta-card:not(.order-cta-card--unified) .order-cta-action {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  align-self: center;
+}
+
+.order-cta-features {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.55rem, 1.4cqi, 1rem);
+  margin: 0;
+  padding: clamp(0.9rem, 1.8vh, 1.35rem) 0;
+  border-block: 1px solid rgba(108, 38, 91, 0.12);
+}
+
+.order-cta-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.4rem, 1vh, 0.65rem);
+  padding: clamp(0.65rem, 1.5vh, 1rem) clamp(0.45rem, 1vw, 0.75rem);
+  border-radius: var(--radius-md);
+  background: rgba(108, 38, 91, 0.04);
+  min-width: 0;
+}
+
+.order-cta-feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(2.25rem, 5vh, 3rem);
+  height: clamp(2.25rem, 5vh, 3rem);
+  border-radius: 50%;
+  background: rgba(108, 38, 91, 0.08);
+  color: #6C265B;
+  flex-shrink: 0;
+}
+
+.order-cta-feature-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.order-cta-feature h3 {
+  margin: 0;
+  font-size: clamp(0.9rem, 2.2cqi, 1.15rem);
+  line-height: 1.2;
+  color: #6C265B;
+}
+
+.order-cta-feature p {
+  margin: 0;
+  font-size: clamp(0.68rem, 2cqi, 0.82rem);
+  line-height: 1.35;
+  color: rgba(108, 38, 91, 0.72);
+}
+
+.order-cta-card--unified .order-cta-action {
+  align-items: center;
+  padding-top: clamp(0.15rem, 0.5vh, 0.35rem);
+}
+
+.order-cta-card--unified .order-cta-btn {
+  max-width: min(100%, 22rem);
 }
 
 .order-cta-perks {
@@ -129,15 +239,53 @@
   font-weight: 500;
 }
 
+.order-cta--embedded {
+  position: relative;
+  overflow: visible;
+  background: transparent;
+  background-image: none;
+}
+
+.order-cta--embedded::before,
+.order-cta--embedded::after {
+  display: none;
+}
+
+.order-cta--embedded .order-cta-card {
+  margin-bottom: 0;
+}
+
+.order-cta--embedded .order-cta-intro > p,
+.order-cta--embedded .order-cta-content > p {
+  margin-bottom: 0;
+}
+
 @media (max-width: 900px) {
-  .order-cta-card {
+  .order-cta-card:not(.order-cta-card--unified) {
     grid-template-columns: 1fr;
     text-align: center;
   }
 
+  .order-cta-card:not(.order-cta-card--unified) .order-cta-intro,
+  .order-cta-card:not(.order-cta-card--unified) .order-cta-perks,
+  .order-cta-card:not(.order-cta-card--unified) .order-cta-action {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .order-cta-intro {
+    align-items: center;
+    text-align: center;
+  }
+
+  .order-cta-intro > p,
   .order-cta-content > p {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .order-cta-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .order-cta-perks {
@@ -162,11 +310,13 @@
     gap: 1rem;
   }
 
+  .order-cta-intro h2,
   .order-cta-content h2 {
     font-size: 1.45rem;
     margin-bottom: 0.5rem;
   }
 
+  .order-cta-intro > p,
   .order-cta-content > p {
     font-size: 0.85rem;
     line-height: 1.45;
@@ -175,6 +325,39 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  .order-cta-card--unified .order-cta-intro > p {
+    -webkit-line-clamp: 3;
+  }
+
+  .order-cta-features {
+    gap: clamp(0.4rem, 1.2vh, 0.55rem);
+    padding-block: clamp(0.65rem, 1.4vh, 0.9rem);
+  }
+
+  .order-cta-feature {
+    padding: clamp(0.45rem, 1.2vh, 0.6rem) clamp(0.35rem, 1.5vw, 0.5rem);
+    gap: clamp(0.25rem, 0.8vh, 0.4rem);
+  }
+
+  .order-cta-feature-icon {
+    width: clamp(1.85rem, 5vh, 2.25rem);
+    height: clamp(1.85rem, 5vh, 2.25rem);
+  }
+
+  .order-cta-feature-icon svg {
+    width: clamp(16px, 4vh, 20px);
+    height: clamp(16px, 4vh, 20px);
+  }
+
+  .order-cta-feature h3 {
+    font-size: clamp(0.82rem, 3.8cqi, 0.98rem);
+  }
+
+  .order-cta-feature p {
+    font-size: clamp(0.62rem, 2.8cqi, 0.72rem);
+    line-height: 1.25;
   }
 
   .order-cta-perks {
@@ -208,13 +391,27 @@
     gap: 2.5rem;
   }
 
+  .order-cta-intro h2,
   .order-cta-content h2 {
     font-size: clamp(2.25rem, 3vw, 3.15rem);
   }
 
+  .order-cta-intro > p,
   .order-cta-content > p {
     font-size: 1.15rem;
     max-width: 580px;
+  }
+
+  .order-cta-card--unified .order-cta-intro > p {
+    max-width: 44rem;
+  }
+
+  .order-cta-feature h3 {
+    font-size: clamp(1rem, 1.8cqi, 1.2rem);
+  }
+
+  .order-cta-feature p {
+    font-size: clamp(0.75rem, 1.4cqi, 0.88rem);
   }
 
   .order-cta-perks li {

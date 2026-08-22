@@ -228,6 +228,19 @@
   .whatsapp-float-label {
     display: none;
   }
+
+  .whatsapp-float--hero-label {
+    padding: 0.75rem 1rem;
+    border-radius: 100px;
+    gap: 0.45rem;
+    bottom: 1.25rem;
+  }
+
+  .whatsapp-float--hero-label .whatsapp-float-label {
+    display: inline;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

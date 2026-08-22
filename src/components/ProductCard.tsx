@@ -1,5 +1,6 @@
 import { getWhatsAppOrderUrl } from '../data/contact'
 import type { Product } from '../data/catalog'
+import { getProductPriceLabel } from '../data/productDisplay'
 import ExpandIcon from './icons/ExpandIcon'
 import ProductIllustration from './illustrations/ProductIllustration'
 import './ProductCard.css'
@@ -10,6 +11,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onImageClick }: ProductCardProps) {
+  const priceLabel = getProductPriceLabel(product)
   const imageStyle = { '--flower-color': product.color } as Record<string, string>
   const imageContent = (
     <ProductIllustration
@@ -43,7 +45,7 @@ export default function ProductCard({ product, onImageClick }: ProductCardProps)
         <h3 className="product-card-name">{product.name}</h3>
         <p className="product-card-desc">{product.description}</p>
         <div className="product-card-footer">
-          {product.price && <span className="product-card-price">{product.price}</span>}
+          {priceLabel && <span className="product-card-price">{priceLabel}</span>}
           <a
             href={getWhatsAppOrderUrl(product.name)}
             target="_blank"

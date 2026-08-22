@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { getWhatsAppOrderUrl } from '../data/contact'
 import { useBodyScrollLock } from '../hooks/useBodyScrollLock'
 import { useCloseOnDesktopResize } from '../hooks/useCloseOnDesktopResize'
@@ -16,7 +17,10 @@ function SendIcon() {
 }
 
 export default function WhatsAppButton() {
+  const { pathname } = useLocation()
+  const isHome = pathname === '/'
   const [chatOpen, setChatOpen] = useState(false)
+  const [heroInView, setHeroInView] = useState(false)
   const floatRef = useRef<HTMLButtonElement>(null)
   const [isMobile, setIsMobile] = useState(
     () => typeof window !== 'undefined' && window.matchMedia(MOBILE_BREAKPOINT).matches,
@@ -44,6 +48,25 @@ export default function WhatsAppButton() {
     media.addEventListener('change', updateIsMobile)
     return () => media.removeEventListener('change', updateIsMobile)
   }, [])
+
+  useEffect(() => {
+    if (!isHome || !isMobile) {
+      setHeroInView(false)
+      return
+    }
+
+    const scrollRoot = document.querySelector<HTMLElement>('.home-scroll')
+    const hero = document.getElementById('inicio')
+    if (!scrollRoot || !hero) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroInView(entry.isIntersecting && entry.intersectionRatio >= 0.45),
+      { root: scrollRoot, threshold: [0, 0.45, 0.6, 1] },
+    )
+
+    observer.observe(hero)
+    return () => observer.disconnect()
+  }, [isHome, isMobile])
 
   useEffect(() => {
     if (!chatOpen) return
@@ -120,7 +143,7 @@ export default function WhatsAppButton() {
         <button
           ref={floatRef}
           type="button"
-          className={`whatsapp-float${chatOpen ? ' whatsapp-float--chat-open' : ''}`}
+          className={`whatsapp-float${chatOpen ? ' whatsapp-float--chat-open' : ''}${heroInView ? ' whatsapp-float--hero-label' : ''}`}
           onClick={openChat}
           aria-label="¡Haz tu pedido! por WhatsApp"
           aria-expanded={chatOpen}

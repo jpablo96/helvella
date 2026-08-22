@@ -95,30 +95,66 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'post9',
+    title: 'Macetita de Corazones',
+    description:
+      'Composición en macetita que contiene flores en forma de corazón color rosa con perlas.',
+    category: 'flores-eternas',
+    illustration: 'arreglo',
+    images: galleryImages('post9', ['post9.webp']),
+    color: '#E8A0B8',
+  },
+  {
+    id: 'post10',
+    title: 'Nuestras macetitas',
+    description:
+      'Girasoles, tulipanes, hortensia y macetitas hechas a mano con limpiapipas.',
+    category: 'flores-eternas',
+    illustration: 'girasol',
+    images: galleryImages('post10', [
+      'post10-1.webp',
+      'post10-2.webp',
+      'post10-3.webp',
+      'post10-4.webp',
+    ]),
+    color: '#F0C040',
+  },
+  {
+    id: 'post11',
     title: 'Rosas',
     description: 'Nuestras Rosas, una roja y una amarilla.',
     category: 'flores-eternas',
     illustration: 'ramo',
-    images: galleryImages('post9', ['post9.webp']),
+    images: galleryImages('post11', ['post11.webp']),
     color: '#E8A838',
   },
   {
-    id: 'post10',
+    id: 'post12',
     title: 'Girasol',
     description: 'Nuestro Girasol mediano con pétalo grueso.',
     category: 'flores-eternas',
     illustration: 'arreglo',
-    images: galleryImages('post10', ['post10-1.webp', 'post10-2.webp']),
+    images: galleryImages('post12', ['post12-1.webp', 'post12-2.webp']),
     color: '#6C265B',
   },
   {
-    id: 'post11',
+    id: 'post13',
     title: 'Arreglo de Girasoles',
     description:
       'Composición en florero con 3 Girasoles medianos de pétalo delgado.',
     category: 'flores-eternas',
     illustration: 'girasol',
-    images: galleryImages('post11', ['post11.webp']),
+    images: galleryImages('post13', ['post13.webp']),
     color: '#C45C6A',
   },
 ]
+
+export const homeGalleryPreviewIds = ['post1', 'post3', 'post9', 'post12'] as const
+
+export function getHomeGalleryPreview(): GalleryItem[] {
+  const byId = new Map(galleryItems.map((item) => [item.id, item]))
+
+  return homeGalleryPreviewIds.flatMap((id) => {
+    const item = byId.get(id)
+    return item ? [item] : []
+  })
+}

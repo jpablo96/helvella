@@ -39,13 +39,20 @@
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  background: var(--color-card-bg);
-  color: #6C265B;
+  flex-shrink: 0;
+}
+
+.category-tab:not(.active) .category-soon {
+  background: #6C265B;
+  color: #FFEBCC;
+  border: 1px solid rgba(108, 38, 91, 0.2);
+  box-shadow: 0 1px 4px rgba(108, 38, 91, 0.18);
 }
 
 .category-tab.active .category-soon {
   background: rgba(255, 255, 255, 0.35);
   color: #FFEBCC;
+  border: 1px solid rgba(255, 235, 204, 0.35);
 }
 
 @media (max-width: 768px) {

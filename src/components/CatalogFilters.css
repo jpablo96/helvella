@@ -99,3 +99,30 @@
   background: rgba(255, 255, 255, 0.35);
   color: #FFEBCC;
 }
+
+@media (max-width: 768px) {
+  .browse-filter-drawer .catalog-filter-option:not(.active) {
+    background: rgba(108, 38, 91, 0.06);
+  }
+
+  .browse-filter-drawer .catalog-filter-option:hover:not(.active) {
+    background: rgba(108, 38, 91, 0.12);
+    color: #6C265B;
+  }
+
+  .browse-filter-drawer .catalog-filter-option.active {
+    background: #6C265B;
+    color: #FFEBCC;
+    font-weight: 600;
+  }
+
+  .browse-filter-drawer .catalog-filter-soon {
+    background: rgba(108, 38, 91, 0.08);
+    color: #6C265B;
+  }
+
+  .browse-filter-drawer .catalog-filter-option.active .catalog-filter-soon {
+    background: rgba(255, 255, 255, 0.35);
+    color: #FFEBCC;
+  }
+}

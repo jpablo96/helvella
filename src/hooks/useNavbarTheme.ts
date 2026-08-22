@@ -17,7 +17,7 @@ function getSectionTone(): NavbarTheme {
 
   if (
     el.closest(
-      '.bg-beige, .order-cta-card, .home-panel--featured, .home-panel--gallery, .home-panel--closing',
+      '.bg-beige, .order-cta-card, .home-panel--featured, .home-panel--gallery, .home-panel--cta, .home-panel--closing',
     )
   ) {
     return 'beige'

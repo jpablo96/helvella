@@ -15,6 +15,8 @@ export const DEFAULT_SEO = {
 
 export const LOGO_URL = '/logo/H%20Helvella.png'
 
+export const HERO_VIDEO_URL = '/videos/hero.mp4'
+
 export const SITE_DEVELOPER = {
   name: 'Helvella',
 }

@@ -1,5 +1,6 @@
 import { getWhatsAppOrderUrl } from '../data/contact'
 import type { Product } from '../data/catalog'
+import { getProductPriceLabel } from '../data/productDisplay'
 import ProductIllustration from './illustrations/ProductIllustration'
 import ImageLightbox from './ImageLightbox'
 import { useLightbox } from '../hooks/useLightbox'
@@ -12,6 +13,7 @@ interface ProductLightboxProps {
 
 export default function ProductLightbox({ product, onClose }: ProductLightboxProps) {
   useLightbox({ onClose })
+  const priceLabel = getProductPriceLabel(product)
 
   return (
     <ImageLightbox
@@ -33,7 +35,7 @@ export default function ProductLightbox({ product, onClose }: ProductLightboxPro
         <div className="image-lightbox-info">
           <h2>{product.name}</h2>
           <p>{product.description}</p>
-          {product.price && <span className="image-lightbox-price">{product.price}</span>}
+          {priceLabel && <span className="image-lightbox-price">{priceLabel}</span>}
           <a
             href={getWhatsAppOrderUrl(product.name)}
             target="_blank"
