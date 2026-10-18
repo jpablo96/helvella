@@ -1,7 +1,9 @@
 import { getWhatsAppOrderUrl } from '../data/contact'
 import type { Product } from '../data/catalog'
 import { getProductPriceLabel } from '../data/productDisplay'
+import { flowerColorStyle } from '../utils/flowerColorStyle'
 import ExpandIcon from './icons/ExpandIcon'
+import WhatsAppIcon from './icons/WhatsAppIcon'
 import ProductIllustration from './illustrations/ProductIllustration'
 import './ProductCard.css'
 
@@ -12,13 +14,9 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, onImageClick }: ProductCardProps) {
   const priceLabel = getProductPriceLabel(product)
-  const imageStyle = { '--flower-color': product.color } as Record<string, string>
-  const imageContent = (
-    <ProductIllustration
-      type={product.illustration}
-      color={product.color}
-      variant="card"
-    />
+  const imageStyle = flowerColorStyle(product.color)
+  const illustration = (
+    <ProductIllustration type={product.illustration} color={product.color} variant="card" />
   )
 
   return (
@@ -31,14 +29,14 @@ export default function ProductCard({ product, onImageClick }: ProductCardProps)
           aria-label={`Ver ${product.name}`}
           style={imageStyle}
         >
-          {imageContent}
-          <span className="product-card-expand" aria-hidden="true">
+          {illustration}
+          <span className="card-expand" aria-hidden="true">
             <ExpandIcon />
           </span>
         </button>
       ) : (
         <div className="product-card-image-btn" style={imageStyle}>
-          {imageContent}
+          {illustration}
         </div>
       )}
       <div className="product-card-body">
@@ -50,8 +48,9 @@ export default function ProductCard({ product, onImageClick }: ProductCardProps)
             href={getWhatsAppOrderUrl(product.name)}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-whatsapp product-card-btn"
+            className="btn btn-order product-card-btn"
           >
+            <WhatsAppIcon size={14} />
             ¡Haz tu pedido!
           </a>
         </div>

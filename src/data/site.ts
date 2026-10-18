@@ -1,7 +1,6 @@
 export const SITE_URL = import.meta.env.VITE_SITE_URL ?? 'https://helvella.cr'
 
 export const SITE_NAME = 'Helvella'
-export const SITE_TAGLINE = 'Flores eternas en Costa Rica hechas a mano con limpiapipas'
 
 export const DEFAULT_SEO = {
   title: 'Helvella',

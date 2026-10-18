@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import CloseIcon from './icons/CloseIcon'
 
 interface ImageLightboxProps {
   label: string
@@ -27,8 +28,14 @@ export default function ImageLightbox({
         className={`image-lightbox-bubble${bubbleClassName ? ` ${bubbleClassName}` : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <button type="button" className="image-lightbox-close" onClick={onClose} aria-label="Cerrar">
-          ✕
+        <button
+          type="button"
+          className="image-lightbox-close"
+          onClick={onClose}
+          aria-label="Cerrar"
+          autoFocus
+        >
+          <CloseIcon size={18} />
         </button>
         {visual}
         {info}

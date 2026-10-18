@@ -6,19 +6,18 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.25rem;
+  padding: 0.85rem 1.3rem;
   background: var(--color-whatsapp);
   color: white;
-  border-radius: 100px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   box-shadow:
-    0 4px 16px rgba(42, 171, 90, 0.3),
-    0 0 0 1px rgba(108, 38, 91, 0.08);
+    0 2px 6px rgba(var(--color-ink-rgb), 0.12),
+    0 14px 30px -12px rgba(37, 165, 90, 0.65);
   transition:
     background-color var(--transition),
     box-shadow var(--transition),
     transform var(--transition);
-  animation: float 3s ease-in-out infinite;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -29,8 +28,9 @@
 }
 
 .whatsapp-float-label {
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 500;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -38,25 +38,20 @@
     background: var(--color-whatsapp-bright);
     transform: translateY(-2px);
     box-shadow:
-      0 8px 24px rgba(42, 171, 90, 0.32),
-      0 0 0 1px rgba(108, 38, 91, 0.1);
-    animation: none;
+      0 2px 6px rgba(var(--color-ink-rgb), 0.12),
+      0 18px 36px -12px rgba(37, 165, 90, 0.7);
   }
 }
 
-.whatsapp-float:focus,
-.whatsapp-float:focus-visible,
-.whatsapp-float:active {
-  background: var(--color-whatsapp);
-  color: white;
-  outline: none;
+.whatsapp-float:focus-visible {
+  outline: 2px solid var(--color-ciruela);
+  outline-offset: 3px;
 }
 
 .whatsapp-float--chat-open,
 .whatsapp-chat.is-open + .whatsapp-float {
   background: var(--color-whatsapp);
   transform: none;
-  animation: none;
 }
 
 .whatsapp-chat {
@@ -134,8 +129,6 @@
   justify-content: center;
   background: rgba(255, 255, 255, 0.14);
   color: #fff;
-  font-size: 0.95rem;
-  line-height: 1;
   transition: background-color var(--transition);
 }
 
@@ -184,7 +177,7 @@
   align-self: flex-end;
   margin-top: 0.85rem;
   padding: 0.65rem 1.1rem;
-  border-radius: 100px;
+  border-radius: var(--radius-pill);
   background: #00a884;
   color: #fff;
   font-size: 0.92rem;
@@ -194,13 +187,9 @@
   transition: background-color var(--transition);
 }
 
-.whatsapp-chat-cta:focus,
-.whatsapp-chat-cta:focus-visible,
-.whatsapp-chat-cta:active,
-.whatsapp-chat-cta:visited {
-  background: #00a884;
-  color: #fff;
-  outline: none;
+.whatsapp-chat-cta:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 @media (hover: hover) and (pointer: fine) {

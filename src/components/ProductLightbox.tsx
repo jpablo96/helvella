@@ -4,6 +4,8 @@ import { getProductPriceLabel } from '../data/productDisplay'
 import ProductIllustration from './illustrations/ProductIllustration'
 import ImageLightbox from './ImageLightbox'
 import { useLightbox } from '../hooks/useLightbox'
+import { flowerColorStyle } from '../utils/flowerColorStyle'
+import WhatsAppIcon from './icons/WhatsAppIcon'
 import './ImageLightbox.css'
 
 interface ProductLightboxProps {
@@ -20,10 +22,7 @@ export default function ProductLightbox({ product, onClose }: ProductLightboxPro
       label={product.name}
       onClose={onClose}
       visual={
-        <div
-          className="image-lightbox-visual"
-          style={{ '--flower-color': product.color } as Record<string, string>}
-        >
+        <div className="image-lightbox-visual" style={flowerColorStyle(product.color)}>
           <ProductIllustration
             type={product.illustration}
             color={product.color}
@@ -42,6 +41,7 @@ export default function ProductLightbox({ product, onClose }: ProductLightboxPro
             rel="noopener noreferrer"
             className="btn btn-whatsapp image-lightbox-cta"
           >
+            <WhatsAppIcon size={18} />
             ¡Haz tu pedido!
           </a>
         </div>

@@ -1,90 +1,18 @@
-import type { CSSProperties, ReactElement, ReactNode } from 'react'
+import type { ReactElement } from 'react'
 import type { FlowerVariant, IllustrationType } from './types'
-import { catalogFlowerRenderers } from './flowerCatalogRenderers'
+import {
+  Background,
+  catalogFlowerRenderers,
+  IllustrationSvg,
+  PetalRing,
+  Stem,
+} from './flowerCatalogRenderers'
 
 interface ProductIllustrationProps {
   type: IllustrationType
   color: string
   variant?: FlowerVariant
   className?: string
-}
-
-const classNames: Record<FlowerVariant, string> = {
-  card: 'flower-svg',
-  lightbox: 'image-lightbox-flower',
-  gallery: 'gallery-flower-svg',
-  hero: 'hero-flower-svg',
-}
-
-function IllustrationSvg({
-  viewBox,
-  variant,
-  className,
-  color,
-  children,
-}: {
-  viewBox: string
-  variant: FlowerVariant
-  className?: string
-  color: string
-  children: ReactNode
-}) {
-  return (
-    <svg
-      viewBox={viewBox}
-      className={className ?? classNames[variant]}
-      aria-hidden="true"
-      style={{ '--flower-color': color } as CSSProperties}
-    >
-      {children}
-    </svg>
-  )
-}
-
-function Stem({ x = 60, y = 68, height = 30 }: { x?: number; y?: number; height?: number }) {
-  return <rect x={x - 3} y={y} width={6} height={height} rx={3} fill="#6C265B" opacity={0.75} />
-}
-
-function Background({ color, cx = 60, cy = 60 }: { color: string; cx?: number; cy?: number }) {
-  return <circle cx={cx} cy={cy} r={55} fill={`${color}18`} />
-}
-
-function PetalRing({
-  cx,
-  cy,
-  count,
-  color,
-  rx,
-  ry,
-  petalCy,
-  opacity = 0.85,
-}: {
-  cx: number
-  cy: number
-  count: number
-  color: string
-  rx: number
-  ry: number
-  petalCy: number
-  opacity?: number
-}) {
-  const angle = 360 / count
-  return (
-    <>
-      {Array.from({ length: count }, (_, index) => (
-        <ellipse
-          key={index}
-          cx={cx}
-          cy={petalCy}
-          rx={rx}
-          ry={ry}
-          fill={color}
-          opacity={opacity}
-          transform={`rotate(${index * angle} ${cx} ${cy})`}
-        />
-      ))}
-    </>
-  )
 }
 
 type RendererProps = { color: string; variant: FlowerVariant; className?: string }

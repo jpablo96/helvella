@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom'
 import SocialLinks from './SocialLinks'
-import { WHATSAPP_NUMBER, INSTAGRAM_URL, formatPhoneNumber, NATIONWIDE_SHIPPING_NOTE } from '../data/contact'
+import {
+  WHATSAPP_NUMBER,
+  WHATSAPP_URL,
+  INSTAGRAM_URL,
+  formatPhoneNumber,
+  NATIONWIDE_SHIPPING_NOTE,
+} from '../data/contact'
 import { navLinks } from '../data/navigation'
 import { LOGO_URL, SITE_DEVELOPER } from '../data/site'
 import './Footer.css'
@@ -45,7 +51,12 @@ export default function Footer() {
               <span className="footer-contact-line">Pedidos por WhatsApp.</span>
               <span className="footer-contact-line">{NATIONWIDE_SHIPPING_NOTE}</span>
             </p>
-            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} className="footer-whatsapp">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-whatsapp"
+            >
               +{formatPhoneNumber(WHATSAPP_NUMBER)}
             </a>
           </div>

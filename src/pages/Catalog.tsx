@@ -1,11 +1,10 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import {
   categories,
   floresEternasSubcategories,
   products,
   type Category,
   type FloresEternasSubcategory,
-  type PageSize,
   type Product,
 } from '../data/catalog'
 import BrowseFilterDrawer from '../components/browse/BrowseFilterDrawer'
@@ -16,7 +15,9 @@ import ProductCard from '../components/ProductCard'
 import ProductLightbox from '../components/ProductLightbox'
 import ViewToggle, { type ViewMode } from '../components/ViewToggle'
 import Seo from '../components/Seo'
+import { IconEternal } from '../components/icons/BrandIcons'
 import { useFilterDrawer } from '../hooks/useFilterDrawer'
+import { usePagination } from '../hooks/usePagination'
 import '../styles/browse-layout.css'
 import './Catalog.css'
 
@@ -29,72 +30,57 @@ const emptyMessages: Partial<Record<FloresEternasSubcategory, string>> = {
     'Pronto tendremos animalitos hechos a mano. ¡Síguenos en redes para conocer los lanzamientos!',
 }
 
+const DEFAULT_EMPTY_MESSAGE =
+  'Estamos trabajando en esta línea de productos. ¡Síguenos en redes para conocer los lanzamientos!'
+
+const allSubcategoryOnly = floresEternasSubcategories.filter((sub) => sub.id === 'todos')
+
 export default function Catalog() {
   const [activeCategory, setActiveCategory] = useState<Category>('flores-eternas')
   const [activeSubcategory, setActiveSubcategory] = useState<FloresEternasSubcategory>('todos')
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const [pageSize, setPageSize] = useState<PageSize>(10)
-  const [currentPage, setCurrentPage] = useState(1)
   const { isOpen: filtersOpen, open: openFilters, close: closeFilters } = useFilterDrawer()
 
   const activeCat = categories.find((c) => c.id === activeCategory)
-  const hasLaunchedProducts = Boolean(activeCat?.active)
+  const isFloresEternas = activeCategory === 'flores-eternas'
   const filterSubcategories =
-    activeCategory === 'flores-eternas' && hasLaunchedProducts
-      ? floresEternasSubcategories
-      : floresEternasSubcategories.filter((sub) => sub.id === 'todos')
+    isFloresEternas && activeCat?.active ? floresEternasSubcategories : allSubcategoryOnly
 
-  const filteredProducts = products
-    .filter((product) => {
-      if (product.category !== activeCategory) return false
-      if (activeCategory !== 'flores-eternas') return true
-      if (activeSubcategory === 'todos') return true
-      return product.subcategory === activeSubcategory
-    })
-    .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))
+  const categoryProducts = useMemo(
+    () => products.filter((product) => product.category === activeCategory),
+    [activeCategory],
+  )
 
-  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / pageSize))
+  const filteredProducts = useMemo(
+    () =>
+      !isFloresEternas || activeSubcategory === 'todos'
+        ? categoryProducts
+        : categoryProducts.filter((product) => product.subcategory === activeSubcategory),
+    [activeSubcategory, categoryProducts, isFloresEternas],
+  )
 
-  const paginatedProducts = useMemo(() => {
-    const start = (currentPage - 1) * pageSize
-    return filteredProducts.slice(start, start + pageSize)
-  }, [filteredProducts, currentPage, pageSize])
+  const subcategoryCounts = useMemo(
+    () =>
+      Object.fromEntries(
+        filterSubcategories.map((sub) => [
+          sub.id,
+          sub.id === 'todos'
+            ? categoryProducts.length
+            : categoryProducts.filter((product) => product.subcategory === sub.id).length,
+        ]),
+      ) as Record<FloresEternasSubcategory, number>,
+    [categoryProducts, filterSubcategories],
+  )
 
-  const subcategoryCounts = useMemo(() => {
-    const categoryProducts = products.filter((product) => product.category === activeCategory)
-
-    return Object.fromEntries(
-      filterSubcategories.map((sub) => [
-        sub.id,
-        sub.id === 'todos'
-          ? categoryProducts.length
-          : categoryProducts.filter((product) => product.subcategory === sub.id).length,
-      ]),
-    ) as Record<FloresEternasSubcategory, number>
-  }, [activeCategory, filterSubcategories])
-
-  const activeFilterCount =
-    activeCategory === 'flores-eternas' && activeSubcategory !== 'todos' ? 1 : 0
-
-  useEffect(() => {
-    closeFilters()
-  }, [activeCategory, closeFilters])
-
-  useEffect(() => {
-    setCurrentPage(1)
-  }, [activeCategory, activeSubcategory, pageSize])
-
-  useEffect(() => {
-    if (currentPage > totalPages) {
-      setCurrentPage(totalPages)
-    }
-  }, [currentPage, totalPages])
+  const pagination = usePagination(filteredProducts)
+  const activeFilterCount = isFloresEternas && activeSubcategory !== 'todos' ? 1 : 0
 
   const handleCategoryChange = (category: Category) => {
     setActiveCategory(category)
     setActiveSubcategory('todos')
     setSelectedProduct(null)
+    closeFilters()
   }
 
   const handleSubcategoryChange = (subcategory: FloresEternasSubcategory) => {
@@ -104,10 +90,10 @@ export default function Catalog() {
   }
 
   const emptyMessage =
-    activeCategory === 'flores-eternas' && activeSubcategory !== 'todos'
-      ? emptyMessages[activeSubcategory] ??
-        'No hay productos en este filtro todavía. ¡Pronto habrá más!'
-      : 'Estamos trabajando en esta línea de productos. ¡Síguenos en redes para conocer los lanzamientos!'
+    isFloresEternas && activeSubcategory !== 'todos'
+      ? (emptyMessages[activeSubcategory] ??
+        'No hay productos en este filtro todavía. ¡Pronto habrá más!')
+      : DEFAULT_EMPTY_MESSAGE
 
   const filtersPanel = (
     <CatalogFilters
@@ -127,7 +113,7 @@ export default function Catalog() {
         path="/catalogo"
       />
       <PageHero
-        className="catalog-hero"
+        eyebrow="Colección"
         title="Catálogo"
         lead="Explora nuestras creaciones. Pedidos por WhatsApp. Envíos a todo el país."
       />
@@ -139,6 +125,7 @@ export default function Catalog() {
               {categories.map((cat) => (
                 <button
                   key={cat.id}
+                  type="button"
                   role="tab"
                   aria-selected={activeCategory === cat.id}
                   className={`category-tab${activeCategory === cat.id ? ' active' : ''}`}
@@ -178,7 +165,7 @@ export default function Catalog() {
             {filteredProducts.length > 0 ? (
               <>
                 <div className={`browse-grid browse-grid--${viewMode}`}>
-                  {paginatedProducts.map((product) => (
+                  {pagination.pageItems.map((product) => (
                     <ProductCard
                       key={product.id}
                       product={product}
@@ -188,20 +175,22 @@ export default function Catalog() {
                 </div>
 
                 <BrowsePagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  pageSize={pageSize}
+                  currentPage={pagination.currentPage}
+                  totalPages={pagination.totalPages}
+                  pageSize={pagination.pageSize}
                   totalItems={filteredProducts.length}
                   onPageChange={(page) => {
-                    setCurrentPage(page)
+                    pagination.setPage(page)
                     setSelectedProduct(null)
                   }}
-                  onPageSizeChange={setPageSize}
+                  onPageSizeChange={pagination.setPageSize}
                 />
               </>
             ) : (
               <div className="browse-empty">
-                <span className="browse-empty-icon" aria-hidden="true">🎨</span>
+                <span className="browse-empty-icon" aria-hidden="true">
+                  <IconEternal size={28} />
+                </span>
                 <h3>Próximamente</h3>
                 <p>{emptyMessage}</p>
               </div>
@@ -211,10 +200,7 @@ export default function Catalog() {
       </section>
 
       {selectedProduct && (
-        <ProductLightbox
-          product={selectedProduct}
-          onClose={() => setSelectedProduct(null)}
-        />
+        <ProductLightbox product={selectedProduct} onClose={() => setSelectedProduct(null)} />
       )}
     </>
   )

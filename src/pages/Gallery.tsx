@@ -1,40 +1,19 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 import { galleryItems } from '../data/gallery'
-import { type PageSize } from '../data/catalog'
 import BrowsePagination from '../components/BrowsePagination'
 import GalleryCard from '../components/GalleryCard'
 import GalleryLightbox from '../components/GalleryLightbox'
 import PageHero from '../components/PageHero'
 import ViewToggle, { type ViewMode } from '../components/ViewToggle'
 import Seo from '../components/Seo'
+import { usePagination } from '../hooks/usePagination'
 import '../styles/browse-layout.css'
 
 export default function Gallery() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
-  const [pageSize, setPageSize] = useState<PageSize>(10)
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const totalPages = Math.max(1, Math.ceil(galleryItems.length / pageSize))
-
-  const paginatedItems = useMemo(() => {
-    const start = (currentPage - 1) * pageSize
-    return galleryItems.slice(start, start + pageSize)
-  }, [currentPage, pageSize])
-
-  const pageOffset = (currentPage - 1) * pageSize
+  const pagination = usePagination(galleryItems)
   const selectedItem = selectedIndex !== null ? galleryItems[selectedIndex] : null
-
-  useEffect(() => {
-    setCurrentPage(1)
-    setSelectedIndex(null)
-  }, [pageSize])
-
-  useEffect(() => {
-    if (currentPage > totalPages) {
-      setCurrentPage(totalPages)
-    }
-  }, [currentPage, totalPages])
 
   return (
     <>
@@ -45,7 +24,7 @@ export default function Gallery() {
         path="/galeria"
       />
       <PageHero
-        className="gallery-hero"
+        eyebrow="Nuestro trabajo"
         title="Galería"
         lead="Un vistazo a nuestras creaciones hechas a mano. Toca una imagen para verla en detalle."
       />
@@ -58,25 +37,28 @@ export default function Gallery() {
             </div>
 
             <div className={`browse-grid browse-grid--${viewMode}`}>
-              {paginatedItems.map((item, index) => (
+              {pagination.pageItems.map((item, index) => (
                 <GalleryCard
                   key={item.id}
                   item={item}
-                  onOpen={() => setSelectedIndex(pageOffset + index)}
+                  onOpen={() => setSelectedIndex(pagination.pageOffset + index)}
                 />
               ))}
             </div>
 
             <BrowsePagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              pageSize={pageSize}
+              currentPage={pagination.currentPage}
+              totalPages={pagination.totalPages}
+              pageSize={pagination.pageSize}
               totalItems={galleryItems.length}
               onPageChange={(page) => {
-                setCurrentPage(page)
+                pagination.setPage(page)
                 setSelectedIndex(null)
               }}
-              onPageSizeChange={setPageSize}
+              onPageSizeChange={(size) => {
+                pagination.setPageSize(size)
+                setSelectedIndex(null)
+              }}
             />
           </div>
         </div>
@@ -86,10 +68,10 @@ export default function Gallery() {
         <GalleryLightbox
           item={selectedItem}
           onClose={() => setSelectedIndex(null)}
-          onPrev={selectedIndex > 0 ? () => setSelectedIndex((i) => (i !== null ? i - 1 : i)) : undefined}
+          onPrev={selectedIndex > 0 ? () => setSelectedIndex(selectedIndex - 1) : undefined}
           onNext={
             selectedIndex < galleryItems.length - 1
-              ? () => setSelectedIndex((i) => (i !== null ? i + 1 : i))
+              ? () => setSelectedIndex(selectedIndex + 1)
               : undefined
           }
         />

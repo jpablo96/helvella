@@ -3,7 +3,9 @@ import { useLocation } from 'react-router-dom'
 
 export type NavbarTheme = 'beige' | 'ciruela'
 
-function getSectionTone(): NavbarTheme {
+const CIRUELA_SURFACES = '.page-hero, .home-panel--hero, .footer'
+
+function getNavbarTheme(): NavbarTheme {
   const navHeight =
     parseInt(
       getComputedStyle(document.documentElement).getPropertyValue('--nav-height'),
@@ -13,26 +15,8 @@ function getSectionTone(): NavbarTheme {
   const x = Math.min(window.innerWidth - 1, Math.max(1, window.innerWidth / 2))
   const el = document.elementFromPoint(x, navHeight + 2)
 
-  if (!el) return 'ciruela'
-
-  if (
-    el.closest(
-      '.bg-beige, .order-cta-card, .home-panel--featured, .home-panel--gallery, .home-panel--cta, .home-panel--closing',
-    )
-  ) {
-    return 'beige'
-  }
-
-  if (el.closest('footer, .footer, .home-panel--hero, .home-panel--closing .footer, .hero, .page-hero')) {
-    return 'ciruela'
-  }
-
-  return 'ciruela'
-}
-
-function getNavbarTheme(): NavbarTheme {
-  const sectionTone = getSectionTone()
-  return sectionTone === 'beige' ? 'ciruela' : 'beige'
+  if (!el) return 'beige'
+  return el.closest(CIRUELA_SURFACES) ? 'beige' : 'ciruela'
 }
 
 export function useNavbarTheme(): NavbarTheme {

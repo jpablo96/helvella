@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import CloseIcon from '../icons/CloseIcon'
 import FilterIcon from '../icons/FilterIcon'
 
 interface BrowseFilterDrawerProps {
@@ -51,6 +52,7 @@ export default function BrowseFilterDrawer({
         id={id}
         className={`browse-filter-drawer${isOpen ? ' open' : ''}`}
         aria-hidden={!isOpen}
+        inert={!isOpen}
         role="dialog"
         aria-label={label}
       >
@@ -62,7 +64,7 @@ export default function BrowseFilterDrawer({
             onClick={onClose}
             aria-label="Cerrar filtros"
           >
-            ✕
+            <CloseIcon />
           </button>
         </div>
         {children}

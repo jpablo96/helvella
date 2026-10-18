@@ -1,216 +1,87 @@
 .order-cta {
-  background: var(--color-page-bg);
-  background-image: radial-gradient(rgba(108, 38, 91, 0.035) 1px, transparent 1px);
-  background-size: 22px 22px;
-  position: relative;
-  overflow: hidden;
-}
-
-.section.order-cta {
-  padding-top: var(--space-section-y);
-  padding-bottom: var(--space-section-y);
-}
-
-.order-cta::before {
-  content: '✿';
-  position: absolute;
-  top: -1rem;
-  right: 8%;
-  font-size: 8rem;
-  color: rgba(108, 38, 91, 0.06);
-  pointer-events: none;
-}
-
-.order-cta::after {
-  content: '✿';
-  position: absolute;
-  bottom: -2rem;
-  left: 5%;
-  font-size: 6rem;
-  color: rgba(108, 38, 91, 0.05);
-  pointer-events: none;
-}
-
-.order-cta-card {
-  display: grid;
-  grid-template-columns: 1.4fr 0.6fr;
-  gap: 2rem;
-  align-items: center;
-  background: var(--color-card-bg);
-  border-radius: var(--radius-lg);
-  padding: 2.25rem 2.5rem;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  position: relative;
-}
-
-.order-cta-card--unified {
+  container: order-cta / inline-size;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: clamp(1.1rem, 2.4vh, 1.75rem);
-  padding: clamp(1.35rem, 2.8vh, 2.25rem) clamp(1.25rem, 2.5vw, 2.5rem);
+  align-items: center;
+  gap: clamp(1.5rem, 3.5vh, 2.5rem);
+  width: 100%;
+  padding: clamp(1.75rem, 4vh, 3.25rem) clamp(1.25rem, 4vw, 3.5rem);
   text-align: center;
-  container-type: inline-size;
-  container-name: order-cta;
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, 0.55), transparent 70%),
+    var(--color-card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
 }
 
 .order-cta-intro {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-}
-
-.order-cta-card--unified .order-cta-intro {
   align-items: center;
-  text-align: center;
+  gap: 0.85rem;
 }
 
-.order-cta-badge {
-  display: inline-block;
-  padding: 0.35rem 0.9rem;
-  background: #6C265B;
-  color: #FFEBCC;
-  border-radius: 100px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
+.order-cta-intro h2 {
+  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+  line-height: 1.05;
 }
 
-.order-cta-intro h2,
-.order-cta-content h2 {
-  font-size: clamp(1.85rem, 4vw, 2.75rem);
-  margin-bottom: 0.75rem;
-  color: #6C265B;
-  line-height: 1.15;
+.order-cta-intro h2 em {
+  font-style: italic;
+  font-weight: 400;
 }
 
-.order-cta-intro > p,
-.order-cta-content > p {
+.order-cta-intro p {
+  max-width: 34rem;
   font-size: 1.05rem;
-  color: rgba(108, 38, 91, 0.78);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-  max-width: 520px;
-}
-
-.order-cta-card--unified .order-cta-intro > p {
-  margin-bottom: 0;
-  max-width: 38rem;
-  margin-inline: auto;
-}
-
-.order-cta-card:not(.order-cta-card--unified) .order-cta-intro {
-  grid-column: 1;
-}
-
-.order-cta-card:not(.order-cta-card--unified) .order-cta-perks {
-  grid-column: 1;
-}
-
-.order-cta-card:not(.order-cta-card--unified) .order-cta-action {
-  grid-column: 2;
-  grid-row: 1 / -1;
-  align-self: center;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-muted-on-beige);
 }
 
 .order-cta-features {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.55rem, 1.4cqi, 1rem);
-  margin: 0;
-  padding: clamp(0.9rem, 1.8vh, 1.35rem) 0;
-  border-block: 1px solid rgba(108, 38, 91, 0.12);
+  width: 100%;
+  border-block: 1px solid var(--line);
 }
 
 .order-cta-feature {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(0.4rem, 1vh, 0.65rem);
-  padding: clamp(0.65rem, 1.5vh, 1rem) clamp(0.45rem, 1vw, 0.75rem);
-  border-radius: var(--radius-md);
-  background: rgba(108, 38, 91, 0.04);
+  gap: 0.35rem;
   min-width: 0;
+  padding: clamp(1rem, 2.6vh, 1.6rem) clamp(0.5rem, 1.5vw, 1.25rem);
+}
+
+.order-cta-feature + .order-cta-feature {
+  border-left: 1px solid var(--line);
 }
 
 .order-cta-feature-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: clamp(2.25rem, 5vh, 3rem);
-  height: clamp(2.25rem, 5vh, 3rem);
+  width: 2.85rem;
+  height: 2.85rem;
+  margin-bottom: 0.4rem;
   border-radius: 50%;
-  background: rgba(108, 38, 91, 0.08);
-  color: #6C265B;
-  flex-shrink: 0;
-}
-
-.order-cta-feature-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-  min-width: 0;
-  width: 100%;
+  border: 1px solid var(--line-strong);
+  color: var(--color-ciruela);
 }
 
 .order-cta-feature h3 {
-  margin: 0;
-  font-size: clamp(0.98rem, 2.6cqi, 1.22rem);
+  font-size: clamp(1.05rem, 2.4cqi, 1.3rem);
+  font-weight: 600;
   line-height: 1.2;
-  color: #6C265B;
 }
 
 .order-cta-feature p {
-  margin: 0;
-  font-size: clamp(0.68rem, 2cqi, 0.82rem);
-  line-height: 1.35;
-  color: rgba(108, 38, 91, 0.72);
-}
-
-.order-cta-card--unified .order-cta-action {
-  align-items: center;
-  padding-top: clamp(0.15rem, 0.5vh, 0.35rem);
-}
-
-.order-cta-card--unified .order-cta-btn {
-  max-width: min(100%, 22rem);
-}
-
-.order-cta-perks {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.65rem;
-  width: 100%;
-}
-
-.order-cta-perks li {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0.65rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #6C265B;
-  text-align: left;
-}
-
-.order-cta-perk-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background: rgba(108, 38, 91, 0.08);
-  color: #6C265B;
-  flex-shrink: 0;
+  font-size: clamp(0.75rem, 1.8cqi, 0.86rem);
+  line-height: 1.4;
+  color: var(--text-muted-on-beige);
 }
 
 .order-cta-action {
@@ -218,208 +89,89 @@
   flex-direction: column;
   align-items: center;
   gap: 0.85rem;
-  text-align: center;
 }
 
 .order-cta-btn {
-  font-size: 1.1rem;
-  padding: 1.1rem 2.25rem;
-  box-shadow: 0 4px 18px rgba(42, 171, 90, 0.28);
-  width: 100%;
-  justify-content: center;
-}
-
-.order-cta-btn:hover {
-  box-shadow: 0 6px 22px rgba(42, 171, 90, 0.34);
+  min-width: min(100%, 17rem);
+  padding: 1.05rem 2.25rem;
+  font-size: 1rem;
 }
 
 .order-cta-note {
-  font-size: 0.8rem;
-  color: rgba(108, 38, 91, 0.55);
+  font-size: 0.75rem;
   font-weight: 500;
-}
-
-.order-cta--embedded {
-  position: relative;
-  overflow: visible;
-  background: transparent;
-  background-image: none;
-}
-
-.order-cta--embedded::before,
-.order-cta--embedded::after {
-  display: none;
-}
-
-.order-cta--embedded .order-cta-card {
-  margin-bottom: 0;
-}
-
-.order-cta--embedded .order-cta-intro > p,
-.order-cta--embedded .order-cta-content > p {
-  margin-bottom: 0;
+  letter-spacing: 0.06em;
+  color: var(--text-subtle-on-beige);
 }
 
 @media (max-width: 900px) {
-  .order-cta-card:not(.order-cta-card--unified) {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .order-cta-card:not(.order-cta-card--unified) .order-cta-intro,
-  .order-cta-card:not(.order-cta-card--unified) .order-cta-perks,
-  .order-cta-card:not(.order-cta-card--unified) .order-cta-action {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .order-cta-intro {
-    align-items: center;
-    text-align: center;
-  }
-
-  .order-cta-intro > p,
-  .order-cta-content > p {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .order-cta-features {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .order-cta-perks {
-    align-self: stretch;
-    align-items: flex-start;
+  .order-cta-feature:nth-child(3) {
+    border-left: none;
   }
 
-  .order-cta-perks li {
-    width: 100%;
-    justify-content: flex-start;
-    text-align: left;
-  }
-
-  .order-cta-btn {
-    max-width: 320px;
+  .order-cta-feature:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
   }
 }
 
 @media (max-width: 768px) {
-  .order-cta-card {
-    padding: 1.25rem 1rem;
-    gap: 1rem;
+  .order-cta {
+    gap: 1.1rem;
+    padding: 1.4rem 1rem;
+    border-radius: var(--radius-md);
   }
 
-  .order-cta-intro h2,
-  .order-cta-content h2 {
-    font-size: 1.45rem;
-    margin-bottom: 0.5rem;
+  .order-cta-intro {
+    gap: 0.5rem;
   }
 
-  .order-cta-intro > p,
-  .order-cta-content > p {
+  .order-cta-intro h2 {
+    font-size: clamp(1.75rem, 8vw, 2.2rem);
+  }
+
+  .order-cta-intro p {
     font-size: 0.95rem;
     line-height: 1.45;
-    margin-bottom: 0.75rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .order-cta-card--unified .order-cta-intro > p {
-    -webkit-line-clamp: 3;
-  }
-
-  .order-cta-features {
-    gap: clamp(0.4rem, 1.2vh, 0.55rem);
-    padding-block: clamp(0.65rem, 1.4vh, 0.9rem);
   }
 
   .order-cta-feature {
-    padding: clamp(0.45rem, 1.2vh, 0.6rem) clamp(0.35rem, 1.5vw, 0.5rem);
-    gap: clamp(0.25rem, 0.8vh, 0.4rem);
+    gap: 0.15rem;
+    padding: clamp(0.6rem, 1.6vh, 0.9rem) 0.4rem;
   }
 
   .order-cta-feature-icon {
-    width: clamp(1.85rem, 5vh, 2.25rem);
-    height: clamp(1.85rem, 5vh, 2.25rem);
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-bottom: 0.2rem;
   }
 
   .order-cta-feature-icon svg {
-    width: clamp(16px, 4vh, 20px);
-    height: clamp(16px, 4vh, 20px);
+    width: 18px;
+    height: 18px;
   }
 
   .order-cta-feature h3 {
-    font-size: clamp(0.95rem, 4.5cqi, 1.12rem);
+    font-size: clamp(0.98rem, 4.4cqi, 1.1rem);
   }
 
   .order-cta-feature p {
-    font-size: clamp(0.78rem, 3.2cqi, 0.88rem);
-    line-height: 1.25;
-  }
-
-  .order-cta-perks {
-    gap: 0.4rem;
-  }
-
-  .order-cta-perks li {
-    font-size: 0.88rem;
-    gap: 0.45rem;
-  }
-
-  .order-cta-perk-icon {
-    width: 1.65rem;
-    height: 1.65rem;
-    margin-top: 0.05rem;
+    font-size: clamp(0.76rem, 3.2cqi, 0.86rem);
+    line-height: 1.3;
   }
 
   .order-cta-btn {
+    padding: 0.9rem 1.5rem;
     font-size: 0.95rem;
-    padding: 0.85rem 1.25rem;
-  }
-
-  .order-cta-note {
-    font-size: 0.82rem;
   }
 }
 
 @media (min-width: 1440px) {
-  .order-cta-card {
-    padding: 2.75rem 3rem;
-    gap: 2.5rem;
-  }
-
-  .order-cta-intro h2,
-  .order-cta-content h2 {
-    font-size: clamp(2.25rem, 3vw, 3.15rem);
-  }
-
-  .order-cta-intro > p,
-  .order-cta-content > p {
+  .order-cta-intro p {
     font-size: 1.15rem;
-    max-width: 580px;
-  }
-
-  .order-cta-card--unified .order-cta-intro > p {
-    max-width: 44rem;
-  }
-
-  .order-cta-feature h3 {
-    font-size: clamp(1rem, 1.8cqi, 1.2rem);
-  }
-
-  .order-cta-feature p {
-    font-size: clamp(0.75rem, 1.4cqi, 0.88rem);
-  }
-
-  .order-cta-perks li {
-    font-size: 1rem;
-  }
-
-  .order-cta-btn {
-    font-size: 1.05rem;
-    padding: 1rem 1.75rem;
+    max-width: 40rem;
   }
 }

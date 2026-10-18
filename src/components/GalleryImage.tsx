@@ -1,5 +1,6 @@
 import { useState, type CSSProperties } from 'react'
 import type { IllustrationType } from '../data/types'
+import { flowerColorStyle } from '../utils/flowerColorStyle'
 import ProductIllustration from './illustrations/ProductIllustration'
 import './GalleryImage.css'
 
@@ -27,10 +28,7 @@ export default function GalleryImage({
 
   if (showPlaceholder) {
     return (
-      <div
-        className="gallery-placeholder"
-        style={{ '--flower-color': color } as Record<string, string>}
-      >
+      <div className="gallery-placeholder" style={flowerColorStyle(color)}>
         <ProductIllustration type={illustration} color={color} variant="gallery" />
       </div>
     )

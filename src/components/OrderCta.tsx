@@ -1,217 +1,52 @@
-import type { ComponentType } from 'react'
-
-import { getWhatsAppOrderUrl, NATIONWIDE_SHIPPING_NOTE } from '../data/contact'
-
+import { getWhatsAppOrderUrl } from '../data/contact'
 import WhatsAppIcon from './icons/WhatsAppIcon'
-
-import { IconArtisan, IconChat, IconGift, IconShipping } from './icons/BrandIcons'
-
+import { IconArtisan, IconEternal, IconPersonalized, IconShipping } from './icons/BrandIcons'
 import './OrderCta.css'
 
-
-
-const perks = [
-
-  { icon: IconArtisan, text: 'Piezas personalizadas a tu gusto' },
-
-  { icon: IconChat, text: 'Atención directa y respuesta rápida' },
-
-  { icon: IconShipping, text: NATIONWIDE_SHIPPING_NOTE },
-
-  { icon: IconGift, text: 'Ideal para regalar o decorar' },
-
+const features = [
+  { icon: IconArtisan, title: '100% Artesanal', text: 'Hechas a mano con dedicación.' },
+  { icon: IconEternal, title: 'Eternas', text: 'Detalles que perduran siempre.' },
+  { icon: IconPersonalized, title: 'Personalizadas', text: 'Arreglos a tu medida.' },
+  { icon: IconShipping, title: 'Envíos a todo el país', text: 'A cualquier rincón de Costa Rica.' },
 ] as const
 
+const orderUrl = getWhatsAppOrderUrl()
 
-
-export interface OrderCtaFeature {
-
-  icon: ComponentType<{ size?: number }>
-
-  title: string
-
-  text: string
-
-}
-
-
-
-interface OrderCtaProps {
-
-  showPerks?: boolean
-
-  embedded?: boolean
-
-  features?: readonly OrderCtaFeature[]
-
-}
-
-
-
-export default function OrderCta({
-
-  showPerks = true,
-
-  embedded = false,
-
-  features,
-
-}: OrderCtaProps) {
-
-  const unified = Boolean(features?.length)
-
-
-
-  const card = (
-
-    <div className={`order-cta-card${unified ? ' order-cta-card--unified' : ''}`}>
-
+export default function OrderCta() {
+  return (
+    <div className="order-cta">
       <header className="order-cta-intro">
-
-        <span className="order-cta-badge">Pedidos por WhatsApp</span>
-
-        <h2>¿Hacemos tu pedido?</h2>
-
-        <p>
-
-          {unified
-
-            ? 'Escríbenos con tu idea y creamos el arreglo perfecto para tu ocasión.'
-
-            : 'Cuéntanos tu idea y creamos algo único para ti: un regalo especial, una decoración o el arreglo perfecto para tu ocasión.'}
-
-        </p>
-
+        <span className="eyebrow">Pedidos por WhatsApp</span>
+        <h2>
+          ¿Hacemos tu <em>pedido</em>?
+        </h2>
+        <p>Escríbenos con tu idea y creamos el arreglo perfecto para tu ocasión.</p>
       </header>
 
-
-
-      {features && features.length > 0 && (
-
-        <ul className="order-cta-features">
-
-          {features.map((feature) => {
-
-            const Icon = feature.icon
-
-            return (
-
-              <li key={feature.title} className="order-cta-feature">
-
-                <span className="order-cta-feature-icon" aria-hidden="true">
-
-                  <Icon size={28} />
-
-                </span>
-
-                <div className="order-cta-feature-body">
-
-                  <h3>{feature.title}</h3>
-
-                  <p>{feature.text}</p>
-
-                </div>
-
-              </li>
-
-            )
-
-          })}
-
-        </ul>
-
-      )}
-
-
-
-      {showPerks && !unified && (
-
-        <ul className="order-cta-perks">
-
-          {perks.map((perk) => {
-
-            const Icon = perk.icon
-
-            return (
-
-              <li key={perk.text}>
-
-                <span className="order-cta-perk-icon" aria-hidden="true">
-
-                  <Icon size={20} />
-
-                </span>
-
-                {perk.text}
-
-              </li>
-
-            )
-
-          })}
-
-        </ul>
-
-      )}
-
-
+      <ul className="order-cta-features">
+        {features.map(({ icon: Icon, title, text }) => (
+          <li key={title} className="order-cta-feature">
+            <span className="order-cta-feature-icon" aria-hidden="true">
+              <Icon size={24} />
+            </span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </li>
+        ))}
+      </ul>
 
       <div className="order-cta-action">
-
         <a
-
-          href={getWhatsAppOrderUrl()}
-
+          href={orderUrl}
           target="_blank"
-
           rel="noopener noreferrer"
-
           className="btn btn-whatsapp order-cta-btn"
-
         >
-
-          <WhatsAppIcon size={22} />
-
+          <WhatsAppIcon size={20} />
           ¡Haz tu pedido!
-
         </a>
-
         <p className="order-cta-note">Sin compromiso · Te respondemos pronto</p>
-
       </div>
-
     </div>
-
   )
-
-
-
-  if (embedded) {
-
-    return (
-
-      <div className={`order-cta order-cta--embedded${unified ? ' order-cta--unified' : ''}`}>
-
-        {card}
-
-      </div>
-
-    )
-
-  }
-
-
-
-  return (
-
-    <section className="section order-cta">
-
-      <div className="container">{card}</div>
-
-    </section>
-
-  )
-
 }
-
-

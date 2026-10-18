@@ -1,12 +1,16 @@
 import { useEffect } from 'react'
-import { DESKTOP_BREAKPOINT } from '../constants/breakpoints'
+import { MOBILE_MEDIA_QUERY } from '../constants/breakpoints'
 
-export function useCloseOnDesktopResize(_isOpen: boolean, onClose: () => void) {
+export function useCloseOnDesktopResize(isOpen: boolean, onClose: () => void) {
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > DESKTOP_BREAKPOINT) onClose()
+    if (!isOpen) return
+
+    const media = window.matchMedia(MOBILE_MEDIA_QUERY)
+    const handleChange = () => {
+      if (!media.matches) onClose()
     }
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [onClose])
+
+    media.addEventListener('change', handleChange)
+    return () => media.removeEventListener('change', handleChange)
+  }, [isOpen, onClose])
 }

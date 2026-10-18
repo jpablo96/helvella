@@ -3,40 +3,20 @@ import {
   isValidElement,
   useCallback,
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
   type ReactNode,
 } from 'react'
-import { DESKTOP_BREAKPOINT } from '../constants/breakpoints'
+import { MOBILE_MEDIA_QUERY, REDUCED_MOTION_QUERY } from '../constants/breakpoints'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 import ChevronIcon from './icons/ChevronIcon'
 import './HomeCarousel.css'
-
-const MOBILE_MEDIA_QUERY = `(max-width: ${DESKTOP_BREAKPOINT}px)`
-const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
 
 interface HomeCarouselProps {
   label: string
   trackClassName?: string
   autoPlayMs?: number
   children: ReactNode
-}
-
-function useMobileCarouselEnabled() {
-  const [enabled, setEnabled] = useState(() => {
-    if (typeof window === 'undefined') return false
-    return window.matchMedia(MOBILE_MEDIA_QUERY).matches
-  })
-
-  useLayoutEffect(() => {
-    const media = window.matchMedia(MOBILE_MEDIA_QUERY)
-    const update = () => setEnabled(media.matches)
-    update()
-    media.addEventListener('change', update)
-    return () => media.removeEventListener('change', update)
-  }, [])
-
-  return enabled
 }
 
 export default function HomeCarousel({
@@ -49,7 +29,8 @@ export default function HomeCarousel({
   const slideCount = slides.length
   const [index, setIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
-  const mobileCarousel = useMobileCarouselEnabled()
+  const mobileCarousel = useMediaQuery(MOBILE_MEDIA_QUERY)
+  const prefersReducedMotion = useMediaQuery(REDUCED_MOTION_QUERY)
   const indexRef = useRef(index)
 
   indexRef.current = index
@@ -89,17 +70,14 @@ export default function HomeCarousel({
   const goPrev = useCallback(() => goTo(indexRef.current - 1), [goTo])
 
   useEffect(() => {
-    if (!mobileCarousel || slideCount <= 1 || isPaused) return
-
-    const prefersReducedMotion = window.matchMedia(REDUCED_MOTION_QUERY).matches
-    if (prefersReducedMotion) return
+    if (!mobileCarousel || prefersReducedMotion || slideCount <= 1 || isPaused) return
 
     const timer = window.setInterval(() => {
       setIndex((current) => (current + 1) % slideCount)
     }, autoPlayMs)
 
     return () => window.clearInterval(timer)
-  }, [autoPlayMs, isPaused, mobileCarousel, slideCount])
+  }, [autoPlayMs, isPaused, mobileCarousel, prefersReducedMotion, slideCount])
 
   const trackClass = ['home-carousel__track', trackClassName].filter(Boolean).join(' ')
   const showControls = mobileCarousel && slideCount > 1

@@ -3,40 +3,27 @@
   top: 0;
   z-index: 152;
   height: var(--nav-height);
-  --nav-surface: #FFEBCC;
-  --nav-text: #6C265B;
-  --nav-text-muted: rgba(108, 38, 91, 0.65);
-  --nav-text-hover: #6C265B;
-  --nav-border: rgba(108, 38, 91, 0.12);
-  --nav-toggle-hover: rgba(108, 38, 91, 0.08);
-  --nav-mobile-active: rgba(108, 38, 91, 0.08);
+  --nav-surface: rgba(var(--color-beige-rgb), 0.92);
+  --nav-text: var(--color-ciruela);
+  --nav-text-muted: rgba(var(--color-ciruela-rgb), 0.62);
+  --nav-border: var(--line);
+  --nav-toggle-hover: rgba(var(--color-ciruela-rgb), 0.08);
   background: var(--nav-surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
   border-bottom: 1px solid var(--nav-border);
   transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease;
+    background-color 0.35s ease,
+    border-color 0.35s ease;
 }
 
 .navbar--ciruela {
-  --nav-surface: #6C265B;
-  --nav-text: #FFEBCC;
-  --nav-text-muted: rgba(255, 235, 204, 0.72);
-  --nav-text-hover: #FFEBCC;
-  --nav-border: rgba(255, 235, 204, 0.12);
-  --nav-toggle-hover: rgba(255, 235, 204, 0.1);
-  --nav-mobile-active: rgba(255, 235, 204, 0.1);
-}
-
-.navbar--beige {
-  --nav-surface: #FFEBCC;
-  --nav-text: #6C265B;
-  --nav-text-muted: rgba(108, 38, 91, 0.65);
-  --nav-text-hover: #6C265B;
-  --nav-border: rgba(108, 38, 91, 0.12);
-  --nav-toggle-hover: rgba(108, 38, 91, 0.08);
-  --nav-mobile-active: rgba(108, 38, 91, 0.08);
+  --nav-surface: rgba(var(--color-ciruela-rgb), 0.96);
+  --nav-text: var(--color-beige);
+  --nav-text-muted: rgba(var(--color-beige-rgb), 0.7);
+  --nav-border: var(--line-on-ciruela);
+  --nav-toggle-hover: rgba(var(--color-beige-rgb), 0.1);
+  --focus-ring: var(--color-beige);
 }
 
 .navbar-inner {
@@ -52,19 +39,20 @@
   justify-self: start;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
+  gap: 0.6rem;
   color: var(--nav-text);
-  transition: opacity var(--transition), color 0.3s ease;
+  transition: opacity var(--transition);
   z-index: 102;
+}
+
+.navbar-logo:hover {
+  opacity: 0.85;
 }
 
 .logo-image-wrap {
   position: relative;
-  width: 58px;
-  height: 58px;
+  width: 52px;
+  height: 52px;
   border-radius: var(--radius-sm);
   overflow: hidden;
   flex-shrink: 0;
@@ -82,14 +70,11 @@
 
 .logo-text {
   font-family: var(--font-heading);
-  font-size: calc(1.5rem * 58 / 44);
-  font-weight: 700;
+  font-size: 1.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   color: var(--nav-text);
-  transition: color 0.3s ease;
-}
-
-.navbar-logo:hover {
-  opacity: 0.85;
+  transition: color 0.35s ease;
 }
 
 .navbar-nav {
@@ -97,37 +82,43 @@
   justify-self: center;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .nav-link {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--nav-text-muted);
   position: relative;
+  padding-block: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nav-text-muted);
   transition: color 0.3s ease;
 }
 
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  height: 1px;
   background: var(--nav-text);
-  border-radius: 2px;
-  transition: width var(--transition), background 0.3s ease;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition:
+    transform var(--transition),
+    background-color 0.35s ease;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--nav-text-hover);
+  color: var(--nav-text);
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
-  width: 100%;
+  transform: translateX(-50%) scaleX(1);
 }
 
 .navbar-actions {
@@ -143,13 +134,12 @@
   display: none;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
-  width: 42px;
-  height: 42px;
-  padding: 0.5rem;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  transition: background var(--transition);
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 0.7rem;
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition);
 }
 
 .navbar-toggle:hover {
@@ -159,14 +149,17 @@
 .navbar-toggle-bar {
   display: block;
   width: 100%;
-  height: 2px;
+  height: 1.5px;
   background: var(--nav-text);
   border-radius: 2px;
-  transition: all var(--transition), background 0.3s ease;
+  transition:
+    transform var(--transition),
+    opacity var(--transition),
+    background-color 0.35s ease;
 }
 
 .navbar-toggle.open .navbar-toggle-bar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(7.5px) rotate(45deg);
 }
 
 .navbar-toggle.open .navbar-toggle-bar:nth-child(2) {
@@ -174,7 +167,7 @@
 }
 
 .navbar-toggle.open .navbar-toggle-bar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-7.5px) rotate(-45deg);
 }
 
 .navbar-mobile-overlay {
@@ -184,9 +177,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(20, 10, 18, 0.6);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  background: rgba(var(--color-ink-rgb), 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   z-index: 150;
   opacity: 0;
   pointer-events: none;
@@ -205,33 +198,29 @@
   left: 0;
   right: 0;
   z-index: 151;
-  --nav-surface: #FFEBCC;
-  --nav-text: #6C265B;
-  --nav-text-muted: rgba(108, 38, 91, 0.75);
-  --nav-text-hover: #6C265B;
-  --nav-border: rgba(108, 38, 91, 0.12);
-  --nav-mobile-active: rgba(108, 38, 91, 0.08);
+  --nav-surface: var(--color-beige);
+  --nav-text: var(--color-ciruela);
+  --nav-text-muted: rgba(var(--color-ciruela-rgb), 0.7);
+  --nav-border: var(--line);
+  --nav-mobile-active: rgba(var(--color-ciruela-rgb), 0.06);
   background: var(--nav-surface);
   border-bottom: 1px solid var(--nav-border);
-  padding: 1.25rem 1.5rem 1.5rem;
+  padding: 1rem 1.25rem 1.5rem;
   transform: translateY(-110%);
   opacity: 0;
   transition:
-    transform 0.3s ease,
-    opacity 0.3s ease,
-    background-color 0.3s ease,
-    border-color 0.3s ease;
-  box-shadow: 0 12px 32px rgba(108, 38, 91, 0.12);
+    transform 0.4s var(--ease-out),
+    opacity 0.3s ease;
+  box-shadow: var(--shadow-md);
 }
 
 .navbar-mobile--ciruela {
-  --nav-surface: #6C265B;
-  --nav-text: #FFEBCC;
-  --nav-text-muted: rgba(255, 235, 204, 0.78);
-  --nav-text-hover: #FFEBCC;
-  --nav-border: rgba(255, 235, 204, 0.12);
-  --nav-mobile-active: rgba(255, 235, 204, 0.1);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  --nav-surface: var(--color-ciruela);
+  --nav-text: var(--color-beige);
+  --nav-text-muted: rgba(var(--color-beige-rgb), 0.75);
+  --nav-border: var(--line-on-ciruela);
+  --nav-mobile-active: rgba(var(--color-beige-rgb), 0.08);
+  --focus-ring: var(--color-beige);
 }
 
 .navbar-mobile.open {
@@ -242,24 +231,44 @@
 .navbar-mobile-links {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
 }
 
 .navbar-mobile-link {
-  display: block;
-  padding: 0.85rem 1rem;
-  border-radius: var(--radius-sm);
-  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0.75rem;
+  border-bottom: 1px solid var(--nav-border);
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
   font-weight: 500;
   color: var(--nav-text-muted);
-  transition: all var(--transition), color 0.3s ease, background 0.3s ease;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.navbar-mobile-link:last-child {
+  border-bottom: none;
+}
+
+.navbar-mobile-link::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .navbar-mobile-link:hover,
 .navbar-mobile-link.active {
-  background: var(--nav-mobile-active);
-  color: var(--nav-text-hover);
-  font-weight: 600;
+  color: var(--nav-text);
+}
+
+.navbar-mobile-link.active::after {
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -274,5 +283,20 @@
   .navbar-mobile-overlay,
   .navbar-mobile {
     display: block;
+  }
+
+  .logo-image-wrap {
+    width: 46px;
+    height: 46px;
+  }
+
+  .logo-text {
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .nav-link {
+    font-size: 0.85rem;
   }
 }

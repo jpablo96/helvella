@@ -1,5 +1,6 @@
 import { type PageSize } from '../data/catalog'
 import BrowsePageSize from './BrowsePageSize'
+import ChevronIcon from './icons/ChevronIcon'
 import './BrowsePagination.css'
 
 interface BrowsePaginationProps {
@@ -37,6 +38,7 @@ export default function BrowsePagination({
             disabled={currentPage === 1}
             aria-label="Página anterior"
           >
+            <ChevronIcon direction="left" size={14} />
             Anterior
           </button>
 
@@ -52,6 +54,7 @@ export default function BrowsePagination({
             aria-label="Página siguiente"
           >
             Siguiente
+            <ChevronIcon direction="right" size={14} />
           </button>
         </nav>
       ) : (

@@ -1,4 +1,5 @@
-import type { CSSProperties, ReactElement, ReactNode } from 'react'
+import type { ReactElement, ReactNode } from 'react'
+import { flowerColorStyle } from '../../utils/flowerColorStyle'
 import type { FlowerVariant, IllustrationType } from './types'
 
 type RendererProps = { color: string; variant: FlowerVariant; className?: string }
@@ -11,6 +12,13 @@ type SvgProps = {
   children: ReactNode
 }
 
+const classNames: Record<FlowerVariant, string> = {
+  card: 'flower-svg',
+  lightbox: 'image-lightbox-flower',
+  gallery: 'gallery-flower-svg',
+  hero: 'hero-flower-svg',
+}
+
 export function IllustrationSvg({
   viewBox,
   variant,
@@ -18,19 +26,12 @@ export function IllustrationSvg({
   color,
   children,
 }: SvgProps) {
-  const classNames: Record<FlowerVariant, string> = {
-    card: 'flower-svg',
-    lightbox: 'image-lightbox-flower',
-    gallery: 'gallery-flower-svg',
-    hero: 'hero-flower-svg',
-  }
-
   return (
     <svg
       viewBox={viewBox}
       className={className ?? classNames[variant]}
       aria-hidden="true"
-      style={{ '--flower-color': color } as CSSProperties}
+      style={flowerColorStyle(color)}
     >
       {children}
     </svg>

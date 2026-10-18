@@ -1,12 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { MOBILE_MEDIA_QUERY } from '../constants/breakpoints'
 import { getWhatsAppOrderUrl } from '../data/contact'
 import { useBodyScrollLock } from '../hooks/useBodyScrollLock'
 import { useCloseOnDesktopResize } from '../hooks/useCloseOnDesktopResize'
+import { useMediaQuery } from '../hooks/useMediaQuery'
+import CloseIcon from './icons/CloseIcon'
 import WhatsAppIcon from './icons/WhatsAppIcon'
 import './WhatsAppButton.css'
 
-const MOBILE_BREAKPOINT = '(max-width: 768px)'
+const whatsAppUrl = getWhatsAppOrderUrl()
 
 function SendIcon() {
   return (
@@ -22,11 +25,7 @@ export default function WhatsAppButton() {
   const [chatOpen, setChatOpen] = useState(false)
   const [heroInView, setHeroInView] = useState(false)
   const floatRef = useRef<HTMLButtonElement>(null)
-  const [isMobile, setIsMobile] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia(MOBILE_BREAKPOINT).matches,
-  )
-
-  const whatsAppUrl = getWhatsAppOrderUrl()
+  const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY)
 
   const closeChat = useCallback(() => {
     setChatOpen(false)
@@ -40,14 +39,6 @@ export default function WhatsAppButton() {
 
   useBodyScrollLock(chatOpen && isMobile)
   useCloseOnDesktopResize(chatOpen, closeChat)
-
-  useEffect(() => {
-    const media = window.matchMedia(MOBILE_BREAKPOINT)
-    const updateIsMobile = () => setIsMobile(media.matches)
-    updateIsMobile()
-    media.addEventListener('change', updateIsMobile)
-    return () => media.removeEventListener('change', updateIsMobile)
-  }, [])
 
   useEffect(() => {
     if (!isHome || !isMobile) {
@@ -113,7 +104,7 @@ export default function WhatsAppButton() {
                 aria-label="Cerrar"
                 tabIndex={chatOpen ? 0 : -1}
               >
-                ✕
+                <CloseIcon />
               </button>
             </header>
 
