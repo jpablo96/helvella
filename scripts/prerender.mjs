@@ -1,12 +1,31 @@
 // Runs after `vite build`: writes one static HTML file per page (so search engines get real
 // content without running JavaScript), plus sitemap.xml and robots.txt.
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+//
+// The server bundle is built here with Vite's build() API, not `vite build --ssr`.
+// That CLI path goes through the environment builder. Cloudflare's Vite plugin opts into
+// the builder and then builds the client environment, which emits
+// dist-ssr/assets/entry-server-<hash>.js instead of dist-ssr/entry-server.js.
+import { access, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
+import { build } from 'vite'
 
 const DIST = 'dist'
-const SSR_ENTRY = path.resolve('dist-ssr', 'entry-server.js')
+const SSR_OUT_DIR = 'dist-ssr'
 
+await build({
+  build: {
+    ssr: 'src/entry-server.tsx',
+    outDir: SSR_OUT_DIR,
+    emptyOutDir: true,
+    copyPublicDir: false,
+  },
+  ssr: {
+    target: 'node',
+  },
+})
+
+const SSR_ENTRY = await resolveSsrEntry(SSR_OUT_DIR)
 const { renderPages, siteUrl } = await import(pathToFileURL(SSR_ENTRY).href)
 
 const template = await readFile(path.join(DIST, 'index.html'), 'utf8')
@@ -57,5 +76,21 @@ Sitemap: ${siteUrl}/sitemap.xml
 `,
 )
 
-await rm('dist-ssr', { recursive: true, force: true })
+await rm(SSR_OUT_DIR, { recursive: true, force: true })
 console.log('wrote sitemap.xml and robots.txt')
+
+async function resolveSsrEntry(outDir) {
+  for (const name of ['entry-server.js', 'entry-server.mjs']) {
+    const file = path.resolve(outDir, name)
+    try {
+      await access(file)
+      return file
+    } catch {
+      // try the next filename Vite may emit
+    }
+  }
+
+  throw new Error(
+    `SSR build did not write ${outDir}/entry-server.js. Prerender needs that module.`,
+  )
+}
