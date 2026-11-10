@@ -104,16 +104,9 @@
     top: 50%;
     z-index: 6;
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
     width: 2.25rem;
     height: 2.25rem;
     border-radius: 50%;
-    background: rgba(var(--color-beige-rgb), 0.85);
-    color: var(--color-ciruela);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    box-shadow: 0 0 0 1px var(--line);
     opacity: 0;
     transform: translateY(calc(-50% + 28px));
     transition:

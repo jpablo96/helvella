@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type SyntheticEvent } from 'react'
-import type { GalleryItem } from '../data/gallery'
-import ChevronIcon from './icons/ChevronIcon'
+import type { GalleryItem } from '../../data/gallery'
+import { useLightbox } from '../../hooks/useLightbox'
+import { cx } from '../../utils/cx'
+import ChevronIcon from '../icons/ChevronIcon'
 import ImageLightbox from './ImageLightbox'
-import { useLightbox } from '../hooks/useLightbox'
-import './ImageLightbox.css'
 import './GalleryLightbox.css'
 
 interface GalleryLightboxProps {
@@ -140,7 +140,7 @@ export default function GalleryLightbox({ item, onClose, onPrev, onNext }: Galle
             {canGoPrev && (
               <button
                 type="button"
-                className="gallery-lightbox-nav gallery-lightbox-prev"
+                className="gallery-lightbox-nav gallery-lightbox-prev glass-chip"
                 onClick={goPrev}
                 aria-label="Anterior"
               >
@@ -151,7 +151,7 @@ export default function GalleryLightbox({ item, onClose, onPrev, onNext }: Galle
             {canGoNext && (
               <button
                 type="button"
-                className="gallery-lightbox-nav gallery-lightbox-next"
+                className="gallery-lightbox-nav gallery-lightbox-next glass-chip"
                 onClick={goNext}
                 aria-label="Siguiente"
               >
@@ -172,7 +172,10 @@ export default function GalleryLightbox({ item, onClose, onPrev, onNext }: Galle
                   }}
                   src={src}
                   alt={`${item.title}${hasMultipleSlides ? ` (${index + 1} de ${images.length})` : ''}`}
-                  className={`gallery-photo gallery-lightbox-slide-photo${index === slideIndex ? ' is-active' : ''}`}
+                  className={cx(
+                    'gallery-photo gallery-lightbox-slide-photo',
+                    index === slideIndex && 'is-active',
+                  )}
                   decoding="async"
                   onLoad={(event: SyntheticEvent<HTMLImageElement>) =>
                     rememberSlideSize(src, event.currentTarget)
@@ -190,7 +193,7 @@ export default function GalleryLightbox({ item, onClose, onPrev, onNext }: Galle
                 {images.map((_, index) => (
                   <span
                     key={index}
-                    className={`gallery-lightbox-dot${index === slideIndex ? ' is-active' : ''}`}
+                    className={cx('gallery-lightbox-dot', index === slideIndex && 'is-active')}
                     aria-hidden="true"
                   />
                 ))}
@@ -204,7 +207,6 @@ export default function GalleryLightbox({ item, onClose, onPrev, onNext }: Galle
           </div>
         </div>
       }
-      info={null}
     />
   )
 }

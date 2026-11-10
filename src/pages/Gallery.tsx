@@ -1,35 +1,32 @@
 import { useState } from 'react'
 import { galleryItems } from '../data/gallery'
-import BrowsePagination from '../components/BrowsePagination'
+import BrowsePagination from '../components/browse/BrowsePagination'
+import ViewToggle, { type ViewMode } from '../components/browse/ViewToggle'
 import GalleryCard from '../components/GalleryCard'
-import GalleryLightbox from '../components/GalleryLightbox'
+import GalleryLightbox from '../components/lightbox/GalleryLightbox'
 import PageHero from '../components/PageHero'
-import ViewToggle, { type ViewMode } from '../components/ViewToggle'
 import Seo from '../components/Seo'
 import { usePagination } from '../hooks/usePagination'
 import '../styles/browse-layout.css'
 
+const lastIndex = galleryItems.length - 1
+
 export default function Gallery() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
+  // Index into the full list, so the lightbox can step across pages.
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
-  const pagination = usePagination(galleryItems)
-  const selectedItem = selectedIndex !== null ? galleryItems[selectedIndex] : null
+  const pagination = usePagination(galleryItems, 20)
 
   return (
     <>
-      <Seo
-        title="Galería"
-        socialTitle="Galería de Creaciones | Helvella — Flores Eternas"
-        description="Inspírate con nuestras flores eternas artesanales hechas a mano en Costa Rica. Un vistazo a nuestras creaciones y trabajos realizados."
-        path="/galeria"
-      />
+      <Seo page="gallery" />
       <PageHero
         eyebrow="Nuestro trabajo"
-        title="Galería"
-        lead="Un vistazo a nuestras creaciones hechas a mano. Toca una imagen para verla en detalle."
+        title="Galería de flores eternas"
+        lead="Un vistazo a nuestras creaciones hechas a mano con limpiapipas. Toca una imagen para verla en detalle."
       />
 
-      <section className="section gallery-content bg-beige">
+      <section className="section bg-beige">
         <div className="browse-shell browse-shell--full">
           <div className="browse-products-area">
             <div className="browse-toolbar browse-toolbar--end">
@@ -46,33 +43,18 @@ export default function Gallery() {
               ))}
             </div>
 
-            <BrowsePagination
-              currentPage={pagination.currentPage}
-              totalPages={pagination.totalPages}
-              pageSize={pagination.pageSize}
-              totalItems={galleryItems.length}
-              onPageChange={(page) => {
-                pagination.setPage(page)
-                setSelectedIndex(null)
-              }}
-              onPageSizeChange={(size) => {
-                pagination.setPageSize(size)
-                setSelectedIndex(null)
-              }}
-            />
+            <BrowsePagination pagination={pagination} />
           </div>
         </div>
       </section>
 
-      {selectedItem && selectedIndex !== null && (
+      {selectedIndex !== null && (
         <GalleryLightbox
-          item={selectedItem}
+          item={galleryItems[selectedIndex]}
           onClose={() => setSelectedIndex(null)}
           onPrev={selectedIndex > 0 ? () => setSelectedIndex(selectedIndex - 1) : undefined}
           onNext={
-            selectedIndex < galleryItems.length - 1
-              ? () => setSelectedIndex(selectedIndex + 1)
-              : undefined
+            selectedIndex < lastIndex ? () => setSelectedIndex(selectedIndex + 1) : undefined
           }
         />
       )}

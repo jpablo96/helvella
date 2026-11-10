@@ -5,7 +5,7 @@
   max-width: var(--gallery-image-max-width);
   max-height: calc(100dvh - 2.5rem);
   overflow: auto;
-  background: var(--color-beige);
+  background: var(--color-page-bg);
 }
 
 .gallery-lightbox-content {
@@ -71,7 +71,7 @@
   caption-side: bottom;
   box-sizing: border-box;
   text-align: left;
-  background: var(--color-beige);
+  background: var(--color-page-bg);
   overflow-wrap: anywhere;
 }
 
@@ -125,14 +125,6 @@
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(var(--color-beige-rgb), 0.85);
-  color: var(--color-ciruela);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 0 0 1px var(--line), var(--shadow-sm);
   transition:
     background-color var(--transition),
     color var(--transition),

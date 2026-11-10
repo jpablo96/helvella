@@ -1,6 +1,5 @@
-import { getWhatsAppOrderUrl } from '../data/contact'
-import WhatsAppIcon from './icons/WhatsAppIcon'
 import { IconArtisan, IconEternal, IconPersonalized, IconShipping } from './icons/BrandIcons'
+import WhatsAppOrderLink from './WhatsAppOrderLink'
 import './OrderCta.css'
 
 const features = [
@@ -10,11 +9,9 @@ const features = [
   { icon: IconShipping, title: 'Envíos a todo el país', text: 'A cualquier rincón de Costa Rica.' },
 ] as const
 
-const orderUrl = getWhatsAppOrderUrl()
-
 export default function OrderCta() {
   return (
-    <div className="order-cta">
+    <div className="order-cta framed">
       <header className="order-cta-intro">
         <span className="eyebrow">Pedidos por WhatsApp</span>
         <h2>
@@ -36,15 +33,7 @@ export default function OrderCta() {
       </ul>
 
       <div className="order-cta-action">
-        <a
-          href={orderUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn btn-whatsapp order-cta-btn"
-        >
-          <WhatsAppIcon size={20} />
-          ¡Haz tu pedido!
-        </a>
+        <WhatsAppOrderLink iconSize={20} className="order-cta-btn" />
         <p className="order-cta-note">Sin compromiso · Te respondemos pronto</p>
       </div>
     </div>

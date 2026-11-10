@@ -1,14 +1,18 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import Navbar from './Navbar'
+import { useScrollToTop } from '../hooks/useScrollToTop'
+import { cx } from '../utils/cx'
 import Footer from './Footer'
+import Navbar from './Navbar'
 import WhatsAppButton from './WhatsAppButton'
 import './Layout.css'
 
 export default function Layout() {
   const { pathname } = useLocation()
-  const showFooter = pathname !== '/'
+  // Home is a full-height snap scroller that renders its own footer in the last panel.
   const isHome = pathname === '/'
+
+  useScrollToTop()
 
   useEffect(() => {
     document.documentElement.classList.toggle('is-home', isHome)
@@ -16,12 +20,12 @@ export default function Layout() {
   }, [isHome])
 
   return (
-    <div className={`layout${isHome ? ' layout--home' : ''}`}>
+    <div className={cx('layout', isHome && 'layout--home')}>
       <Navbar />
       <main className="main-content">
         <Outlet />
       </main>
-      {showFooter && <Footer />}
+      {!isHome && <Footer />}
       <WhatsAppButton />
     </div>
   )

@@ -1,40 +1,29 @@
 import { Link } from 'react-router-dom'
-import SocialLinks from './SocialLinks'
 import {
+  INSTAGRAM_URL,
+  NATIONWIDE_SHIPPING_NOTE,
   WHATSAPP_NUMBER,
   WHATSAPP_URL,
-  INSTAGRAM_URL,
   formatPhoneNumber,
-  NATIONWIDE_SHIPPING_NOTE,
 } from '../data/contact'
 import { navLinks } from '../data/navigation'
-import { LOGO_URL, SITE_DEVELOPER } from '../data/site'
+import { SITE_DEVELOPER, SITE_NAME } from '../data/site'
+import BrandLogo from './BrandLogo'
+import ExternalLink from './ExternalLink'
+import SocialLinks from './SocialLinks'
 import './Footer.css'
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer surface-ciruela">
       <div className="container footer-inner">
         <div className="footer-brand">
-          <Link to="/" className="footer-logo">
-            <span className="footer-logo-image-wrap">
-              <img
-                src={LOGO_URL}
-                alt="Helvella"
-                className="footer-logo-image"
-                width={64}
-                height={64}
-              />
-            </span>
-            <span>Helvella</span>
-          </Link>
-          <p className="footer-tagline">
-            Arte hecho a mano con amor en Costa Rica.
-          </p>
+          <BrandLogo className="footer-logo" />
+          <p className="footer-tagline">Arte hecho a mano con amor en Costa Rica.</p>
         </div>
 
         <div className="footer-links">
-          <h4>Navegación</h4>
+          <h4 className="label-caps">Navegación</h4>
           <nav aria-label="Enlaces del pie de página">
             {navLinks.map((link) => (
               <Link key={link.to} to={link.to}>
@@ -46,23 +35,18 @@ export default function Footer() {
 
         <div className="footer-aside">
           <div className="footer-contact">
-            <h4>Pedidos</h4>
+            <h4 className="label-caps">Pedidos</h4>
             <p className="footer-contact-text">
-              <span className="footer-contact-line">Pedidos por WhatsApp.</span>
-              <span className="footer-contact-line">{NATIONWIDE_SHIPPING_NOTE}</span>
+              <span>Pedidos por WhatsApp.</span>
+              <span>{NATIONWIDE_SHIPPING_NOTE}</span>
             </p>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-whatsapp"
-            >
-              +{formatPhoneNumber(WHATSAPP_NUMBER)}
-            </a>
+            <ExternalLink href={WHATSAPP_URL} className="footer-whatsapp">
+              {formatPhoneNumber(WHATSAPP_NUMBER)}
+            </ExternalLink>
           </div>
 
           <div className="footer-social">
-            <h4>Síguenos</h4>
+            <h4 className="label-caps">Síguenos</h4>
             <SocialLinks size="md" onDark />
           </div>
         </div>
@@ -70,19 +54,15 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <p>© {new Date().getFullYear()} Helvella. Todos los derechos reservados.</p>
-          <p className="footer-credit">
-            Desarrollado por{' '}
-            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-              {SITE_DEVELOPER.name}
-            </a>
+          <p>
+            © {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados.
           </p>
-          <p className="footer-credit-pitch">
+          <p className="footer-credit">
+            Desarrollado por <ExternalLink href={INSTAGRAM_URL}>{SITE_DEVELOPER.name}</ExternalLink>
+          </p>
+          <p className="footer-credit footer-credit--pitch">
             Sabemos de flores eternas y de sitios web.{' '}
-            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-              Contáctanos
-            </a>{' '}
-            si quieres tu página.
+            <ExternalLink href={INSTAGRAM_URL}>Contáctanos</ExternalLink> si quieres tu página.
           </p>
         </div>
       </div>

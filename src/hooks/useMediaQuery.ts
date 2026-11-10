@@ -1,9 +1,11 @@
 import { useLayoutEffect, useState } from 'react'
 
+/**
+ * Starts as `false` so the first render matches the pre-rendered HTML,
+ * then syncs with the real viewport before the browser paints.
+ */
 export function useMediaQuery(query: string) {
-  const [matches, setMatches] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia(query).matches,
-  )
+  const [matches, setMatches] = useState(false)
 
   useLayoutEffect(() => {
     const media = window.matchMedia(query)

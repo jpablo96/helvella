@@ -1,5 +1,6 @@
 import { useState, type CSSProperties } from 'react'
 import type { IllustrationType } from '../data/types'
+import { cx } from '../utils/cx'
 import { flowerColorStyle } from '../utils/flowerColorStyle'
 import ProductIllustration from './illustrations/ProductIllustration'
 import './GalleryImage.css'
@@ -24,11 +25,9 @@ export default function GalleryImage({
   loading = 'lazy',
 }: GalleryImageProps) {
   const [failed, setFailed] = useState(false)
-  const showPlaceholder = !image || failed
-
-  if (showPlaceholder) {
+  if (!image || failed) {
     return (
-      <div className="gallery-placeholder" style={flowerColorStyle(color)}>
+      <div className="gallery-placeholder flower-backdrop" style={flowerColorStyle(color)}>
         <ProductIllustration type={illustration} color={color} variant="gallery" />
       </div>
     )
@@ -38,7 +37,7 @@ export default function GalleryImage({
     <img
       src={image}
       alt={title}
-      className={imageClassName ? `gallery-photo ${imageClassName}` : 'gallery-photo'}
+      className={cx('gallery-photo', imageClassName)}
       style={imageStyle}
       loading={loading}
       decoding="async"

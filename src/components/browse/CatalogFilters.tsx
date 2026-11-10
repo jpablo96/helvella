@@ -1,4 +1,5 @@
-import type { FloresEternasSubcategory } from '../data/catalog'
+import type { FloresEternasSubcategory } from '../../data/catalog'
+import { cx } from '../../utils/cx'
 import './CatalogFilters.css'
 
 interface CatalogFiltersProps {
@@ -20,7 +21,7 @@ export default function CatalogFilters({
         <li key={sub.id}>
           <button
             type="button"
-            className={`catalog-filter-option${activeSubcategory === sub.id ? ' active' : ''}`}
+            className={cx('catalog-filter-option', activeSubcategory === sub.id && 'active')}
             aria-pressed={activeSubcategory === sub.id}
             aria-label={`${sub.label}, ${counts[sub.id]} ${counts[sub.id] === 1 ? 'producto' : 'productos'}`}
             onClick={() => onSubcategoryChange(sub.id)}

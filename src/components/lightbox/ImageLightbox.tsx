@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
-import CloseIcon from './icons/CloseIcon'
+import { cx } from '../../utils/cx'
+import CloseIcon from '../icons/CloseIcon'
+import './ImageLightbox.css'
 
 interface ImageLightboxProps {
   label: string
@@ -11,7 +13,7 @@ interface ImageLightboxProps {
 
 export default function ImageLightbox({
   label,
-  bubbleClassName = '',
+  bubbleClassName,
   onClose,
   visual,
   info,
@@ -25,12 +27,12 @@ export default function ImageLightbox({
       aria-label={label}
     >
       <div
-        className={`image-lightbox-bubble${bubbleClassName ? ` ${bubbleClassName}` : ''}`}
-        onClick={(e) => e.stopPropagation()}
+        className={cx('image-lightbox-bubble', bubbleClassName)}
+        onClick={(event) => event.stopPropagation()}
       >
         <button
           type="button"
-          className="image-lightbox-close"
+          className="image-lightbox-close glass-chip"
           onClick={onClose}
           aria-label="Cerrar"
           autoFocus

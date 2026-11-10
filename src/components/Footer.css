@@ -1,70 +1,37 @@
 .footer {
   margin-top: auto;
-  color: var(--text-on-ciruela);
-  background:
-    radial-gradient(70% 120% at 0% 0%, rgba(var(--color-beige-rgb), 0.06), transparent 60%),
-    linear-gradient(180deg, var(--color-ciruela) 0%, var(--color-ciruela-dark) 100%);
+  border-top: 1px solid rgba(var(--color-gold-soft-rgb), 0.3);
 }
 
 .footer-inner {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 3rem;
-  padding: 3.5rem 1.5rem 2.75rem;
+  padding: clamp(3.5rem, 6vw, 5rem) 1.5rem clamp(2.75rem, 4vw, 3.5rem);
 }
 
+/* Flattened on desktop so contact and social sit on the main grid */
 .footer-aside {
   display: contents;
 }
 
 .footer-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.85rem;
-  font-family: var(--font-heading);
-  font-size: 2.1rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-
-.footer-logo-image-wrap {
-  position: relative;
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.footer-logo-image {
-  position: absolute;
-  width: 165%;
-  height: 165%;
-  left: 50%;
-  top: 52%;
-  transform: translate(-50%, -50%);
-  object-fit: contain;
+  --logo-size: 3.5rem;
+  margin-bottom: 1rem;
 }
 
 .footer-tagline {
+  max-width: 18rem;
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-style: italic;
   color: var(--text-muted-on-ciruela);
   line-height: 1.4;
 }
 
-.footer-links h4,
-.footer-contact h4,
-.footer-social h4 {
-  margin-bottom: 1.1rem;
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: var(--tracking-eyebrow);
-  text-transform: uppercase;
-  color: rgba(var(--color-beige-rgb), 0.55);
+.footer .label-caps {
+  margin-bottom: 1.25rem;
+  color: var(--accent);
 }
 
 .footer-links nav {
@@ -91,17 +58,19 @@
   color: var(--text-muted-on-ciruela);
 }
 
-.footer-contact-line {
+.footer-contact-text span {
   display: block;
 }
 
 .footer-whatsapp {
   display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
   font-weight: 500;
-  font-size: 1rem;
-  letter-spacing: 0.02em;
+  font-variant-numeric: lining-nums;
+  letter-spacing: 0.03em;
   color: var(--color-beige);
-  border-bottom: 1px solid rgba(var(--color-beige-rgb), 0.35);
+  border-bottom: 1px solid var(--accent-line);
   transition: border-color var(--transition);
 }
 
@@ -127,13 +96,12 @@
   color: rgba(var(--color-beige-rgb), 0.62);
 }
 
-.footer-bottom .footer-credit-pitch {
+.footer-bottom .footer-credit--pitch {
   font-size: 0.72rem;
   color: rgba(var(--color-beige-rgb), 0.45);
 }
 
-.footer-credit a,
-.footer-credit-pitch a {
+.footer-credit a {
   color: var(--color-beige);
   text-decoration: underline;
   text-decoration-color: rgba(var(--color-beige-rgb), 0.4);
@@ -141,8 +109,7 @@
   transition: text-decoration-color var(--transition);
 }
 
-.footer-credit a:hover,
-.footer-credit-pitch a:hover {
+.footer-credit a:hover {
   text-decoration-color: var(--color-beige);
 }
 
@@ -175,9 +142,7 @@
     font-size: 0.86rem;
   }
 
-  .footer-links h4,
-  .footer-contact h4,
-  .footer-social h4 {
+  .footer .label-caps {
     margin-bottom: 0.75rem;
   }
 }

@@ -1,14 +1,14 @@
-import { getWhatsAppOrderUrl } from '../data/contact'
 import type { Product } from '../data/catalog'
 import { getProductPriceLabel } from '../data/productDisplay'
 import { flowerColorStyle } from '../utils/flowerColorStyle'
 import ExpandIcon from './icons/ExpandIcon'
-import WhatsAppIcon from './icons/WhatsAppIcon'
 import ProductIllustration from './illustrations/ProductIllustration'
+import WhatsAppOrderLink from './WhatsAppOrderLink'
 import './ProductCard.css'
 
 interface ProductCardProps {
   product: Product
+  /** When provided, the illustration becomes a button that opens the detail view. */
   onImageClick?: () => void
 }
 
@@ -24,18 +24,18 @@ export default function ProductCard({ product, onImageClick }: ProductCardProps)
       {onImageClick ? (
         <button
           type="button"
-          className="product-card-image-btn"
+          className="product-card-image-btn flower-backdrop"
           onClick={onImageClick}
           aria-label={`Ver ${product.name}`}
           style={imageStyle}
         >
           {illustration}
-          <span className="card-expand" aria-hidden="true">
+          <span className="card-expand glass-chip" aria-hidden="true">
             <ExpandIcon />
           </span>
         </button>
       ) : (
-        <div className="product-card-image-btn" style={imageStyle}>
+        <div className="product-card-image-btn flower-backdrop" style={imageStyle}>
           {illustration}
         </div>
       )}
@@ -44,15 +44,12 @@ export default function ProductCard({ product, onImageClick }: ProductCardProps)
         <p className="product-card-desc">{product.description}</p>
         <div className="product-card-footer">
           {priceLabel && <span className="product-card-price">{priceLabel}</span>}
-          <a
-            href={getWhatsAppOrderUrl(product.name)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-order product-card-btn"
-          >
-            <WhatsAppIcon size={14} />
-            ¡Haz tu pedido!
-          </a>
+          <WhatsAppOrderLink
+            productName={product.name}
+            variant="order"
+            iconSize={14}
+            className="product-card-btn"
+          />
         </div>
       </div>
     </article>

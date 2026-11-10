@@ -30,8 +30,25 @@ Los archivos estáticos se generan en `dist/` y pueden desplegarse en GitHub Pag
 - **Galería:** editar `src/data/gallery.ts` y agregar fotos en `public/gallery/`
 - **Logo:** `public/logo/H Helvella.png`
 - **URL del sitio (SEO):** configurar `VITE_SITE_URL` en `.env` (ver `.env.example`)
-- **Redes sociales y WhatsApp:** constantes en `src/data/catalog.ts`
-- **Colores:** variables CSS en `src/index.css` (morado y beige)
+- **Redes sociales y WhatsApp:** constantes en `src/data/contact.ts`
+- **Colores, tipografía y espaciados:** variables CSS en `src/styles/tokens.css` (ciruela, marfil y dorado)
+
+## Estructura
+
+```
+src/
+  pages/            Una página por ruta (Home, Catalog, Gallery, About)
+  components/       Componentes compartidos (Navbar, Footer, tarjetas, PageHero…)
+    home/           Paneles y carrusel de la página de inicio
+    browse/         Filtros, pestañas, paginación y vista del catálogo/galería
+    lightbox/       Visor ampliado de productos y fotos
+    icons/          Íconos SVG
+    illustrations/  Ilustraciones de productos
+  hooks/            Lógica reutilizable (paginación, filtros, tema del navbar…)
+  data/             Contenido: productos, galería, contacto, navegación
+  styles/           Estilos globales: tokens, base, utilidades y botones
+  utils/            Funciones auxiliares (cx, seo…)
+```
 
 ### Agregar fotos a la galería
 
@@ -44,6 +61,8 @@ El sitio incluye optimización técnica para buscadores:
 
 - Meta tags (descripción, Open Graph, Twitter Cards)
 - Títulos y descripciones únicos por página
+- HTML estático por página: `npm run build` pre-renderiza cada ruta (`scripts/prerender.mjs`), así Google recibe el contenido completo sin ejecutar JavaScript
+- Títulos y descripciones de cada página en `src/data/seo.ts`; preguntas frecuentes en `src/data/faq.ts`
 - `robots.txt` y `sitemap.xml` (generados en cada build)
 - Datos estructurados JSON-LD (negocio local)
 - Textos en español con palabras clave relevantes

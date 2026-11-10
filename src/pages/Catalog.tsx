@@ -1,157 +1,64 @@
-import { useMemo, useState } from 'react'
-import {
-  categories,
-  floresEternasSubcategories,
-  products,
-  type Category,
-  type FloresEternasSubcategory,
-  type Product,
-} from '../data/catalog'
+import { useState } from 'react'
+import type { FloresEternasSubcategory, Product } from '../data/catalog'
+import BrowseEmpty from '../components/browse/BrowseEmpty'
 import BrowseFilterDrawer from '../components/browse/BrowseFilterDrawer'
-import BrowsePagination from '../components/BrowsePagination'
-import CatalogFilters from '../components/CatalogFilters'
+import BrowsePagination from '../components/browse/BrowsePagination'
+import CatalogFilters from '../components/browse/CatalogFilters'
+import ViewToggle, { type ViewMode } from '../components/browse/ViewToggle'
+import ProductLightbox from '../components/lightbox/ProductLightbox'
 import PageHero from '../components/PageHero'
 import ProductCard from '../components/ProductCard'
-import ProductLightbox from '../components/ProductLightbox'
-import ViewToggle, { type ViewMode } from '../components/ViewToggle'
 import Seo from '../components/Seo'
-import { IconEternal } from '../components/icons/BrandIcons'
+import { useCatalogFilters } from '../hooks/useCatalogFilters'
 import { useFilterDrawer } from '../hooks/useFilterDrawer'
 import { usePagination } from '../hooks/usePagination'
 import '../styles/browse-layout.css'
-import './Catalog.css'
-
-const emptyMessages: Partial<Record<FloresEternasSubcategory, string>> = {
-  macetitas:
-    'Estamos preparando nuestra colección de macetitas. ¡Síguenos en redes para estar al tanto!',
-  arreglos:
-    'Estamos preparando nuestra colección de arreglos. ¡Síguenos en redes para estar al tanto!',
-  animalitos:
-    'Pronto tendremos animalitos hechos a mano. ¡Síguenos en redes para conocer los lanzamientos!',
-}
-
-const DEFAULT_EMPTY_MESSAGE =
-  'Estamos trabajando en esta línea de productos. ¡Síguenos en redes para conocer los lanzamientos!'
-
-const allSubcategoryOnly = floresEternasSubcategories.filter((sub) => sub.id === 'todos')
 
 export default function Catalog() {
-  const [activeCategory, setActiveCategory] = useState<Category>('flores-eternas')
-  const [activeSubcategory, setActiveSubcategory] = useState<FloresEternasSubcategory>('todos')
+  const filters = useCatalogFilters()
+  const drawer = useFilterDrawer()
+  // Show the whole catalog on one page so every product is in the pre-rendered HTML.
+  const pagination = usePagination(filters.filteredProducts, 40)
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const { isOpen: filtersOpen, open: openFilters, close: closeFilters } = useFilterDrawer()
-
-  const activeCat = categories.find((c) => c.id === activeCategory)
-  const isFloresEternas = activeCategory === 'flores-eternas'
-  const filterSubcategories =
-    isFloresEternas && activeCat?.active ? floresEternasSubcategories : allSubcategoryOnly
-
-  const categoryProducts = useMemo(
-    () => products.filter((product) => product.category === activeCategory),
-    [activeCategory],
-  )
-
-  const filteredProducts = useMemo(
-    () =>
-      !isFloresEternas || activeSubcategory === 'todos'
-        ? categoryProducts
-        : categoryProducts.filter((product) => product.subcategory === activeSubcategory),
-    [activeSubcategory, categoryProducts, isFloresEternas],
-  )
-
-  const subcategoryCounts = useMemo(
-    () =>
-      Object.fromEntries(
-        filterSubcategories.map((sub) => [
-          sub.id,
-          sub.id === 'todos'
-            ? categoryProducts.length
-            : categoryProducts.filter((product) => product.subcategory === sub.id).length,
-        ]),
-      ) as Record<FloresEternasSubcategory, number>,
-    [categoryProducts, filterSubcategories],
-  )
-
-  const pagination = usePagination(filteredProducts)
-  const activeFilterCount = isFloresEternas && activeSubcategory !== 'todos' ? 1 : 0
-
-  const handleCategoryChange = (category: Category) => {
-    setActiveCategory(category)
-    setActiveSubcategory('todos')
-    setSelectedProduct(null)
-    closeFilters()
-  }
 
   const handleSubcategoryChange = (subcategory: FloresEternasSubcategory) => {
-    setActiveSubcategory(subcategory)
-    setSelectedProduct(null)
-    closeFilters()
+    filters.selectSubcategory(subcategory)
+    drawer.close()
   }
-
-  const emptyMessage =
-    isFloresEternas && activeSubcategory !== 'todos'
-      ? (emptyMessages[activeSubcategory] ??
-        'No hay productos en este filtro todavía. ¡Pronto habrá más!')
-      : DEFAULT_EMPTY_MESSAGE
 
   const filtersPanel = (
     <CatalogFilters
-      subcategories={filterSubcategories}
-      counts={subcategoryCounts}
-      activeSubcategory={activeSubcategory}
+      subcategories={filters.subcategories}
+      counts={filters.subcategoryCounts}
+      activeSubcategory={filters.activeSubcategory}
       onSubcategoryChange={handleSubcategoryChange}
     />
   )
 
   return (
     <>
-      <Seo
-        title="Catálogo de Flores Eternas"
-        socialTitle="Flores Eternas en Costa Rica | Catálogo Helvella"
-        description="Catálogo de flores eternas en Costa Rica por Helvella. Rosas, girasoles, ramos y arreglos hechos a mano con limpiapipas. Envíos a todo el país."
-        path="/catalogo"
-      />
+      <Seo page="catalog" />
       <PageHero
         eyebrow="Colección"
-        title="Catálogo"
-        lead="Explora nuestras creaciones. Pedidos por WhatsApp. Envíos a todo el país."
+        title="Catálogo de flores eternas"
+        lead="Flores, macetitas y arreglos hechos a mano con limpiapipas. Pedidos por WhatsApp y envíos a todo Costa Rica."
       />
 
-      <section className="section catalog-content bg-beige">
+      <section className="section bg-beige">
         <div className="browse-shell">
-          <div className="browse-main-header">
-            <div className="category-tabs" role="tablist" aria-label="Categorías de productos">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={activeCategory === cat.id}
-                  className={`category-tab${activeCategory === cat.id ? ' active' : ''}`}
-                  onClick={() => handleCategoryChange(cat.id)}
-                >
-                  {cat.label}
-                  {!cat.active && <span className="category-soon">Pronto</span>}
-                </button>
-              ))}
-            </div>
-
-            {activeCat && <p className="page-description">{activeCat.description}</p>}
-          </div>
-
           <aside className="browse-sidebar" aria-label="Filtros de catálogo">
-            <h2 className="browse-sidebar-title">Filtros</h2>
+            <h2 className="browse-sidebar-title label-caps">Filtros</h2>
             {filtersPanel}
           </aside>
 
           <BrowseFilterDrawer
             id="catalog-filter-drawer"
             label="Filtros de catálogo"
-            isOpen={filtersOpen}
-            onOpen={openFilters}
-            onClose={closeFilters}
-            activeFilterCount={activeFilterCount}
+            isOpen={drawer.isOpen}
+            onOpen={drawer.open}
+            onClose={drawer.close}
+            activeFilterCount={filters.activeFilterCount}
             toolbar={
               <div className="browse-toolbar browse-toolbar--end">
                 <ViewToggle value={viewMode} onChange={setViewMode} />
@@ -162,7 +69,7 @@ export default function Catalog() {
           </BrowseFilterDrawer>
 
           <div className="browse-products-area">
-            {filteredProducts.length > 0 ? (
+            {pagination.totalItems > 0 ? (
               <>
                 <div className={`browse-grid browse-grid--${viewMode}`}>
                   {pagination.pageItems.map((product) => (
@@ -173,27 +80,13 @@ export default function Catalog() {
                     />
                   ))}
                 </div>
-
-                <BrowsePagination
-                  currentPage={pagination.currentPage}
-                  totalPages={pagination.totalPages}
-                  pageSize={pagination.pageSize}
-                  totalItems={filteredProducts.length}
-                  onPageChange={(page) => {
-                    pagination.setPage(page)
-                    setSelectedProduct(null)
-                  }}
-                  onPageSizeChange={pagination.setPageSize}
-                />
+                <BrowsePagination pagination={pagination} />
               </>
             ) : (
-              <div className="browse-empty">
-                <span className="browse-empty-icon" aria-hidden="true">
-                  <IconEternal size={28} />
-                </span>
-                <h3>Próximamente</h3>
-                <p>{emptyMessage}</p>
-              </div>
+              <BrowseEmpty
+                title="Muy pronto"
+                message="Todavía no hay productos en este filtro. ¡Síguenos en redes para conocer los lanzamientos!"
+              />
             )}
           </div>
         </div>

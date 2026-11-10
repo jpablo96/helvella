@@ -1,0 +1,32 @@
+/* Size the whole lockup with --logo-size (mark edge length) */
+.brand-logo {
+  --logo-size: 3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--logo-size) * 0.24);
+  font-family: var(--font-heading);
+  font-size: calc(var(--logo-size) * 0.58);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.035em;
+}
+
+.brand-logo__mark {
+  position: relative;
+  flex-shrink: 0;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+/* The source PNG has generous padding; oversize it so the monogram fills the mark */
+.brand-logo__mark img {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  width: 165%;
+  height: 165%;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+}

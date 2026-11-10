@@ -7,9 +7,10 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import { MOBILE_MEDIA_QUERY, REDUCED_MOTION_QUERY } from '../constants/breakpoints'
-import { useMediaQuery } from '../hooks/useMediaQuery'
-import ChevronIcon from './icons/ChevronIcon'
+import { MOBILE_MEDIA_QUERY, REDUCED_MOTION_QUERY } from '../../constants/breakpoints'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
+import { cx } from '../../utils/cx'
+import ChevronIcon from '../icons/ChevronIcon'
 import './HomeCarousel.css'
 
 interface HomeCarouselProps {
@@ -21,7 +22,7 @@ interface HomeCarouselProps {
 
 export default function HomeCarousel({
   label,
-  trackClassName = '',
+  trackClassName,
   autoPlayMs = 3000,
   children,
 }: HomeCarouselProps) {
@@ -79,12 +80,11 @@ export default function HomeCarousel({
     return () => window.clearInterval(timer)
   }, [autoPlayMs, isPaused, mobileCarousel, prefersReducedMotion, slideCount])
 
-  const trackClass = ['home-carousel__track', trackClassName].filter(Boolean).join(' ')
   const showControls = mobileCarousel && slideCount > 1
 
   return (
     <div
-      className={`home-carousel${showControls ? ' home-carousel--mobile' : ''}`}
+      className={cx('home-carousel', showControls && 'home-carousel--mobile')}
       onMouseEnter={pauseCarousel}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={pauseCarousel}
@@ -104,7 +104,7 @@ export default function HomeCarousel({
         <div className="home-carousel__media">
           <div className="home-carousel__stage">
             <div
-              className={trackClass}
+              className={cx('home-carousel__track', trackClassName)}
               style={
                 showControls
                   ? { transform: `translate3d(-${index * 100}%, 0, 0)` }
@@ -126,7 +126,7 @@ export default function HomeCarousel({
               <>
                 <button
                   type="button"
-                  className="home-carousel__nav home-carousel__nav--prev"
+                  className="home-carousel__nav home-carousel__nav--prev glass-chip"
                   onClick={goPrev}
                   aria-label={`Anterior en ${label}`}
                 >
@@ -135,7 +135,7 @@ export default function HomeCarousel({
 
                 <button
                   type="button"
-                  className="home-carousel__nav home-carousel__nav--next"
+                  className="home-carousel__nav home-carousel__nav--next glass-chip"
                   onClick={goNext}
                   aria-label={`Siguiente en ${label}`}
                 >
@@ -152,7 +152,7 @@ export default function HomeCarousel({
                       key={slide.key ?? dotIndex}
                       type="button"
                       role="tab"
-                      className={`home-carousel__dot${dotIndex === index ? ' is-active' : ''}`}
+                      className={cx('home-carousel__dot', dotIndex === index && 'is-active')}
                       aria-selected={dotIndex === index}
                       aria-label={`Ir al elemento ${dotIndex + 1} de ${slideCount}`}
                       onClick={() => goTo(dotIndex)}

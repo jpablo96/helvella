@@ -5,18 +5,19 @@ import GalleryImage from './GalleryImage'
 interface GalleryCardProps {
   item: GalleryItem
   onOpen?: () => void
+  /** Static, non-interactive card used in the home preview. */
   preview?: boolean
 }
 
 export default function GalleryCard({ item, onOpen, preview = false }: GalleryCardProps) {
   const imageCount = item.images.length
 
-  const content = (
+  const media = (
     <div className="gallery-card-media">
       <GalleryImage
         image={item.images[0]}
         color={item.color}
-        title={item.title}
+        title={`${item.title} — flores eternas de limpiapipas`}
         illustration={item.illustration}
         imageClassName="gallery-photo--card"
       />
@@ -24,12 +25,12 @@ export default function GalleryCard({ item, onOpen, preview = false }: GalleryCa
         {item.title}
       </span>
       {!preview && imageCount > 1 && (
-        <span className="gallery-card-count" aria-hidden="true">
+        <span className="gallery-card-count glass-chip" aria-hidden="true">
           1 / {imageCount}
         </span>
       )}
       {!preview && (
-        <span className="card-expand" aria-hidden="true">
+        <span className="card-expand glass-chip" aria-hidden="true">
           <ExpandIcon />
         </span>
       )}
@@ -39,7 +40,7 @@ export default function GalleryCard({ item, onOpen, preview = false }: GalleryCa
   if (preview) {
     return (
       <article className="gallery-card browse-card gallery-card--preview" aria-label={item.title}>
-        {content}
+        {media}
       </article>
     )
   }
@@ -52,7 +53,7 @@ export default function GalleryCard({ item, onOpen, preview = false }: GalleryCa
         onClick={onOpen}
         aria-label={`Ver ${item.title}`}
       >
-        {content}
+        {media}
       </button>
     </article>
   )

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { cx } from '../../utils/cx'
 import CloseIcon from '../icons/CloseIcon'
 import FilterIcon from '../icons/FilterIcon'
 
@@ -43,14 +44,14 @@ export default function BrowseFilterDrawer({
       </div>
 
       <div
-        className={`browse-filter-overlay${isOpen ? ' open' : ''}`}
+        className={cx('browse-filter-overlay', isOpen && 'open')}
         onClick={onClose}
         aria-hidden={!isOpen}
       />
 
       <div
         id={id}
-        className={`browse-filter-drawer${isOpen ? ' open' : ''}`}
+        className={cx('browse-filter-drawer', isOpen && 'open')}
         aria-hidden={!isOpen}
         inert={!isOpen}
         role="dialog"

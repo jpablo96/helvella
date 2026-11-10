@@ -1,11 +1,12 @@
 import { useCallback, useMemo, useState } from 'react'
-import type { PageSize } from '../data/catalog'
+import { DEFAULT_PAGE_SIZE, type PageSize } from '../constants/pagination'
 
-export function usePagination<T>(items: readonly T[], initialPageSize: PageSize = 10) {
+export function usePagination<T>(items: readonly T[], initialPageSize: PageSize = DEFAULT_PAGE_SIZE) {
   const [pageSize, setPageSizeState] = useState<PageSize>(initialPageSize)
   const [requestedPage, setRequestedPage] = useState(1)
   const [trackedItems, setTrackedItems] = useState(items)
 
+  // Back to the first page whenever the underlying list changes (e.g. a new filter).
   if (trackedItems !== items) {
     setTrackedItems(items)
     setRequestedPage(1)
@@ -31,7 +32,10 @@ export function usePagination<T>(items: readonly T[], initialPageSize: PageSize 
     pageSize,
     currentPage,
     totalPages,
+    totalItems: items.length,
     setPage: setRequestedPage,
     setPageSize,
   }
 }
+
+export type Pagination<T> = ReturnType<typeof usePagination<T>>

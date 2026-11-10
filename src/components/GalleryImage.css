@@ -12,11 +12,6 @@
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background: radial-gradient(
-    70% 70% at 50% 45%,
-    color-mix(in srgb, var(--flower-color) 18%, var(--color-cream)) 0%,
-    var(--color-cream) 100%
-  );
 }
 
 .gallery-flower-svg {
@@ -29,17 +24,10 @@
   left: 0.65rem;
   top: 0.65rem;
   z-index: 2;
-  display: inline-flex;
-  align-items: center;
   gap: 0.3rem;
   height: 1.6rem;
   padding: 0 0.6rem;
   border-radius: var(--radius-pill);
-  background: rgba(var(--color-beige-rgb), 0.82);
-  color: var(--color-ciruela);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 0 0 1px var(--line);
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.04em;

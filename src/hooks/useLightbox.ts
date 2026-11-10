@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
 import { useBodyScrollLock } from './useBodyScrollLock'
+import { useKeydown } from './useKeydown'
 
 interface UseLightboxOptions {
   onClose: () => void
@@ -9,14 +9,5 @@ interface UseLightboxOptions {
 
 export function useLightbox({ onClose, onPrev, onNext }: UseLightboxOptions) {
   useBodyScrollLock(true)
-
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-      if (e.key === 'ArrowLeft' && onPrev) onPrev()
-      if (e.key === 'ArrowRight' && onNext) onNext()
-    }
-    window.addEventListener('keydown', handleKey)
-    return () => window.removeEventListener('keydown', handleKey)
-  }, [onClose, onPrev, onNext])
+  useKeydown({ Escape: onClose, ArrowLeft: onPrev, ArrowRight: onNext })
 }

@@ -1,4 +1,4 @@
-import { PAGE_SIZE_OPTIONS, type PageSize } from '../data/catalog'
+import { PAGE_SIZE_OPTIONS, type PageSize } from '../../constants/pagination'
 import './BrowsePageSize.css'
 
 interface BrowsePageSizeProps {

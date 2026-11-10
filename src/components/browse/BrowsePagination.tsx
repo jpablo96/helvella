@@ -1,40 +1,31 @@
-import { type PageSize } from '../data/catalog'
+import type { Pagination } from '../../hooks/usePagination'
+import ChevronIcon from '../icons/ChevronIcon'
 import BrowsePageSize from './BrowsePageSize'
-import ChevronIcon from './icons/ChevronIcon'
 import './BrowsePagination.css'
 
 interface BrowsePaginationProps {
-  currentPage: number
-  totalPages: number
-  pageSize: PageSize
-  totalItems: number
-  onPageChange: (page: number) => void
-  onPageSizeChange: (size: PageSize) => void
+  pagination: Pagination<unknown>
 }
 
-export default function BrowsePagination({
-  currentPage,
-  totalPages,
-  pageSize,
-  totalItems,
-  onPageChange,
-  onPageSizeChange,
-}: BrowsePaginationProps) {
+export default function BrowsePagination({ pagination }: BrowsePaginationProps) {
+  const { currentPage, totalPages, pageSize, pageOffset, totalItems, setPage, setPageSize } =
+    pagination
+
   if (totalItems === 0) return null
 
-  const start = (currentPage - 1) * pageSize + 1
-  const end = Math.min(currentPage * pageSize, totalItems)
+  const start = pageOffset + 1
+  const end = Math.min(pageOffset + pageSize, totalItems)
 
   return (
     <div className="browse-pagination">
-      <BrowsePageSize pageSize={pageSize} onPageSizeChange={onPageSizeChange} />
+      <BrowsePageSize pageSize={pageSize} onPageSizeChange={setPageSize} />
 
       {totalPages > 1 ? (
         <nav className="browse-pagination-nav" aria-label="Paginación">
           <button
             type="button"
             className="browse-pagination-btn"
-            onClick={() => onPageChange(currentPage - 1)}
+            onClick={() => setPage(currentPage - 1)}
             disabled={currentPage === 1}
             aria-label="Página anterior"
           >
@@ -49,7 +40,7 @@ export default function BrowsePagination({
           <button
             type="button"
             className="browse-pagination-btn"
-            onClick={() => onPageChange(currentPage + 1)}
+            onClick={() => setPage(currentPage + 1)}
             disabled={currentPage === totalPages}
             aria-label="Página siguiente"
           >
@@ -58,6 +49,7 @@ export default function BrowsePagination({
           </button>
         </nav>
       ) : (
+        // Keeps the three-column layout balanced when there is a single page.
         <div className="browse-pagination-nav browse-pagination-nav--placeholder" aria-hidden="true" />
       )}
 

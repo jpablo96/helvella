@@ -8,10 +8,11 @@
   padding: clamp(1.75rem, 4vh, 3.25rem) clamp(1.25rem, 4vw, 3.5rem);
   text-align: center;
   background:
-    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, 0.55), transparent 70%),
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, 0.7), transparent 70%),
     var(--color-card-bg);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .order-cta-intro {
@@ -22,13 +23,9 @@
 }
 
 .order-cta-intro h2 {
-  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
-  line-height: 1.05;
-}
-
-.order-cta-intro h2 em {
-  font-style: italic;
+  font-size: clamp(2.2rem, 4.6vw, 3.75rem);
   font-weight: 400;
+  line-height: 1.05;
 }
 
 .order-cta-intro p {
@@ -68,13 +65,13 @@
   height: 2.85rem;
   margin-bottom: 0.4rem;
   border-radius: 50%;
-  border: 1px solid var(--line-strong);
-  color: var(--color-ciruela);
+  border: 1px solid var(--accent-line);
+  color: var(--accent);
 }
 
 .order-cta-feature h3 {
-  font-size: clamp(1.05rem, 2.4cqi, 1.3rem);
-  font-weight: 600;
+  font-size: clamp(1.1rem, 2.5cqi, 1.4rem);
+  font-weight: 500;
   line-height: 1.2;
 }
 
@@ -93,14 +90,15 @@
 
 .order-cta-btn {
   min-width: min(100%, 17rem);
-  padding: 1.05rem 2.25rem;
-  font-size: 1rem;
+  padding: 1.15rem 2.25rem;
+  font-size: 0.8rem;
 }
 
 .order-cta-note {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 0.01em;
   color: var(--text-subtle-on-beige);
 }
 
@@ -164,8 +162,12 @@
   }
 
   .order-cta-btn {
-    padding: 0.9rem 1.5rem;
-    font-size: 0.95rem;
+    padding: 0.95rem 1.5rem;
+    font-size: 0.74rem;
+  }
+
+  .order-cta.framed {
+    --frame-inset: 0.4rem;
   }
 }
 

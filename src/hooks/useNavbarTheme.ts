@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { getHomeScrollRoot } from '../constants/home'
 
+/** The navbar always contrasts with the surface right below it. */
 export type NavbarTheme = 'beige' | 'ciruela'
 
 const CIRUELA_SURFACES = '.page-hero, .home-panel--hero, .footer'
+const FALLBACK_NAV_HEIGHT = 76
 
 function getNavbarTheme(): NavbarTheme {
   const navHeight =
-    parseInt(
-      getComputedStyle(document.documentElement).getPropertyValue('--nav-height'),
-      10,
-    ) || 72
+    parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height'), 10) ||
+    FALLBACK_NAV_HEIGHT
 
   const x = Math.min(window.innerWidth - 1, Math.max(1, window.innerWidth / 2))
-  const el = document.elementFromPoint(x, navHeight + 2)
+  // Look through the whole stack so overlays (lightbox, drawers) don't hide the page surface.
+  const stack = document.elementsFromPoint(x, navHeight + 2)
 
-  if (!el) return 'beige'
-  return el.closest(CIRUELA_SURFACES) ? 'beige' : 'ciruela'
+  if (stack.length === 0) return 'beige'
+  return stack.some((element) => element.matches(CIRUELA_SURFACES)) ? 'beige' : 'ciruela'
 }
 
 export function useNavbarTheme(): NavbarTheme {
@@ -28,14 +30,12 @@ export function useNavbarTheme(): NavbarTheme {
 
     const updateTheme = () => {
       cancelAnimationFrame(frame)
-      frame = requestAnimationFrame(() => {
-        setTheme(getNavbarTheme())
-      })
+      frame = requestAnimationFrame(() => setTheme(getNavbarTheme()))
     }
 
     updateTheme()
 
-    const homeScroll = document.querySelector('.home-scroll')
+    const homeScroll = getHomeScrollRoot()
 
     window.addEventListener('scroll', updateTheme, { passive: true })
     window.addEventListener('resize', updateTheme)

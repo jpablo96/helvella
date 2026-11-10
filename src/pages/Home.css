@@ -43,37 +43,18 @@
   transform: translateY(28px);
 }
 
+/* Stagger with revealDelay(order), which sets --reveal-order */
 .home-panel.is-visible .home-reveal {
   opacity: 1;
   transform: none;
   transition:
-    opacity 0.8s var(--ease-out),
-    transform 0.8s var(--ease-out);
-}
-
-.home-panel.is-visible .home-reveal--delay-1 {
-  transition-delay: 0.08s;
-}
-
-.home-panel.is-visible .home-reveal--delay-2 {
-  transition-delay: 0.16s;
-}
-
-.home-panel.is-visible .home-reveal--delay-3 {
-  transition-delay: 0.24s;
-}
-
-.home-panel.is-visible .home-reveal--delay-4 {
-  transition-delay: 0.32s;
-}
-
-.home-panel.is-visible .home-reveal--delay-5 {
-  transition-delay: 0.4s;
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+  transition-delay: calc(var(--reveal-order, 0) * 90ms);
 }
 
 /* Hero */
 .home-panel--hero {
-  color: var(--text-on-ciruela);
   background: var(--color-ciruela-ink);
 }
 
@@ -101,12 +82,13 @@
   background:
     linear-gradient(
       to top,
-      rgba(var(--color-ink-rgb), 0.94) 0%,
-      rgba(var(--color-ink-rgb), 0.66) 26%,
-      rgba(var(--color-ink-rgb), 0.14) 56%,
-      transparent 72%
+      rgba(var(--color-ink-rgb), 0.96) 0%,
+      rgba(var(--color-ink-rgb), 0.7) 28%,
+      rgba(var(--color-ink-rgb), 0.18) 58%,
+      transparent 74%
     ),
-    linear-gradient(to bottom, rgba(var(--color-ink-rgb), 0.35), transparent 22%);
+    radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(var(--color-ink-rgb), 0.5)),
+    linear-gradient(to bottom, rgba(var(--color-ink-rgb), 0.4), transparent 24%);
 }
 
 .hero__content {
@@ -115,17 +97,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(0.75rem, 1.8vh, 1.2rem);
-  max-width: 58rem;
+  gap: clamp(0.8rem, 2vh, 1.35rem);
+  max-width: 62rem;
   padding: 0 clamp(1.25rem, 4vw, 2.5rem) clamp(5.75rem, 12vh, 8rem);
   text-align: center;
 }
 
+/* One <h1> holding the keyword eyebrow and the display line */
+.hero__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: inherit;
+  font: inherit;
+  letter-spacing: normal;
+}
+
 .hero__title {
-  font-size: clamp(2.75rem, 6.2vw, 6rem);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.02em;
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 6.8vw, 6.75rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
   color: var(--color-beige);
 }
 
@@ -133,7 +127,7 @@
   display: block;
   font-style: italic;
   font-weight: 400;
-  color: rgba(var(--color-beige-rgb), 0.82);
+  color: var(--accent);
 }
 
 .hero__lead {
@@ -158,25 +152,21 @@
   padding-block: clamp(1rem, 3vh, 2.5rem) clamp(4.75rem, 10vh, 6.5rem);
 }
 
+/* Tighter than the default .section-header so a whole panel fits one screen */
 .home-section__header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 0.6rem;
   flex-shrink: 0;
-  text-align: center;
+  margin-bottom: 0;
 }
 
-.home-section__title {
-  font-size: clamp(2rem, 3.8vw, 3.4rem);
-  line-height: 1.05;
+.home-section__header .section-title {
+  font-size: clamp(2.1rem, 4vw, 3.6rem);
 }
 
-.home-section__subtitle {
+.home-section__header .section-subtitle {
   max-width: 42rem;
   font-size: clamp(0.95rem, 1.15vw, 1.08rem);
-  font-weight: 300;
-  color: var(--text-muted-on-beige);
+  line-height: 1.6;
 }
 
 .home-section__cta {
@@ -224,8 +214,13 @@
 }
 
 .home-grid .product-card-btn {
-  padding: 0.45rem 0.8rem;
-  font-size: 0.74rem;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+}
+
+.home-grid .product-card-price {
+  font-size: 1.15rem;
 }
 
 @container (max-width: 15rem) {
@@ -238,7 +233,8 @@
 
 @media (hover: hover) {
   .home-grid .browse-card:hover {
-    border-color: var(--line-strong);
+    border-color: var(--accent-line);
+    box-shadow: var(--shadow-md);
   }
 }
 
@@ -302,8 +298,8 @@
 
 .home-scroll-hint--on-beige {
   color: var(--color-ciruela);
-  background: rgba(var(--color-beige-rgb), 0.6);
-  border: 1px solid var(--line-strong);
+  background: rgba(var(--color-ivory-rgb), 0.6);
+  border: 1px solid var(--accent-line);
 }
 
 .home-scroll-hint--on-beige:hover {
@@ -315,7 +311,7 @@
 .home-scroll-hint--on-ciruela {
   color: var(--color-beige);
   background: rgba(var(--color-beige-rgb), 0.08);
-  border: 1px solid rgba(var(--color-beige-rgb), 0.4);
+  border: 1px solid rgba(var(--color-gold-soft-rgb), 0.55);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
@@ -343,8 +339,20 @@
     padding-bottom: clamp(4.5rem, 10vh, 5.5rem);
   }
 
-  .hero__title {
-    font-size: clamp(2.1rem, 9.5vw, 2.75rem);
+  /* One <h1> holding the keyword eyebrow and the display line */
+.hero__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: inherit;
+  font: inherit;
+  letter-spacing: normal;
+}
+
+.hero__title {
+  display: block;
+  font-family: var(--font-heading);
+    font-size: clamp(2.35rem, 10.5vw, 3rem);
   }
 
   .hero__lead {
@@ -371,11 +379,11 @@
     font-size: 0.64rem;
   }
 
-  .home-section__title {
-    font-size: clamp(1.65rem, 7.5vw, 2.1rem);
+  .home-section__header .section-title {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
   }
 
-  .home-section__subtitle {
+  .home-section__header .section-subtitle {
     font-size: clamp(0.88rem, 3.6vw, 0.98rem);
     line-height: 1.4;
     display: -webkit-box;
@@ -385,8 +393,8 @@
   }
 
   .home-section__cta .btn {
-    padding: 0.7rem 1.35rem;
-    font-size: 0.88rem;
+    padding: 0.85rem 1.5rem;
+    font-size: 0.7rem;
   }
 
   .home-carousel--mobile .product-card-image-btn {

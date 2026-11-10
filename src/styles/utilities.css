@@ -1,0 +1,231 @@
+/* ---------- Layout ---------- */
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: var(--space-section-y) 0;
+  animation: fade-in 0.9s var(--ease-out) 0.1s both;
+}
+
+.section + .section {
+  padding-top: 0;
+}
+
+.page-hero + .section {
+  padding-top: var(--space-section-y-tight);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-inline: clamp(1rem, 4vw, 1.5rem);
+  }
+}
+
+/* ---------- Surfaces ---------- */
+
+.bg-beige {
+  background-color: var(--color-page-bg);
+  color: var(--text-on-beige);
+}
+
+/* Accent, button and focus colours flip on any ciruela background */
+.surface-ciruela,
+.home-panel--hero {
+  --accent: var(--color-gold-soft);
+  --accent-line: rgba(var(--color-gold-soft-rgb), 0.6);
+  --eyebrow-color: var(--text-muted-on-ciruela);
+  --surface-btn-bg: var(--color-beige);
+  --surface-btn-fg: var(--color-ciruela);
+  --surface-btn-bg-hover: var(--color-cream);
+  --surface-btn-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.55);
+  --focus-ring: var(--color-beige);
+  color: var(--text-on-ciruela);
+}
+
+.surface-ciruela {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(110% 80% at 50% -15%, rgba(var(--color-beige-rgb), 0.14), transparent 60%),
+    linear-gradient(
+      172deg,
+      var(--color-ciruela-light) -10%,
+      var(--color-ciruela) 30%,
+      var(--color-ciruela-dark) 72%,
+      var(--color-ciruela-ink) 135%
+    );
+}
+
+.surface-ciruela::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background-image: var(--texture-grain);
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+/* Inset hairline, like the plate mark on fine stationery */
+.framed {
+  --frame-inset: 0.6rem;
+  position: relative;
+}
+
+.framed::after {
+  content: '';
+  position: absolute;
+  inset: var(--frame-inset);
+  border: 1px solid var(--accent-line);
+  border-radius: calc(var(--radius-lg) - var(--frame-inset));
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* Soft tinted backdrop behind flower illustrations; set --flower-color on the element */
+.flower-backdrop {
+  background:
+    radial-gradient(
+      60% 60% at 50% 44%,
+      color-mix(in srgb, var(--flower-color) 20%, var(--color-cream)) 0%,
+      transparent 100%
+    ),
+    linear-gradient(180deg, var(--color-cream) 0%, var(--color-ivory) 100%);
+}
+
+/* Small frosted control sitting on top of imagery */
+.glass-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-ivory-rgb), 0.86);
+  color: var(--color-ciruela);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  box-shadow:
+    0 0 0 1px var(--line),
+    var(--shadow-sm);
+}
+
+/* ---------- Type ---------- */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 1em;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  /* Optical centring: tracking adds trailing space after the last letter */
+  text-indent: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--eyebrow-color);
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  content: '';
+  width: 2.25em;
+  height: 1px;
+  background: var(--accent-line);
+}
+
+.label-caps {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--eyebrow-color);
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(2.3rem, 4.8vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.section-subtitle {
+  max-width: 36rem;
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-muted-on-beige);
+}
+
+/* Diamond between two fading rules: <span class="ornament"><span /></span> */
+.ornament {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  color: var(--accent);
+}
+
+.ornament::before,
+.ornament::after {
+  content: '';
+  width: clamp(2.5rem, 8vw, 4.5rem);
+  height: 1px;
+  background: linear-gradient(to right, transparent, currentColor);
+  opacity: 0.75;
+}
+
+.ornament::after {
+  transform: scaleX(-1);
+}
+
+.ornament > span {
+  width: 0.4rem;
+  height: 0.4rem;
+  border: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+@media (max-width: 768px) {
+  .section-subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+@media (min-width: 1440px) {
+  .section-title {
+    font-size: clamp(2.75rem, 3.4vw, 4rem);
+  }
+
+  .section-subtitle {
+    max-width: 40rem;
+    font-size: 1.12rem;
+  }
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}

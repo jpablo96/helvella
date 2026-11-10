@@ -1,5 +1,3 @@
-export type Category = 'flores-eternas' | 'crochet' | 'pintura' | 'abalorios'
-
 export type FloresEternasSubcategory =
   | 'todos'
   | 'flores-individuales'
@@ -57,7 +55,6 @@ export interface Product {
   id: string
   name: string
   description: string
-  category: Category
   subcategory?: FloresEternasSubcategory
   illustration: IllustrationType
   price?: string

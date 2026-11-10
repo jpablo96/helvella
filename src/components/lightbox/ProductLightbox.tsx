@@ -1,12 +1,10 @@
-import { getWhatsAppOrderUrl } from '../data/contact'
-import type { Product } from '../data/catalog'
-import { getProductPriceLabel } from '../data/productDisplay'
-import ProductIllustration from './illustrations/ProductIllustration'
+import type { Product } from '../../data/catalog'
+import { getProductPriceLabel } from '../../data/productDisplay'
+import { useLightbox } from '../../hooks/useLightbox'
+import { flowerColorStyle } from '../../utils/flowerColorStyle'
+import ProductIllustration from '../illustrations/ProductIllustration'
+import WhatsAppOrderLink from '../WhatsAppOrderLink'
 import ImageLightbox from './ImageLightbox'
-import { useLightbox } from '../hooks/useLightbox'
-import { flowerColorStyle } from '../utils/flowerColorStyle'
-import WhatsAppIcon from './icons/WhatsAppIcon'
-import './ImageLightbox.css'
 
 interface ProductLightboxProps {
   product: Product
@@ -22,7 +20,10 @@ export default function ProductLightbox({ product, onClose }: ProductLightboxPro
       label={product.name}
       onClose={onClose}
       visual={
-        <div className="image-lightbox-visual" style={flowerColorStyle(product.color)}>
+        <div
+          className="image-lightbox-visual flower-backdrop"
+          style={flowerColorStyle(product.color)}
+        >
           <ProductIllustration
             type={product.illustration}
             color={product.color}
@@ -35,15 +36,7 @@ export default function ProductLightbox({ product, onClose }: ProductLightboxPro
           <h2>{product.name}</h2>
           <p>{product.description}</p>
           {priceLabel && <span className="image-lightbox-price">{priceLabel}</span>}
-          <a
-            href={getWhatsAppOrderUrl(product.name)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-whatsapp image-lightbox-cta"
-          >
-            <WhatsAppIcon size={18} />
-            ¡Haz tu pedido!
-          </a>
+          <WhatsAppOrderLink productName={product.name} className="image-lightbox-cta" />
         </div>
       }
     />

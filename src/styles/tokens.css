@@ -1,0 +1,109 @@
+:root {
+  /* Brand */
+  --color-ciruela: #6c265b;
+  --color-ciruela-light: #7d2f6a;
+  --color-ciruela-dark: #521c45;
+  --color-ciruela-ink: #2f0f28;
+  --color-beige: #ffebcc;
+  --color-ivory: #faf2e5;
+  --color-cream: #fffaf2;
+  --color-gold: #9c7136;
+  --color-gold-soft: #e2c391;
+  --color-ciruela-rgb: 108, 38, 91;
+  --color-beige-rgb: 255, 235, 204;
+  --color-ivory-rgb: 250, 242, 229;
+  --color-ink-rgb: 47, 15, 40;
+  --color-gold-rgb: 156, 113, 54;
+  --color-gold-soft-rgb: 226, 195, 145;
+  --color-whatsapp: #1f9d57;
+  --color-whatsapp-bright: #22b463;
+
+  /* Semantic */
+  --color-page-bg: var(--color-ivory);
+  --color-card-bg: var(--color-cream);
+  --text-on-beige: var(--color-ciruela);
+  --text-muted-on-beige: rgba(var(--color-ciruela-rgb), 0.74);
+  --text-subtle-on-beige: rgba(var(--color-ciruela-rgb), 0.56);
+  --text-on-ciruela: var(--color-beige);
+  --text-muted-on-ciruela: rgba(var(--color-beige-rgb), 0.76);
+  --line: rgba(var(--color-ciruela-rgb), 0.11);
+  --line-strong: rgba(var(--color-ciruela-rgb), 0.22);
+  --line-on-ciruela: rgba(var(--color-beige-rgb), 0.16);
+  --focus-ring: var(--color-ciruela);
+
+  /* Accent (gold): hairlines, ornaments and italic emphasis. Re-themed on ciruela surfaces. */
+  --accent: var(--color-gold);
+  --accent-line: rgba(var(--color-gold-rgb), 0.55);
+  --eyebrow-color: var(--text-subtle-on-beige);
+
+  /* Type */
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --tracking-eyebrow: 0.28em;
+  --tracking-caps: 0.16em;
+
+  /* Shape & depth */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+  --shadow-sm:
+    0 1px 2px rgba(var(--color-ink-rgb), 0.05),
+    0 6px 14px -6px rgba(var(--color-ink-rgb), 0.1);
+  --shadow-md:
+    0 2px 4px rgba(var(--color-ink-rgb), 0.04),
+    0 22px 44px -20px rgba(var(--color-ink-rgb), 0.3);
+  --shadow-lg:
+    0 4px 12px rgba(var(--color-ink-rgb), 0.06),
+    0 44px 80px -30px rgba(var(--color-ink-rgb), 0.45);
+
+  /* Texture: fine film grain laid over ciruela surfaces */
+  --texture-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition: 0.35s var(--ease-out);
+
+  /* Layout */
+  --max-width: 1200px;
+  --nav-height: 76px;
+  --space-section-y: 4.5rem;
+  --space-section-y-tight: 2.75rem;
+  --space-block: 1.25rem;
+  --space-block-lg: 2rem;
+
+  /* Button surface (themed per section) */
+  --surface-btn-bg: var(--color-ciruela);
+  --surface-btn-fg: var(--color-beige);
+  --surface-btn-bg-hover: var(--color-ciruela-dark);
+  --surface-btn-shadow: 0 14px 28px -14px rgba(var(--color-ciruela-rgb), 0.75);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 68px;
+    --space-section-y: 3rem;
+    --space-section-y-tight: 1.75rem;
+    --space-block: 1rem;
+    --space-block-lg: 1.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --max-width: 1420px;
+    --space-section-y: 5.5rem;
+    --space-section-y-tight: 3.25rem;
+    --space-block: 1.5rem;
+    --space-block-lg: 2.25rem;
+    --radius-md: 16px;
+    --radius-lg: 26px;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --max-width: 1580px;
+    --space-section-y: 6rem;
+  }
+}
