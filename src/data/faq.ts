@@ -10,7 +10,7 @@ export const FAQ: FaqItem[] = [
   {
     question: '¿Qué son las flores eternas?',
     answer:
-      'Son flores hechas a mano que no se marchitan. En Helvella las elaboramos con limpiapipas (también conocidos como limpia pipas o alambre de chenilla), pétalo a pétalo, para que conserven su forma y su color con el paso del tiempo.',
+      'Son flores hechas a mano que no se marchitan. En Helvella las elaboramos con limpiapipas (también conocidos como alambre de chenilla), pétalo a pétalo, para que conserven su forma y su color con el paso del tiempo.',
   },
   {
     question: '¿Hacen envíos de flores eternas a todo Costa Rica?',
