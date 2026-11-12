@@ -70,8 +70,8 @@ El sitio incluye optimización técnica para buscadores:
 ### Para aparecer en Google
 
 1. Despliega el sitio con tu dominio real
-2. Crea `.env` con `VITE_SITE_URL=https://tudominio.com`
+2. Crea `.env` con `VITE_SITE_URL=https://flores.helvella.cr`
 3. Vuelve a hacer `npm run build` y despliega
 4. Registra el sitio en [Google Search Console](https://search.google.com/search-console)
-5. Envía el sitemap: `https://tudominio.com/sitemap.xml`
+5. Envía el sitemap: `https://flores.helvella.cr/sitemap.xml`
 6. Mantén activas las redes sociales (Instagram, Facebook) enlazando al sitio

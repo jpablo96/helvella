@@ -1,7 +1,17 @@
 import { SOCIAL_URLS, WHATSAPP_NUMBER, formatPhoneNumber } from '../data/contact'
 import { FAQ } from '../data/faq'
+import { galleryItems } from '../data/gallery'
+import { products } from '../data/products'
 import { PAGES, SEO_KEYWORDS, type PageKey, type PageSeo } from '../data/seo'
-import { LOGO_URL, SHARE_IMAGE_URL, SITE_LOCALE, SITE_NAME, SITE_URL } from '../data/site'
+import {
+  BUSINESS_PHOTO_URL,
+  SHARE_IMAGE,
+  SITE_LOCALE,
+  SITE_NAME,
+  SITE_URL,
+  SQUARE_LOGO_URL,
+} from '../data/site'
+import type { Product } from '../data/types'
 
 const JSON_LD_ID = 'helvella-jsonld'
 const BUSINESS_ID = `${SITE_URL}/#negocio`
@@ -30,8 +40,8 @@ function buildBusiness(): Record<string, unknown> {
     description: PAGES.home.description,
     slogan: 'Flores que el tiempo no marchita',
     url: absoluteUrl('/'),
-    image: absoluteUrl(SHARE_IMAGE_URL),
-    logo: absoluteUrl(LOGO_URL),
+    image: absoluteUrl(BUSINESS_PHOTO_URL),
+    logo: absoluteUrl(SQUARE_LOGO_URL),
     telephone: formatPhoneNumber(WHATSAPP_NUMBER, '-'),
     address: { '@type': 'PostalAddress', addressCountry: 'CR' },
     areaServed: { '@type': 'Country', name: 'Costa Rica' },
@@ -50,6 +60,68 @@ function buildBusiness(): Record<string, unknown> {
       availableLanguage: 'es',
       areaServed: 'CR',
     },
+  }
+}
+
+/** "₡5.500" -> 5500, "Desde ₡18.000" -> 18000. */
+function parsePrice(price: string): number | null {
+  const digits = price.replace(/\D/g, '')
+  return digits ? Number(digits) : null
+}
+
+function buildOffer(product: Product): Record<string, unknown> {
+  const offer: Record<string, unknown> = {
+    '@type': 'Offer',
+    itemOffered: { '@type': 'Product', name: product.name, description: product.description },
+    availability: product.available
+      ? 'https://schema.org/InStock'
+      : 'https://schema.org/OutOfStock',
+    seller: { '@id': BUSINESS_ID },
+  }
+
+  const amount = product.price ? parsePrice(product.price) : null
+  if (amount !== null) {
+    const startingPrice = /desde/i.test(product.price ?? '')
+    offer.priceSpecification = {
+      '@type': 'PriceSpecification',
+      priceCurrency: 'CRC',
+      ...(startingPrice ? { minPrice: amount } : { price: amount }),
+    }
+  }
+
+  return offer
+}
+
+/** The whole catalog, with prices, as the business's list of offers. */
+function buildOfferCatalog(url: string): Record<string, unknown> {
+  return {
+    '@type': 'OfferCatalog',
+    '@id': `${url}#catalogo`,
+    name: 'Catálogo de flores eternas',
+    url,
+    numberOfItems: products.length,
+    itemListElement: products.map(buildOffer),
+  }
+}
+
+/** Every gallery photo with its caption, so image search can read them. */
+function buildImageGallery(url: string): Record<string, unknown> {
+  return {
+    '@type': 'ImageGallery',
+    '@id': `${url}#galeria`,
+    name: 'Galería de flores eternas',
+    url,
+    image: galleryItems.flatMap((item) =>
+      item.images.map((image) => ({
+        '@type': 'ImageObject',
+        contentUrl: absoluteUrl(image),
+        name: item.title,
+        caption: item.description,
+        creator: { '@id': BUSINESS_ID },
+        creditText: SITE_NAME,
+        copyrightNotice: SITE_NAME,
+      })),
+    ),
   }
 }
 
@@ -87,6 +159,9 @@ function buildJsonLd(key: PageKey, page: PageSeo): Record<string, unknown> {
     })
   }
 
+  if (key === 'catalog') graph.push(buildOfferCatalog(url))
+  if (key === 'gallery') graph.push(buildImageGallery(url))
+
   if (key === 'home') {
     graph.push({
       '@type': 'FAQPage',
@@ -105,7 +180,7 @@ function buildJsonLd(key: PageKey, page: PageSeo): Record<string, unknown> {
 export function buildPageHead(key: PageKey): PageHead {
   const page: PageSeo = PAGES[key]
   const canonical = absoluteUrl(page.path)
-  const image = absoluteUrl(SHARE_IMAGE_URL)
+  const image = absoluteUrl(SHARE_IMAGE.url)
   const name = (metaName: string, content: string): MetaTag => ({
     attribute: 'name',
     key: metaName,
@@ -132,11 +207,15 @@ export function buildPageHead(key: PageKey): PageHead {
       property('og:description', page.description),
       property('og:url', canonical),
       property('og:image', image),
-      property('og:image:alt', 'Arreglo de flores eternas hecho a mano por Helvella'),
+      property('og:image:type', SHARE_IMAGE.type),
+      property('og:image:width', String(SHARE_IMAGE.width)),
+      property('og:image:height', String(SHARE_IMAGE.height)),
+      property('og:image:alt', SHARE_IMAGE.alt),
       name('twitter:card', 'summary_large_image'),
       name('twitter:title', page.socialTitle),
       name('twitter:description', page.description),
       name('twitter:image', image),
+      name('twitter:image:alt', SHARE_IMAGE.alt),
     ],
     jsonLd: buildJsonLd(key, page),
   }

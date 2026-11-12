@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://helvella.cr/sitemap.xml
+Sitemap: https://flores.helvella.cr/sitemap.xml

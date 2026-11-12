@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { AppRoutes } from './App'
+import { galleryItems } from './data/gallery'
 import { PAGES, type PageKey } from './data/seo'
 import { SITE_URL } from './data/site'
 import { buildPageHead, renderPageHead } from './utils/seo'
@@ -10,6 +11,8 @@ import { buildPageHead, renderPageHead } from './utils/seo'
 export interface PrerenderedPage {
   path: string
   indexable: boolean
+  /** Photos on the page, listed in the sitemap so they get into image search. */
+  images: { url: string; title: string }[]
   head: string
   html: string
 }
@@ -23,6 +26,12 @@ export function renderPages(): PrerenderedPage[] {
     return {
       path: page.path,
       indexable: page.indexable,
+      images:
+        key === 'gallery'
+          ? galleryItems.flatMap((item) =>
+              item.images.map((image) => ({ url: `${SITE_URL}${image}`, title: item.title })),
+            )
+          : [],
       head: renderPageHead(buildPageHead(key)),
       html: renderToString(
         <StrictMode>
