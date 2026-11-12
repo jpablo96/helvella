@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import {
-  INSTAGRAM_URL,
   NATIONWIDE_SHIPPING_NOTE,
   WHATSAPP_NUMBER,
   WHATSAPP_URL,
@@ -58,11 +57,12 @@ export default function Footer() {
             © {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados.
           </p>
           <p className="footer-credit">
-            Desarrollado por <ExternalLink href={INSTAGRAM_URL}>{SITE_DEVELOPER.name}</ExternalLink>
+            Desarrollado por{' '}
+            <ExternalLink href={SITE_DEVELOPER.url}>{SITE_DEVELOPER.name}</ExternalLink>
           </p>
           <p className="footer-credit footer-credit--pitch">
-            Sabemos de flores eternas y de sitios web.{' '}
-            <ExternalLink href={INSTAGRAM_URL}>Contáctanos</ExternalLink> si quieres tu página.
+            Sabemos de flores eternas y de sitios web. ¿Quieres tu página? Visita{' '}
+            <ExternalLink href={SITE_DEVELOPER.url}>{SITE_DEVELOPER.domain}</ExternalLink>.
           </p>
         </div>
       </div>

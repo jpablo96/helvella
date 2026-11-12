@@ -28,6 +28,8 @@ export const HERO_VIDEO_URL = '/videos/hero.mp4'
 
 export const SITE_DEVELOPER = {
   name: 'Helvella',
+  url: 'https://helvella.cr',
+  domain: 'helvella.cr',
 }
 
 export const FOUNDERS = [
