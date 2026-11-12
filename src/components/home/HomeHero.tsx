@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { HOME_PANEL_IDS } from '../../constants/home'
-import { HERO_VIDEO_URL } from '../../data/site'
+import { HERO_VIDEO_IS_PLACEHOLDER, HERO_VIDEO_URL } from '../../data/site'
 import { revealDelay } from '../../utils/revealDelay'
 import ArrowIcon from '../icons/ArrowIcon'
 import HomePanel from './HomePanel'
@@ -22,6 +22,12 @@ export default function HomeHero() {
           <source src={HERO_VIDEO_URL} type="video/mp4" />
         </video>
         <div className="hero__scrim" aria-hidden="true" />
+        {HERO_VIDEO_IS_PLACEHOLDER && (
+          <p className="hero__placeholder-badge">
+            <span className="hero__placeholder-dot" aria-hidden="true" />
+            Video de muestra de @cchflorist.mlk · no es propiedad de Helvella
+          </p>
+        )}
 
         <header className="hero__content home-reveal" style={revealDelay(1)}>
           <h1 className="hero__heading">

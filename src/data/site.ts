@@ -26,6 +26,9 @@ export const BUSINESS_PHOTO_URL = '/gallery/post1/post1.webp'
 
 export const HERO_VIDEO_URL = '/videos/hero.mp4'
 
+/** Set to false once the final hero video replaces the placeholder clip. */
+export const HERO_VIDEO_IS_PLACEHOLDER = true
+
 export const SITE_DEVELOPER = {
   name: 'Helvella',
   url: 'https://helvella.cr',
