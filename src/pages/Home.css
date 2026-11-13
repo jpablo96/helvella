@@ -109,15 +109,19 @@
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
-  line-height: 1.2;
+  line-height: 1.35;
+  /* Stay clear of the centered scroll hint */
+  max-width: calc(50% - 3rem - clamp(1rem, 3vw, 2rem));
 }
 
-.hero__placeholder-dot {
-  width: 0.5em;
-  height: 0.5em;
-  border-radius: 50%;
-  background: #f4b860;
+.hero__placeholder-icon {
   flex: none;
+  color: #f4b860;
+}
+
+.hero__placeholder-label {
+  font-weight: 600;
+  color: #f4b860;
 }
 
 @media (max-width: 640px) {
@@ -443,10 +447,6 @@
 
   .home-carousel--mobile .product-card-body {
     padding: 0.8rem 1rem 2.6rem;
-  }
-
-  .home-carousel--mobile .gallery-card-caption {
-    display: none;
   }
 
   .home-closing__body {

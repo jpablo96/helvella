@@ -21,9 +21,6 @@ export default function GalleryCard({ item, onOpen, preview = false }: GalleryCa
         illustration={item.illustration}
         imageClassName="gallery-photo--card"
       />
-      <span className="gallery-card-caption" aria-hidden="true">
-        {item.title}
-      </span>
       {!preview && imageCount > 1 && (
         <span className="gallery-card-count glass-chip" aria-hidden="true">
           1 / {imageCount}

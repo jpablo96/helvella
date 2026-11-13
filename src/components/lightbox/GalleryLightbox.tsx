@@ -160,7 +160,25 @@ export default function GalleryLightbox({ item, onClose, onPrev, onNext }: Galle
             )}
 
             <div className="gallery-lightbox-slides">
-              {images.map((src, index) => (
+              {item.video ? (
+                <video
+                  key={item.video}
+                  src={item.video}
+                  poster={images[0]}
+                  className="gallery-photo gallery-lightbox-slide-photo gallery-lightbox-slide-video is-active"
+                  controls
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  onLoadedMetadata={(event: SyntheticEvent<HTMLVideoElement>) => {
+                    const video = event.currentTarget
+                    if (!video.videoWidth || !video.videoHeight) return
+                    setFrameSize(getDisplayedSlideSize(video.videoWidth, video.videoHeight))
+                  }}
+                />
+              ) : (
+                images.map((src, index) => (
                 <img
                   key={src}
                   ref={(element) => {
@@ -181,7 +199,8 @@ export default function GalleryLightbox({ item, onClose, onPrev, onNext }: Galle
                     rememberSlideSize(src, event.currentTarget)
                   }
                 />
-              ))}
+              ))
+              )}
             </div>
 
             {hasMultipleSlides && (

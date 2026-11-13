@@ -3,6 +3,7 @@ import { HOME_PANEL_IDS } from '../../constants/home'
 import { HERO_VIDEO_IS_PLACEHOLDER, HERO_VIDEO_URL } from '../../data/site'
 import { revealDelay } from '../../utils/revealDelay'
 import ArrowIcon from '../icons/ArrowIcon'
+import { IconConstruction } from '../icons/BrandIcons'
 import HomePanel from './HomePanel'
 import HomeScrollHint from './HomeScrollHint'
 
@@ -24,8 +25,12 @@ export default function HomeHero() {
         <div className="hero__scrim" aria-hidden="true" />
         {HERO_VIDEO_IS_PLACEHOLDER && (
           <p className="hero__placeholder-badge">
-            <span className="hero__placeholder-dot" aria-hidden="true" />
-            Video de muestra de @cchflorist.mlk · no es propiedad de Helvella
+            <IconConstruction size={14} className="hero__placeholder-icon" />
+            <span>
+              <strong className="hero__placeholder-label">En construcción</strong>
+              <span aria-hidden="true"> · </span>
+              Video temporal de @cchflorist.mlk, no es propiedad de Helvella
+            </span>
           </p>
         )}
 
