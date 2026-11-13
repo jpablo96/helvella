@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import type { FloresEternasSubcategory, Product } from '../data/catalog'
 import BrowseEmpty from '../components/browse/BrowseEmpty'
-import { IconConstruction } from '../components/icons/BrandIcons'
 import BrowseFilterDrawer from '../components/browse/BrowseFilterDrawer'
 import BrowsePagination from '../components/browse/BrowsePagination'
 import CatalogFilters from '../components/browse/CatalogFilters'
+import CatalogNotice from '../components/browse/CatalogNotice'
 import ViewToggle, { type ViewMode } from '../components/browse/ViewToggle'
 import ProductLightbox from '../components/lightbox/ProductLightbox'
 import PageHero from '../components/PageHero'
@@ -70,18 +70,7 @@ export default function Catalog() {
           </BrowseFilterDrawer>
 
           <div className="browse-products-area">
-            <div className="browse-notice framed" role="status">
-              <span className="browse-empty-icon" aria-hidden="true">
-                <IconConstruction size={26} />
-              </span>
-              <div>
-                <h2 className="browse-notice-title">Catálogo en construcción</h2>
-                <p>
-                  Estamos actualizando nuestro catálogo. Algunos productos o precios pueden no estar
-                  al día; escríbenos por WhatsApp para confirmar disponibilidad.
-                </p>
-              </div>
-            </div>
+            <CatalogNotice />
             {pagination.totalItems > 0 ? (
               <>
                 <div className={`browse-grid browse-grid--${viewMode}`}>

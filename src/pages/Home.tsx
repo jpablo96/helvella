@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { HOME_PANEL_IDS } from '../constants/home'
 import { products } from '../data/catalog'
 import { getHomeGalleryPreview } from '../data/gallery'
+import CatalogNotice from '../components/browse/CatalogNotice'
 import Faq from '../components/Faq'
 import Footer from '../components/Footer'
 import GalleryCard from '../components/GalleryCard'
@@ -45,6 +46,7 @@ export default function Home() {
           getKey={(product) => product.id}
           renderItem={(product) => <ProductCard product={product} />}
           cta={{ to: '/catalogo', label: 'Ver catálogo completo' }}
+          notice={<CatalogNotice className="browse-notice--compact" />}
         />
 
         <HomeShowcase
