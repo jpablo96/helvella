@@ -46,7 +46,7 @@ export default function Home() {
           getKey={(product) => product.id}
           renderItem={(product) => <ProductCard product={product} />}
           cta={{ to: '/catalogo', label: 'Ver catálogo completo' }}
-          notice={<CatalogNotice className="browse-notice--compact" />}
+          notice={<CatalogNotice className="browse-notice--compact" titleOnly />}
         />
 
         <HomeShowcase

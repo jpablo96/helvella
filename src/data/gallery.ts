@@ -17,6 +17,24 @@ function galleryImages(folder: string, filenames: string[]): string[] {
 
 export const galleryItems: GalleryItem[] = [
   {
+    id: 'post19',
+    title: 'Broches florales',
+    description:
+      'Broches de solapa hechos a mano: ramo morado, flor azul y blanca, girasoles, crisantemo amarillo y naranja, margaritas, azucenas rosas, tulipanes rojos y ramo rosa con tallo azul.',
+    illustration: 'flor',
+    images: galleryImages('post19', [
+      'post19-1.webp',
+      'post19-2.webp',
+      'post19-3.webp',
+      'post19-4.webp',
+      'post19-5.webp',
+      'post19-6.webp',
+      'post19-7.webp',
+      'post19-8.webp',
+    ]),
+    color: '#6B3FA0',
+  },
+  {
     id: 'post14',
     title: 'Broches florales',
     description: 'Broches florales hechos a mano, en distintos diseños y colores.',
