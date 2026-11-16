@@ -12,7 +12,6 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const priceLabel = getProductPriceLabel(product)
   const imageStyle = flowerColorStyle(product.color)
   const imageClassName = cx(
     'product-card-image-btn flower-backdrop',
@@ -39,7 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <h3 className="product-card-name">{product.name}</h3>
         {product.note && <p className="product-card-note">{product.note}</p>}
         <div className="product-card-footer">
-          <span className="product-card-price">{priceLabel}</span>
+          <span className="product-card-price">{getProductPriceLabel(product)}</span>
           <WhatsAppOrderLink
             productName={product.name}
             variant="order"

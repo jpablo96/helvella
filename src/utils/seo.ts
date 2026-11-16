@@ -63,36 +63,28 @@ function buildBusiness(): Record<string, unknown> {
   }
 }
 
-/** "₡5.500" -> 5500, "Desde ₡18.000" -> 18000. */
+/** "₡3.000" -> 3000. */
 function parsePrice(price: string): number | null {
   const digits = price.replace(/\D/g, '')
   return digits ? Number(digits) : null
 }
 
+// Products without a fixed price are quoted on request, so their offer carries no price.
 function buildOffer(product: Product): Record<string, unknown> {
-  const offer: Record<string, unknown> = {
+  const amount = product.price ? parsePrice(product.price) : null
+
+  return {
     '@type': 'Offer',
     itemOffered: { '@type': 'Product', name: product.name, description: product.description },
     availability: product.available
       ? 'https://schema.org/InStock'
       : 'https://schema.org/OutOfStock',
     seller: { '@id': BUSINESS_ID },
+    ...(amount !== null && { price: amount, priceCurrency: 'CRC' }),
   }
-
-  const amount = product.price ? parsePrice(product.price) : null
-  if (amount !== null) {
-    const startingPrice = /desde/i.test(product.price ?? '')
-    offer.priceSpecification = {
-      '@type': 'PriceSpecification',
-      priceCurrency: 'CRC',
-      ...(startingPrice ? { minPrice: amount } : { price: amount }),
-    }
-  }
-
-  return offer
 }
 
-/** The whole catalog, with prices, as the business's list of offers. */
+/** The whole catalog as the business's list of offers. */
 function buildOfferCatalog(url: string): Record<string, unknown> {
   return {
     '@type': 'OfferCatalog',

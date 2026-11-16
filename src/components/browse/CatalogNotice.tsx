@@ -18,8 +18,8 @@ export default function CatalogNotice({ className, titleOnly = false }: CatalogN
         <h2 className="browse-notice-title">Catálogo en construcción</h2>
         {!titleOnly && (
           <p>
-            Estamos actualizando nuestro catálogo. Algunos productos o precios pueden no estar al
-            día; escríbenos por WhatsApp para confirmar disponibilidad.
+            Estamos actualizando nuestro catálogo y algunos productos pueden no estar al día.
+            Escríbenos por WhatsApp para confirmar disponibilidad y precio.
           </p>
         )}
       </div>

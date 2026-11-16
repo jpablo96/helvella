@@ -63,6 +63,7 @@ export interface Product {
   illustration: IllustrationType
   /** Square product photo under /catalog, cut from the gallery by scripts/crop-catalog-images.mjs. */
   image?: string
+  /** Fixed price as shown, e.g. "₡3.000". Products without one read "Cotizar". */
   price?: string
   available: boolean
   color: string

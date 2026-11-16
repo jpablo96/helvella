@@ -6,12 +6,13 @@ export const floresEternasSubcategories: {
   id: FloresEternasSubcategory
   label: string
 }[] = [
+  // 'Todos' first, then alphabetical
   { id: 'todos', label: 'Todos' },
+  { id: 'animalitos', label: 'Animalitos' },
+  { id: 'arreglos', label: 'Arreglos' },
+  { id: 'broches', label: 'Broches' },
   { id: 'flores-individuales', label: 'Flores individuales' },
   { id: 'macetitas', label: 'Macetitas' },
-  { id: 'arreglos', label: 'Arreglos' },
-  { id: 'animalitos', label: 'Animalitos' },
-  { id: 'broches', label: 'Broches' },
 ]
 
 export { products } from './products'

@@ -12,7 +12,8 @@ const OUT = 'public/catalog'
 const MAX_SIDE = 640
 
 const crops = [
-  // Flores individuales
+  // Flores individuales: one entry for now (flor-individual); the other crops are kept for when
+  // each flower gets its own entry again
   ['catalog-12', 'post7/post7.webp', 0.37, 0.35, 0.32],
   ['catalog-15', 'post7/post7.webp', 0.645, 0.585, 0.46],
   ['catalog-13', 'post8/post8-4.webp', 0.62, 0.39, 0.52],
@@ -25,7 +26,7 @@ const crops = [
   ['catalog-5', 'post5/post5.webp', 0.52, 0.366, 0.44],
   ['catalog-6', 'post15/post15-2.webp', 0.36, 0.47, 0.4],
   ['catalog-20', 'post4/post4.webp', 0.5, 0.478, 0.52],
-  ['catalog-16', 'post1/post1.webp', 0.5, 0.404, 0.66],
+  ['flor-individual', 'post1/post1.webp', 0.5, 0.404, 0.66],
   ['catalog-17', 'post6/post6.webp', 0.5, 0.6, 0.6],
   // Macetitas
   ['macetita-cactus', 'post17/post17.webp', 0.841, 0.544, 0.318],
@@ -34,27 +35,28 @@ const crops = [
   ['macetita-hortensia', 'post10/post10-4.webp', 0.5, 0.529, 0.96],
   ['macetita-tulipanes', 'post10/post10-3.webp', 0.52, 0.544, 0.76],
   // Arreglos
-  ['arreglo-personalizado', 'post7/post7.webp', 0.53, 0.605, 0.9],
-  ['arreglo-cumpleanos', 'post15/post15-2.webp', 0.52, 0.402, 0.88],
+  ['arreglo-personalizado-macetita', 'post9/post9.webp', 0.52, 0.57, 0.945],
+  ['arreglo-personalizado', 'post15/post15-1.webp', 0.5, 0.57, 1],
+  ['arreglo-personalizado-florero', 'post7/post7.webp', 0.53, 0.605, 0.9],
   // Animalitos
   ['cabecitas-animales', 'post16/post16.webp', 0.5, 0.33, 1],
   // Broches
-  ['broche-loto-rosa', 'post14/post14-1.webp', 0.42, 0.49, 0.44],
-  ['broche-flores-amarillas', 'post14/post14-2.webp', 0.5, 0.52, 0.46],
-  ['broche-cempasuchil', 'post14/post14-3.webp', 0.38, 0.46, 0.44],
-  ['broche-flor-morada', 'post14/post14-4.webp', 0.5, 0.52, 0.42],
-  ['broche-flores-naranjas', 'post14/post14-5.webp', 0.47, 0.52, 0.46],
-  ['broche-rosas-fucsia', 'post14/post14-6.webp', 0.47, 0.53, 0.46],
-  ['broche-flores-blancas', 'post14/post14-7.webp', 0.34, 0.51, 0.5],
-  ['broche-flores-celestes', 'post14/post14-8.webp', 0.4, 0.54, 0.38],
-  ['broche-ramo-morado', 'post19/post19-1.webp', 0.42, 0.53, 0.48],
-  ['broche-flor-azul-blanca', 'post19/post19-2.webp', 0.42, 0.5, 0.46],
-  ['broche-girasoles', 'post19/post19-3.webp', 0.44, 0.53, 0.44],
-  ['broche-crisantemo', 'post19/post19-4.webp', 0.44, 0.55, 0.48],
-  ['broche-margaritas', 'post19/post19-5.webp', 0.41, 0.485, 0.46],
-  ['broche-azucenas-rosas', 'post19/post19-6.webp', 0.36, 0.5, 0.44],
-  ['broche-tulipanes-rojos', 'post19/post19-7.webp', 0.56, 0.52, 0.46],
-  ['broche-ramo-rosa', 'post19/post19-8.webp', 0.43, 0.5, 0.44],
+  ['broche-loto-rosa', 'post14/post14-1.webp', 0.416, 0.467, 0.57],
+  ['broche-flores-amarillas', 'post14/post14-2.webp', 0.501, 0.521, 0.59],
+  ['broche-cempasuchil', 'post14/post14-3.webp', 0.453, 0.456, 0.57],
+  ['broche-flor-morada', 'post14/post14-4.webp', 0.517, 0.514, 0.55],
+  ['broche-flores-naranjas', 'post14/post14-5.webp', 0.479, 0.516, 0.59],
+  ['broche-rosas-fucsia', 'post14/post14-6.webp', 0.481, 0.533, 0.59],
+  ['broche-flores-blancas', 'post14/post14-7.webp', 0.383, 0.509, 0.64],
+  ['broche-flores-celestes', 'post14/post14-8.webp', 0.431, 0.527, 0.51],
+  ['broche-ramo-morado', 'post19/post19-1.webp', 0.441, 0.536, 0.62],
+  ['broche-flor-azul-blanca', 'post19/post19-2.webp', 0.452, 0.496, 0.59],
+  ['broche-girasoles', 'post19/post19-3.webp', 0.41, 0.514, 0.57],
+  ['broche-crisantemo', 'post19/post19-4.webp', 0.448, 0.541, 0.62],
+  ['broche-margaritas', 'post19/post19-5.webp', 0.41, 0.471, 0.59],
+  ['broche-azucenas-rosas', 'post19/post19-6.webp', 0.432, 0.491, 0.57],
+  ['broche-tulipanes-rojos', 'post19/post19-7.webp', 0.57, 0.523, 0.59],
+  ['broche-ramo-rosa', 'post19/post19-8.webp', 0.434, 0.487, 0.57],
 ]
 
 await mkdir(OUT, { recursive: true })

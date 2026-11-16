@@ -1,13 +1,9 @@
 import type { Product } from './types'
 
-function isQuoteProduct(product: Product): boolean {
-  if (product.subcategory === 'arreglos') return true
-  if (/personaliz/i.test(product.name) || /personaliz/i.test(product.id)) return true
-  return false
-}
+/** Shown in place of a price: products without a fixed price are quoted on WhatsApp. */
+export const QUOTE_LABEL = 'Cotizar'
 
-/** Price shown on the card; products that are quoted, or have no price yet, read "Cotizar". */
+/** The product's price, or "Cotizar" when it has none. */
 export function getProductPriceLabel(product: Product): string {
-  if (isQuoteProduct(product) || !product.price) return 'Cotizar'
-  return product.price.replace(/^Desde\s+/i, '')
+  return product.price ?? QUOTE_LABEL
 }

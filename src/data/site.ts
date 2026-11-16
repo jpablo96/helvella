@@ -38,7 +38,7 @@ export const SITE_DEVELOPER = {
 export const FOUNDERS = [
   {
     name: 'Naye',
-    role: 'Diseñadora gráfica',
+    role: 'Diseñadora y florista eterna',
     initial: 'N',
     photo: '',
   },
