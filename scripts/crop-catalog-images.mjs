@@ -12,22 +12,8 @@ const OUT = 'public/catalog'
 const MAX_SIDE = 640
 
 const crops = [
-  // Flores individuales: one entry for now (flor-individual); the other crops are kept for when
-  // each flower gets its own entry again
-  ['catalog-12', 'post7/post7.webp', 0.37, 0.35, 0.32],
-  ['catalog-15', 'post7/post7.webp', 0.645, 0.585, 0.46],
-  ['catalog-13', 'post8/post8-4.webp', 0.62, 0.39, 0.52],
-  ['catalog-3', 'post13/post13.webp', 0.56, 0.365, 0.86],
-  ['catalog-4', 'post10/post10-2.webp', 0.5, 0.3, 0.46],
-  ['catalog-2', 'post12/post12-2.webp', 0.5, 0.24, 0.56],
-  ['catalog-1', 'post2/post2.webp', 0.51, 0.46, 0.56],
-  ['catalog-19', 'post3/post3.webp', 0.5, 0.268, 0.57],
-  ['catalog-7', 'post18/post18.webp', 0.51, 0.3, 0.78],
-  ['catalog-5', 'post5/post5.webp', 0.52, 0.366, 0.44],
-  ['catalog-6', 'post15/post15-2.webp', 0.36, 0.47, 0.4],
-  ['catalog-20', 'post4/post4.webp', 0.5, 0.478, 0.52],
+  // Flores individuales: a single "pick any flower" entry
   ['flor-individual', 'post1/post1.webp', 0.5, 0.404, 0.66],
-  ['catalog-17', 'post6/post6.webp', 0.5, 0.6, 0.6],
   // Macetitas
   ['macetita-cactus', 'post17/post17.webp', 0.841, 0.544, 0.318],
   ['macetita-gerbera', 'post8/post8-1.webp', 0.5, 0.651, 0.84],
