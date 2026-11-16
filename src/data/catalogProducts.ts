@@ -38,8 +38,8 @@ export const catalogProducts: Product[] = [
     id: 'flor-individual',
     name: 'Flor individual a tu elección',
     description:
-      'Flor eterna hecha a mano con limpiapipas. Elige la flor que quieras —girasol, rosa, tulipán, orquídea o la que imagines— y la hacemos para ti.',
-    note: 'Elige la flor que quieras, aunque no esté en la foto',
+      'Flor eterna hecha a mano con limpiapipas. Cuéntanos qué flor quieres —girasol, rosa, tulipán, orquídea o la que imagines— y la hacemos para ti.',
+    note: 'Cuéntanos qué flor quieres',
     subcategory: 'flores-individuales',
     illustration: 'flor',
     image: '/catalog/flor-individual.webp',
