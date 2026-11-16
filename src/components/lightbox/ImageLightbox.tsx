@@ -6,21 +6,26 @@ import './ImageLightbox.css'
 interface ImageLightboxProps {
   label: string
   bubbleClassName?: string
+  overlayClassName?: string
   onClose: () => void
   visual: ReactNode
   info?: ReactNode
+  /** Controls drawn on the backdrop, beside the bubble (e.g. previous / next item). */
+  outside?: ReactNode
 }
 
 export default function ImageLightbox({
   label,
   bubbleClassName,
+  overlayClassName,
   onClose,
   visual,
   info,
+  outside,
 }: ImageLightboxProps) {
   return (
     <div
-      className="image-lightbox-overlay"
+      className={cx('image-lightbox-overlay', overlayClassName)}
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -42,6 +47,7 @@ export default function ImageLightbox({
         {visual}
         {info}
       </div>
+      {outside}
     </div>
   )
 }

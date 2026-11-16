@@ -27,7 +27,7 @@ export const PAGES = {
     title: 'Catálogo de Flores Eternas en Costa Rica | Helvella',
     socialTitle: 'Catálogo de Flores Eternas en Costa Rica | Helvella',
     description:
-      'Catálogo y precios de flores eternas de limpiapipas en Costa Rica: rosas, girasoles, tulipanes, macetitas, ramos y arreglos. Pedidos por WhatsApp.',
+      'Catálogo y precios de flores eternas de limpiapipas en Costa Rica: rosas, girasoles, tulipanes, macetitas, ramos, arreglos y pedidos a la medida. Pedidos por WhatsApp.',
     breadcrumb: 'Catálogo',
     indexable: true,
   },

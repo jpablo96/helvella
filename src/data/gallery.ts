@@ -15,6 +15,16 @@ function galleryImages(folder: string, filenames: string[]): string[] {
   return filenames.map((filename) => `/gallery/${folder}/${encodeURIComponent(filename)}`)
 }
 
+// Keep in sync with THUMB_WIDTH in scripts/generate-gallery-thumbs.mjs
+const GALLERY_THUMB_WIDTH = 540
+const GALLERY_FULL_WIDTH = 1081
+
+/** `srcset` for a gallery photo shown in a card: the small copy, with the full photo as the larger candidate. */
+export function galleryCardSrcSet(image: string): string {
+  const thumb = image.replace('/gallery/', '/gallery-thumbs/')
+  return `${thumb} ${GALLERY_THUMB_WIDTH}w, ${image} ${GALLERY_FULL_WIDTH}w`
+}
+
 export const galleryItems: GalleryItem[] = [
   {
     id: 'post19',

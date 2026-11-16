@@ -6,8 +6,8 @@ function isQuoteProduct(product: Product): boolean {
   return false
 }
 
-export function getProductPriceLabel(product: Product): string | null {
-  if (isQuoteProduct(product)) return 'Cotizar'
-  if (!product.price) return null
+/** Price shown on the card; products that are quoted, or have no price yet, read "Cotizar". */
+export function getProductPriceLabel(product: Product): string {
+  if (isQuoteProduct(product) || !product.price) return 'Cotizar'
   return product.price.replace(/^Desde\s+/i, '')
 }

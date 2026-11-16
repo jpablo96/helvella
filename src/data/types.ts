@@ -4,6 +4,7 @@ export type FloresEternasSubcategory =
   | 'macetitas'
   | 'arreglos'
   | 'animalitos'
+  | 'broches'
 
 export type IllustrationType =
   | 'rosa'
@@ -55,8 +56,13 @@ export interface Product {
   id: string
   name: string
   description: string
+  /** Short line shown under the name on the card, e.g. the options the buyer picks from. */
+  note?: string
   subcategory?: FloresEternasSubcategory
+  /** Drawn placeholder, shown while the product has no photo (or if the photo fails to load). */
   illustration: IllustrationType
+  /** Square product photo under /catalog, cut from the gallery by scripts/crop-catalog-images.mjs. */
+  image?: string
   price?: string
   available: boolean
   color: string

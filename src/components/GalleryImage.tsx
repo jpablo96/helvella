@@ -7,6 +7,9 @@ import './GalleryImage.css'
 
 interface GalleryImageProps {
   image?: string
+  /** Smaller candidates of `image`; needs `sizes`. */
+  srcSet?: string
+  sizes?: string
   color: string
   title: string
   illustration: IllustrationType
@@ -17,6 +20,8 @@ interface GalleryImageProps {
 
 export default function GalleryImage({
   image,
+  srcSet,
+  sizes,
   color,
   title,
   illustration,
@@ -35,6 +40,10 @@ export default function GalleryImage({
 
   return (
     <img
+      // sizes and srcSet go before src: React sets attributes in this order, and the browser
+      // picks a candidate as soon as it sees src.
+      sizes={sizes}
+      srcSet={srcSet}
       src={image}
       alt={title}
       className={cx('gallery-photo', imageClassName)}

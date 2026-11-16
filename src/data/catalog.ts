@@ -11,6 +11,7 @@ export const floresEternasSubcategories: {
   { id: 'macetitas', label: 'Macetitas' },
   { id: 'arreglos', label: 'Arreglos' },
   { id: 'animalitos', label: 'Animalitos' },
+  { id: 'broches', label: 'Broches' },
 ]
 
 export { products } from './products'

@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import type { FloresEternasSubcategory, Product } from '../data/catalog'
+import type { FloresEternasSubcategory } from '../data/catalog'
 import BrowseEmpty from '../components/browse/BrowseEmpty'
 import BrowseFilterDrawer from '../components/browse/BrowseFilterDrawer'
 import BrowsePagination from '../components/browse/BrowsePagination'
 import CatalogFilters from '../components/browse/CatalogFilters'
 import CatalogNotice from '../components/browse/CatalogNotice'
+import CustomOrderNotice from '../components/browse/CustomOrderNotice'
 import ViewToggle, { type ViewMode } from '../components/browse/ViewToggle'
-import ProductLightbox from '../components/lightbox/ProductLightbox'
 import PageHero from '../components/PageHero'
 import ProductCard from '../components/ProductCard'
 import Seo from '../components/Seo'
@@ -19,9 +19,8 @@ export default function Catalog() {
   const filters = useCatalogFilters()
   const drawer = useFilterDrawer()
   // Show the whole catalog on one page so every product is in the pre-rendered HTML.
-  const pagination = usePagination(filters.filteredProducts, 40)
+  const pagination = usePagination(filters.filteredProducts, 60)
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
 
   const handleSubcategoryChange = (subcategory: FloresEternasSubcategory) => {
     filters.selectSubcategory(subcategory)
@@ -43,7 +42,7 @@ export default function Catalog() {
       <PageHero
         eyebrow="Colección"
         title="Catálogo de flores eternas"
-        lead="Flores, macetitas y arreglos hechos a mano con limpiapipas. Pedidos por WhatsApp y envíos a todo Costa Rica."
+        lead="Flores, macetitas, arreglos, animalitos y broches hechos a mano con limpiapipas. ¿Buscas algo que no está aquí? También lo hacemos a pedido. Envíos a todo Costa Rica."
       />
 
       <section className="section bg-beige">
@@ -71,15 +70,12 @@ export default function Catalog() {
 
           <div className="browse-products-area">
             <CatalogNotice />
+            <CustomOrderNotice />
             {pagination.totalItems > 0 ? (
               <>
                 <div className={`browse-grid browse-grid--${viewMode}`}>
                   {pagination.pageItems.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onImageClick={() => setSelectedProduct(product)}
-                    />
+                    <ProductCard key={product.id} product={product} />
                   ))}
                 </div>
                 <BrowsePagination pagination={pagination} />
@@ -87,16 +83,13 @@ export default function Catalog() {
             ) : (
               <BrowseEmpty
                 title="Muy pronto"
-                message="Todavía no hay productos en este filtro. ¡Síguenos en redes para conocer los lanzamientos!"
+                message="Todavía no hay productos en este filtro, pero podemos hacer lo que nos pidas: escríbenos por WhatsApp."
               />
             )}
           </div>
         </div>
       </section>
 
-      {selectedProduct && (
-        <ProductLightbox product={selectedProduct} onClose={() => setSelectedProduct(null)} />
-      )}
     </>
   )
 }

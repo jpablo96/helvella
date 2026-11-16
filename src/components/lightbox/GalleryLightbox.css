@@ -1,5 +1,6 @@
 .gallery-lightbox-bubble {
-  --gallery-image-max-width: min(1081px, calc(100vw - 2.5rem));
+  /* Leaves 4.5rem at each side for the post arrows */
+  --gallery-image-max-width: min(1081px, calc(100vw - 9rem));
   --gallery-image-max-height: min(1351px, calc(100dvh - 12rem));
   width: fit-content;
   max-width: var(--gallery-image-max-width);
@@ -121,52 +122,134 @@
   background: var(--color-beige);
 }
 
+.gallery-lightbox-dots {
+  pointer-events: none;
+}
+
+/* Photo arrows: small, on top of the photo, only while the post has more photos that way */
 .gallery-lightbox-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  width: 2.75rem;
-  height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.82);
+  color: rgba(var(--color-ink-rgb), 0.85);
+  box-shadow: 0 1px 6px rgba(var(--color-ink-rgb), 0.28);
+  transition:
+    background-color var(--transition),
+    transform var(--transition);
+}
+
+.gallery-lightbox-nav:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.gallery-lightbox-prev {
+  left: 0.6rem;
+}
+
+.gallery-lightbox-next {
+  right: 0.6rem;
+}
+
+/* Post arrows: larger, on the backdrop beside the dialog */
+.gallery-lightbox-post-btn {
+  position: fixed;
+  top: 50%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--color-beige);
+  color: var(--color-ciruela);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-50%);
   transition:
     background-color var(--transition),
     color var(--transition),
     transform var(--transition);
 }
 
-.gallery-lightbox-nav:hover {
+.gallery-lightbox-post-btn:hover {
   background: var(--color-ciruela);
   color: var(--color-beige);
-  transform: translateY(-50%) scale(1.05);
+  transform: translateY(-50%) scale(1.06);
 }
 
-.gallery-lightbox-prev {
+.gallery-lightbox-post-btn:disabled {
+  visibility: hidden;
+}
+
+.gallery-lightbox-post-prev {
   left: 0.75rem;
 }
 
-.gallery-lightbox-next {
+.gallery-lightbox-post-next {
   right: 0.75rem;
 }
 
+.gallery-lightbox-post-label {
+  display: none;
+}
+
+/* Narrow screens have no room beside the dialog: the post arrows become a labelled bar below it */
 @media (max-width: 600px) {
+  .gallery-lightbox-overlay {
+    padding-bottom: 4rem;
+  }
+
   .gallery-lightbox-bubble {
     --gallery-image-max-width: calc(100vw - 2rem);
-    --gallery-image-max-height: min(1351px, calc(100dvh - 11rem));
+    --gallery-image-max-height: min(1351px, calc(100dvh - 15rem));
     max-width: calc(100vw - 2rem);
-    max-height: calc(100dvh - 2rem);
+    max-height: calc(100dvh - 5rem);
   }
 
-  .gallery-lightbox-nav {
-    width: 2.35rem;
-    height: 2.35rem;
+  .gallery-lightbox-post-nav {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0.75rem;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
   }
 
-  .gallery-lightbox-prev {
-    left: 0.5rem;
+  .gallery-lightbox-post-btn,
+  .gallery-lightbox-post-btn:hover {
+    position: static;
+    width: auto;
+    height: 2.5rem;
+    gap: 0.25rem;
+    padding: 0 0.9rem;
+    border-radius: var(--radius-pill);
+    transform: none;
   }
 
-  .gallery-lightbox-next {
-    right: 0.5rem;
+  .gallery-lightbox-post-prev {
+    padding-left: 0.5rem;
+  }
+
+  .gallery-lightbox-post-next {
+    padding-right: 0.5rem;
+  }
+
+  .gallery-lightbox-post-label {
+    display: inline;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 }

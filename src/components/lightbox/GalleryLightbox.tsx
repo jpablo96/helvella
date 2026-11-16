@@ -18,11 +18,16 @@ interface SlideSize {
   height: number
 }
 
-const LIGHTBOX_PADDING = 40
+// Room kept free around the photo; mirrors --gallery-image-max-* in GalleryLightbox.css.
+// Wide screens leave space at the sides for the post arrows, narrow ones a bar underneath.
+const COMPACT_QUERY = '(max-width: 600px)'
+const WIDE_MARGIN = { x: 144, y: 192 }
+const COMPACT_MARGIN = { x: 32, y: 240 }
 
 function getSlideMaxBounds() {
-  const maxWidth = Math.min(1081, window.innerWidth - LIGHTBOX_PADDING)
-  const maxHeight = Math.min(1351, window.innerHeight - 192)
+  const margin = window.matchMedia(COMPACT_QUERY).matches ? COMPACT_MARGIN : WIDE_MARGIN
+  const maxWidth = Math.min(1081, window.innerWidth - margin.x)
+  const maxHeight = Math.min(1351, window.innerHeight - margin.y)
 
   return { maxWidth, maxHeight }
 }
@@ -98,31 +103,18 @@ export default function GalleryLightbox({ item, onClose, onPrev, onNext }: Galle
     return () => window.removeEventListener('resize', handleResize)
   }, [images, rememberSlideSize])
 
-  const canGoPrev = slideIndex > 0 || Boolean(onPrev)
-  const canGoNext = slideIndex < images.length - 1 || Boolean(onNext)
+  // Two levels of navigation, as on Instagram: arrows over the photo step through the photos
+  // of this post, arrows beside the dialog jump to another post.
+  const hasPrevSlide = slideIndex > 0
+  const hasNextSlide = slideIndex < images.length - 1
+  const showPrevSlide = () => setSlideIndex((index) => index - 1)
+  const showNextSlide = () => setSlideIndex((index) => index + 1)
 
-  const goPrev = () => {
-    if (slideIndex > 0) {
-      setSlideIndex((index) => index - 1)
-      return
-    }
-
-    onPrev?.()
-  }
-
-  const goNext = () => {
-    if (slideIndex < images.length - 1) {
-      setSlideIndex((index) => index + 1)
-      return
-    }
-
-    onNext?.()
-  }
-
+  // The keyboard walks through the photos first and moves on to the neighbouring post after.
   useLightbox({
     onClose,
-    onPrev: canGoPrev ? goPrev : undefined,
-    onNext: canGoNext ? goNext : undefined,
+    onPrev: hasPrevSlide ? showPrevSlide : onPrev,
+    onNext: hasNextSlide ? showNextSlide : onNext,
   })
 
   const frameStyle: CSSProperties | undefined = frameSize
@@ -133,29 +125,59 @@ export default function GalleryLightbox({ item, onClose, onPrev, onNext }: Galle
     <ImageLightbox
       label={item.title}
       bubbleClassName="gallery-lightbox-bubble"
+      overlayClassName="gallery-lightbox-overlay"
       onClose={onClose}
+      outside={
+        (onPrev || onNext) && (
+          <div
+            className="gallery-lightbox-post-nav"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="gallery-lightbox-post-btn gallery-lightbox-post-prev"
+              onClick={onPrev}
+              disabled={!onPrev}
+              aria-label="Publicación anterior"
+            >
+              <ChevronIcon direction="left" size={22} />
+              <span className="gallery-lightbox-post-label">Anterior</span>
+            </button>
+            <button
+              type="button"
+              className="gallery-lightbox-post-btn gallery-lightbox-post-next"
+              onClick={onNext}
+              disabled={!onNext}
+              aria-label="Publicación siguiente"
+            >
+              <span className="gallery-lightbox-post-label">Siguiente</span>
+              <ChevronIcon direction="right" size={22} />
+            </button>
+          </div>
+        )
+      }
       visual={
         <div className="gallery-lightbox-content">
           <div className="gallery-lightbox-visual gallery-lightbox-visual--framed" style={frameStyle}>
-            {canGoPrev && (
+            {hasPrevSlide && (
               <button
                 type="button"
-                className="gallery-lightbox-nav gallery-lightbox-prev glass-chip"
-                onClick={goPrev}
-                aria-label="Anterior"
+                className="gallery-lightbox-nav gallery-lightbox-prev"
+                onClick={showPrevSlide}
+                aria-label="Foto anterior"
               >
-                <ChevronIcon direction="left" />
+                <ChevronIcon direction="left" size={16} />
               </button>
             )}
 
-            {canGoNext && (
+            {hasNextSlide && (
               <button
                 type="button"
-                className="gallery-lightbox-nav gallery-lightbox-next glass-chip"
-                onClick={goNext}
-                aria-label="Siguiente"
+                className="gallery-lightbox-nav gallery-lightbox-next"
+                onClick={showNextSlide}
+                aria-label="Foto siguiente"
               >
-                <ChevronIcon direction="right" />
+                <ChevronIcon direction="right" size={16} />
               </button>
             )}
 

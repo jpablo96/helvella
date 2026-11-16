@@ -1,49 +1,45 @@
 import type { Product } from '../data/catalog'
 import { getProductPriceLabel } from '../data/productDisplay'
 import { flowerColorStyle } from '../utils/flowerColorStyle'
-import ExpandIcon from './icons/ExpandIcon'
+import { cx } from '../utils/cx'
+import GalleryImage from './GalleryImage'
 import ProductIllustration from './illustrations/ProductIllustration'
 import WhatsAppOrderLink from './WhatsAppOrderLink'
 import './ProductCard.css'
 
 interface ProductCardProps {
   product: Product
-  /** When provided, the illustration becomes a button that opens the detail view. */
-  onImageClick?: () => void
 }
 
-export default function ProductCard({ product, onImageClick }: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
   const priceLabel = getProductPriceLabel(product)
   const imageStyle = flowerColorStyle(product.color)
-  const illustration = (
+  const imageClassName = cx(
+    'product-card-image-btn flower-backdrop',
+    product.image && 'product-card-image-btn--photo',
+  )
+  const illustration = product.image ? (
+    <GalleryImage
+      image={product.image}
+      color={product.color}
+      title={`${product.name} — hecho a mano con limpiapipas`}
+      illustration={product.illustration}
+      imageClassName="product-card-photo"
+    />
+  ) : (
     <ProductIllustration type={product.illustration} color={product.color} variant="card" />
   )
 
   return (
     <article className="product-card browse-card">
-      {onImageClick ? (
-        <button
-          type="button"
-          className="product-card-image-btn flower-backdrop"
-          onClick={onImageClick}
-          aria-label={`Ver ${product.name}`}
-          style={imageStyle}
-        >
-          {illustration}
-          <span className="card-expand glass-chip" aria-hidden="true">
-            <ExpandIcon />
-          </span>
-        </button>
-      ) : (
-        <div className="product-card-image-btn flower-backdrop" style={imageStyle}>
-          {illustration}
-        </div>
-      )}
+      <div className={imageClassName} style={imageStyle}>
+        {illustration}
+      </div>
       <div className="product-card-body">
         <h3 className="product-card-name">{product.name}</h3>
-        <p className="product-card-desc">{product.description}</p>
+        {product.note && <p className="product-card-note">{product.note}</p>}
         <div className="product-card-footer">
-          {priceLabel && <span className="product-card-price">{priceLabel}</span>}
+          <span className="product-card-price">{priceLabel}</span>
           <WhatsAppOrderLink
             productName={product.name}
             variant="order"

@@ -246,6 +246,28 @@
   color: var(--text-muted-on-beige);
 }
 
+/* Notice with a call to action: the button sits at the end and drops below on narrow screens */
+.browse-notice--action {
+  flex-wrap: wrap;
+}
+
+.browse-notice--action .browse-notice-text {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+.browse-notice-btn {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .browse-notice-btn {
+    width: 100%;
+  }
+}
+
 .browse-empty h3 {
   font-size: 2.2rem;
   font-weight: 400;

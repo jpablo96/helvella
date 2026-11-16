@@ -4,6 +4,7 @@ export const INSTAGRAM_URL = 'https://www.instagram.com/helvellacr/'
 export const FACEBOOK_URL = 'https://www.facebook.com/people/Helvella/61592449117423/'
 
 export const ORDER_CTA_LABEL = '¡Haz tu pedido!'
+export const CUSTOM_ORDER_CTA_LABEL = 'Pide el tuyo'
 export const NATIONWIDE_SHIPPING_NOTE = 'Envíos a todo el país.'
 
 export const SOCIAL_URLS = [INSTAGRAM_URL, FACEBOOK_URL] as const
@@ -12,6 +13,13 @@ export function getWhatsAppOrderUrl(productName?: string): string {
   const message = productName
     ? `Me interesa el producto: ${productName}. ¿Podrían darme más información?`
     : '¡Hola! Me gustaría hacer un pedido. ¿Podrían ayudarme?'
+  return `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`
+}
+
+/** For something that is not in the catalog. */
+export function getWhatsAppCustomOrderUrl(): string {
+  const message =
+    '¡Hola! Me gustaría pedir algo a la medida que no veo en el catálogo. ¿Podrían ayudarme?'
   return `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`
 }
 

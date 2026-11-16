@@ -63,20 +63,6 @@
   transform: rotate(90deg);
 }
 
-.image-lightbox-visual {
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  border-bottom: 1px solid var(--line);
-}
-
-.image-lightbox-flower {
-  width: 70%;
-  height: 70%;
-}
-
 .image-lightbox-info {
   padding: 1.5rem 1.75rem 1.75rem;
   text-align: center;
@@ -95,20 +81,6 @@
   color: var(--text-muted-on-beige);
 }
 
-.image-lightbox-price {
-  display: block;
-  margin-bottom: 1.1rem;
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  font-weight: 600;
-  font-variant-numeric: lining-nums;
-  line-height: 1;
-}
-
-.image-lightbox-cta {
-  width: 100%;
-}
-
 @media (max-width: 600px) {
   .image-lightbox-overlay {
     padding: 1rem;
@@ -117,10 +89,5 @@
   .image-lightbox-bubble {
     max-height: 90vh;
     overflow-y: auto;
-  }
-
-  .image-lightbox-visual {
-    aspect-ratio: 4 / 3;
-    padding: 1.5rem;
   }
 }

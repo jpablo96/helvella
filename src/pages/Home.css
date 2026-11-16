@@ -248,10 +248,6 @@
   text-overflow: ellipsis;
 }
 
-.home-grid .product-card-desc {
-  display: none;
-}
-
 .home-grid .product-card-footer {
   margin-top: 0.35rem;
   padding-top: 0.6rem;
