@@ -12,10 +12,7 @@ export default function CustomOrderNotice() {
       </span>
       <div className="browse-notice-text">
         <h2 className="browse-notice-title">¿No ves lo que buscas? Lo hacemos</h2>
-        <p>
-          Este catálogo es solo una muestra. Hacemos a mano cualquier flor, animalito, broche o
-          arreglo que nos pidas, en los colores que quieras: cuéntanos tu idea por WhatsApp.
-        </p>
+        <p>Esto es solo una muestra. Hacemos lo que imagines, en los colores que quieras.</p>
       </div>
       <ExternalLink href={getWhatsAppCustomOrderUrl()} className="btn btn-whatsapp browse-notice-btn">
         <WhatsAppIcon size={18} />

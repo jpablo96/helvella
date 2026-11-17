@@ -19,8 +19,6 @@ interface HomeShowcaseProps<T> {
   getKey: (item: T) => string
   renderItem: (item: T) => ReactNode
   cta: { to: string; label: string }
-  /** Optional banner shown between the heading and the cards. */
-  notice?: ReactNode
   trackClassName?: string
 }
 
@@ -35,19 +33,17 @@ export default function HomeShowcase<T>({
   getKey,
   renderItem,
   cta,
-  notice,
   trackClassName,
 }: HomeShowcaseProps<T>) {
   return (
     <HomePanel id={id} className="bg-beige">
-      <div className={cx('container home-section', notice != null && 'home-section--notice')}>
+      <div className="container home-section">
         <SectionHeader
           className="home-section__header home-reveal"
           eyebrow={eyebrow}
           title={title}
           subtitle={subtitle}
         />
-        {notice != null && <div className="home-section__notice home-reveal">{notice}</div>}
         <HomeCarousel label={title} trackClassName={cx('home-grid', trackClassName)}>
           {items.map((item, index) => (
             <div key={getKey(item)} className="home-reveal" style={revealDelay(index + 1)}>
