@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { galleryItems } from '../data/gallery'
+import { galleryOrderedItems, galleryTopItems } from '../data/gallery'
 import BrowsePagination from '../components/browse/BrowsePagination'
 import ViewToggle, { type ViewMode } from '../components/browse/ViewToggle'
 import GalleryCard from '../components/GalleryCard'
@@ -9,13 +9,14 @@ import Seo from '../components/Seo'
 import { usePagination } from '../hooks/usePagination'
 import '../styles/browse-layout.css'
 
-const lastIndex = galleryItems.length - 1
-
 export default function Gallery() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
-  // Index into the full list, so the lightbox can step across pages.
+  // Index into the shown list, so the lightbox can step across pages.
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
-  const pagination = usePagination(galleryItems, 20)
+  const [showAll, setShowAll] = useState(false)
+  const items = showAll ? galleryOrderedItems : galleryTopItems
+  const lastIndex = items.length - 1
+  const pagination = usePagination(items, 20)
 
   return (
     <>
@@ -43,14 +44,22 @@ export default function Gallery() {
               ))}
             </div>
 
-            <BrowsePagination pagination={pagination} />
+            {showAll ? (
+              <BrowsePagination pagination={pagination} />
+            ) : (
+              <div className="browse-show-all">
+                <button type="button" className="btn btn-ghost" onClick={() => setShowAll(true)}>
+                  Ver todas las creaciones
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
       {selectedIndex !== null && (
         <GalleryLightbox
-          item={galleryItems[selectedIndex]}
+          item={items[selectedIndex]}
           onClose={() => setSelectedIndex(null)}
           onPrev={selectedIndex > 0 ? () => setSelectedIndex(selectedIndex - 1) : undefined}
           onNext={

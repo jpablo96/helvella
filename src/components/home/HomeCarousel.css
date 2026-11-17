@@ -47,6 +47,12 @@
     overflow: hidden;
   }
 
+  /* Product cards: a square photo above the card text (8.25rem tall), so the photo is not cropped */
+  .home-carousel--mobile .home-carousel__media:has(.product-card) {
+    --carousel-card-width: min(92cqw, calc(100cqh - 8.25rem));
+    --carousel-card-height: min(calc(var(--carousel-card-width) + 8.25rem), 100cqh);
+  }
+
   .home-carousel--mobile .home-carousel__stage {
     position: relative;
     width: var(--carousel-card-width);

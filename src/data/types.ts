@@ -55,6 +55,8 @@ export type IllustrationType =
 export interface Product {
   id: string
   name: string
+  /** Sorts the product in place of its name, e.g. to keep sizes in order from small to large. */
+  sortKey?: string
   description: string
   /** Short line shown under the name on the card, e.g. the options the buyer picks from. */
   note?: string

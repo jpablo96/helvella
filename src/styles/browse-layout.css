@@ -344,3 +344,9 @@
     gap: clamp(0.65rem, 2.5vw, 1rem);
   }
 }
+
+.browse-show-all {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}

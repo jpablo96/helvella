@@ -42,7 +42,7 @@ export default function Catalog() {
       <PageHero
         eyebrow="Colección"
         title="Catálogo de flores eternas"
-        lead="Flores, macetitas, arreglos, animalitos y broches hechos a mano con limpiapipas. ¿Buscas algo que no está aquí? También lo hacemos a pedido. Envíos a todo Costa Rica."
+        lead="Flores, macetitas, arreglos y más, hechos a mano con limpiapipas."
       />
 
       <section className="section bg-beige">

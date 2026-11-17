@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { HOME_PANEL_IDS } from '../constants/home'
 import { products } from '../data/catalog'
 import { getHomeGalleryPreview } from '../data/gallery'
@@ -17,17 +17,39 @@ import { revealDelay } from '../utils/revealDelay'
 import '../styles/browse-layout.css'
 import './Home.css'
 
-const FEATURED_COUNT = 4
+// The first three best sellers are fixed; the other two are drawn from the rest of the catalog.
+const FIXED_FEATURED_COUNT = 3
+const RANDOM_FEATURED_COUNT = 2
 
-const featuredProducts = products.slice(0, FEATURED_COUNT)
+const fixedFeatured = products.slice(0, FIXED_FEATURED_COUNT)
+const otherProducts = products.slice(FIXED_FEATURED_COUNT).filter((product) => product.available)
+
+/** A few of the other products, picked at random without repeats. */
+function pickRandomFeatured() {
+  const pool = [...otherProducts]
+  const picked = []
+  while (picked.length < RANDOM_FEATURED_COUNT && pool.length > 0) {
+    picked.push(...pool.splice(Math.floor(Math.random() * pool.length), 1))
+  }
+  return picked
+}
 
 const galleryPreview = getHomeGalleryPreview()
 
 export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null)
+  // Starts on the same products the pre-rendered page shows, then random ones take their place.
+  const [extraFeatured, setExtraFeatured] = useState(() =>
+    otherProducts.slice(0, RANDOM_FEATURED_COUNT),
+  )
+  const featuredProducts = [...fixedFeatured, ...extraFeatured]
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0 })
+  }, [])
+
+  useEffect(() => {
+    setExtraFeatured(pickRandomFeatured())
   }, [])
 
   return (
@@ -47,6 +69,7 @@ export default function Home() {
           renderItem={(product) => <ProductCard product={product} />}
           cta={{ to: '/catalogo', label: 'Ver catálogo completo' }}
           notice={<CatalogNotice className="browse-notice--compact" titleOnly />}
+          trackClassName="home-grid--five"
         />
 
         <HomeShowcase

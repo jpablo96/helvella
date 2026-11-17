@@ -220,6 +220,8 @@
 .home-grid .product-card {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
+  /* Without this a long one-line name widens the column past the card */
+  grid-template-columns: minmax(0, 1fr);
   container-type: inline-size;
 }
 
@@ -296,8 +298,25 @@
     gap: var(--home-grid-gap);
   }
 
+  /* Product photos are square: the card is as wide as the photo that fits above its text, so the
+     photo is never cropped. 7.75rem is the height of the card text with the footer stacked. */
+  .home-section .home-carousel:has(.product-card) {
+    --home-photo-side: max(9rem, calc(var(--home-card-height) - 7.75rem));
+    width: min(100%, calc(var(--home-photo-side) * 5 + var(--home-grid-gap) * 4));
+  }
+
+  .home-grid--five {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
   .home-grid .product-card {
-    aspect-ratio: 4 / 5;
+    grid-template-rows: auto auto;
+    align-self: start;
+  }
+
+  .home-grid .product-card-image-btn {
+    height: auto;
+    aspect-ratio: 1;
   }
 }
 

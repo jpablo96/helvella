@@ -13,13 +13,13 @@ const MAX_SIDE = 640
 
 const crops = [
   // Flores individuales: a single "pick any flower" entry
-  ['flor-individual', 'post1/post1.webp', 0.5, 0.404, 0.66],
+  ['flor-individual', 'post12/post12-1.webp', 0.5, 0.43, 1],
   // Macetitas
   ['macetita-cactus', 'post17/post17.webp', 0.841, 0.544, 0.318],
-  ['macetita-gerbera', 'post8/post8-1.webp', 0.5, 0.651, 0.84],
+  ['macetita-pequena', 'post8/post8-1.webp', 0.5, 0.8, 1],
   ['macetita-girasol', 'post10/post10-2.webp', 0.5, 0.449, 0.86],
-  ['macetita-hortensia', 'post10/post10-4.webp', 0.5, 0.529, 0.96],
-  ['macetita-tulipanes', 'post10/post10-3.webp', 0.52, 0.544, 0.76],
+  ['maceta-mediana', 'post10/post10-4.webp', 0.5, 0.529, 0.96],
+  ['maceta-grande', 'post9/post9.webp', 0.52, 0.57, 0.945],
   // Arreglos
   ['arreglo-personalizado-macetita', 'post9/post9.webp', 0.52, 0.57, 0.945],
   ['arreglo-personalizado', 'post15/post15-1.webp', 0.5, 0.57, 1],

@@ -215,13 +215,35 @@ export const galleryItems: GalleryItem[] = [
   },
 ]
 
-export const homeGalleryPreviewIds = ['post1', 'post3', 'post9', 'post12'] as const
-
-export function getHomeGalleryPreview(): GalleryItem[] {
+function pickGalleryItems(ids: readonly string[]): GalleryItem[] {
   const byId = new Map(galleryItems.map((item) => [item.id, item]))
 
-  return homeGalleryPreviewIds.flatMap((id) => {
+  return ids.flatMap((id) => {
     const item = byId.get(id)
     return item ? [item] : []
   })
+}
+
+// How many of the newest posts open the gallery, ahead of the hand-picked ones below.
+const GALLERY_TOP_RECENT = 4
+// Rosas, Hortensia, Girasol, Clivias con Cempasúchil, Macetita de Corazones, Lavanda
+const galleryTopPickIds = ['post1', 'post3', 'post12', 'post7', 'post9', 'post18']
+
+/** The posts the gallery shows before "Ver todas las creaciones": the newest ones, then the picks. */
+export const galleryTopItems: GalleryItem[] = [
+  ...galleryItems.slice(0, GALLERY_TOP_RECENT),
+  ...pickGalleryItems(galleryTopPickIds),
+]
+
+/** Every post in the order the gallery shows them: the top ones first, then the rest. */
+export const galleryOrderedItems: GalleryItem[] = [
+  ...galleryTopItems,
+  ...galleryItems.filter((item) => !galleryTopItems.includes(item)),
+]
+
+// The home preview shows the first five posts of the gallery, skipping the second one.
+const HOME_GALLERY_PREVIEW_POSITIONS = [0, 2, 3, 4]
+
+export function getHomeGalleryPreview(): GalleryItem[] {
+  return HOME_GALLERY_PREVIEW_POSITIONS.flatMap((position) => galleryOrderedItems[position] ?? [])
 }
