@@ -427,7 +427,7 @@
     height: 100%;
     min-height: 0;
     gap: clamp(0.6rem, 1.6vh, 1rem);
-    padding-block: clamp(0.75rem, 2vh, 1.25rem) clamp(3.85rem, 8.5vh, 4.75rem);
+    padding-block: clamp(0.75rem, 2vh, 1.25rem) clamp(3.5rem, 8vh, 4.75rem);
   }
 
   .home-section__header {
@@ -461,7 +461,7 @@
   }
 
   .home-carousel--mobile .product-card-body {
-    padding: 0.8rem 1rem 2.6rem;
+    padding: 0.8rem 1rem;
   }
 
   .home-closing__body {

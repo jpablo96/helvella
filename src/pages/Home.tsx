@@ -62,7 +62,7 @@ export default function Home() {
           nextPanelId={HOME_PANEL_IDS.gallery}
           eyebrow="Colección"
           title="Los más vendidos"
-          subtitle="Las creaciones que más eligen nuestros clientes, disponibles para pedido."
+          subtitle="Las creaciones que más eligen nuestros clientes."
           items={featuredProducts}
           getKey={(product) => product.id}
           renderItem={(product) => <ProductCard product={product} />}

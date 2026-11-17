@@ -47,10 +47,28 @@
     overflow: hidden;
   }
 
-  /* Product cards: a square photo above the card text (8.25rem tall), so the photo is not cropped */
+  /* Product cards: a square photo above the card text, so the photo is not cropped */
   .home-carousel--mobile .home-carousel__media:has(.product-card) {
-    --carousel-card-width: min(92cqw, calc(100cqh - 8.25rem));
-    --carousel-card-height: min(calc(var(--carousel-card-width) + 8.25rem), 100cqh);
+    --carousel-card-text: 6.25rem;
+    --carousel-card-width: min(92cqw, calc(100cqh - var(--carousel-card-text)));
+    --carousel-card-height: min(
+      calc(var(--carousel-card-width) + var(--carousel-card-text)),
+      100cqh
+    );
+  }
+
+  /* Keep the dots on the photo so the card text needs no extra room below it */
+  .home-carousel--mobile .home-carousel__media:has(.product-card) .home-carousel__dots {
+    bottom: calc(var(--carousel-card-text) + 0.6rem);
+  }
+
+  /* Very short screens: the card is under 15rem wide, its footer stacks and the text grows,
+     so the dots go to the top of the photo instead */
+  @container home-carousel (max-height: 21.25rem) {
+    .home-carousel--mobile .home-carousel__media:has(.product-card) .home-carousel__dots {
+      top: 0.6rem;
+      bottom: auto;
+    }
   }
 
   .home-carousel--mobile .home-carousel__stage {
