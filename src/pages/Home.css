@@ -282,7 +282,9 @@
 
 @media (min-width: 769px) {
   .home-section {
-    max-width: min(100%, 104rem);
+    /* 104rem up to 1920px wide, then it grows with the screen so larger displays keep the 1080p
+       proportions. The card height below still keeps the whole panel on one screen. */
+    max-width: min(100%, max(104rem, 86.67vw));
     --home-chrome: 22rem;
     --home-card-height: max(14rem, calc(100dvh - var(--nav-height) - var(--home-chrome)));
     --home-grid-gap: clamp(0.75rem, 1.4vw, 1.5rem);
