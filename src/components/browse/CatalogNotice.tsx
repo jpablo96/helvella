@@ -9,7 +9,7 @@ export default function CatalogNotice() {
       </span>
       <div>
         <h2 className="browse-notice-title">Catálogo en construcción</h2>
-        <p>Algunos productos pueden no estar al día. Confirma disponibilidad por WhatsApp.</p>
+        <p>Estamos agregando todo lo que hacemos. Pronto verás mucho más.</p>
       </div>
     </div>
   )
