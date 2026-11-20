@@ -43,6 +43,19 @@
   content: none;
 }
 
+/* The photo is pinned to the square instead of being a stretched flex item: WebKit (Safari and
+   every browser on iPad) does not resolve height: 100% against a box sized only by aspect-ratio,
+   so the photo rendered at its natural height and broke the card. */
+.product-card-image-btn--photo {
+  flex-shrink: 0;
+  min-height: 0;
+}
+
+.product-card-image-btn--photo > .gallery-photo {
+  position: absolute;
+  inset: 0;
+}
+
 .product-card-photo {
   transition: transform 1.2s var(--ease-out);
 }

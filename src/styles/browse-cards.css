@@ -77,6 +77,12 @@
   background: rgba(var(--color-ciruela-rgb), 0.05);
 }
 
+/* Pinned to the frame so WebKit never sizes the frame from the photo's natural height */
+.gallery-card-media > .gallery-photo {
+  position: absolute;
+  inset: 0;
+}
+
 .gallery-photo--card {
   transition: transform 1.2s var(--ease-out);
 }
