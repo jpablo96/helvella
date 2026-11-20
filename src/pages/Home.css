@@ -322,6 +322,40 @@
   }
 }
 
+/* Portrait tablets (iPad and similar): one row of cards would be too narrow for the names and
+   leave most of the tall screen empty, so the cards wrap onto two rows sized to the screen
+   height. Gallery: 2 x 2. Best sellers: 3 on top, 2 centered below. */
+@media (min-width: 769px) and (max-width: 1180px) and (orientation: portrait) {
+  .home-section {
+    --home-row-height: calc((var(--home-card-height) - var(--home-grid-gap)) / 2);
+  }
+
+  .home-section .home-carousel {
+    width: min(100%, calc(var(--home-row-height) * 0.8 * 2 + var(--home-grid-gap)));
+  }
+
+  .home-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-section .home-carousel:has(.product-card) {
+    --home-photo-side: max(9rem, calc(var(--home-row-height) - 7.75rem));
+    width: min(100%, calc(var(--home-photo-side) * 3 + var(--home-grid-gap) * 2));
+  }
+
+  .home-grid--five {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .home-grid--five > .home-carousel__slide {
+    grid-column: span 2;
+  }
+
+  .home-grid--five > .home-carousel__slide:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+}
+
 /* Closing panel */
 .home-closing__body {
   flex: 1 1 auto;

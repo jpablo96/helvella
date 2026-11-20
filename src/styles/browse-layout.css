@@ -296,6 +296,23 @@
   .browse-grid--grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  /* With the filter sidebar beside it, three columns leave cards too narrow on tablets (names
+     wrap onto three lines and the order button is cut off), so columns follow the space left:
+     two on a portrait iPad, three on wider screens. */
+  .browse-shell:not(.browse-shell--full) {
+    grid-template-columns: 200px minmax(0, 1fr);
+    column-gap: 1.75rem;
+  }
+
+  .browse-shell:not(.browse-shell--full) .browse-grid--grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+  }
+
+  /* Cards under ~250px wide cannot fit the price and the order button on one line */
+  .browse-grid--grid .product-card-footer {
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 768px) {
