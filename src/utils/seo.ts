@@ -69,30 +69,42 @@ function parsePrice(price: string): number | null {
   return digits ? Number(digits) : null
 }
 
-// Products without a fixed price are quoted on request, so their offer carries no price.
-function buildOffer(product: Product): Record<string, unknown> {
-  const amount = product.price ? parsePrice(product.price) : null
-
+// Google's product snippets need a Product that carries its own priced offer, so
+// products quoted on request ("Cotizar") are left out of the markup; the page still lists them.
+function buildProduct(product: Product, catalogUrl: string, amount: number): Record<string, unknown> {
   return {
-    '@type': 'Offer',
-    itemOffered: { '@type': 'Product', name: product.name, description: product.description },
-    availability: product.available
-      ? 'https://schema.org/InStock'
-      : 'https://schema.org/OutOfStock',
-    seller: { '@id': BUSINESS_ID },
-    ...(amount !== null && { price: amount, priceCurrency: 'CRC' }),
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    ...(product.image && { image: absoluteUrl(product.image) }),
+    brand: { '@type': 'Brand', name: SITE_NAME },
+    offers: {
+      '@type': 'Offer',
+      url: catalogUrl,
+      price: amount,
+      priceCurrency: 'CRC',
+      availability: product.available
+        ? 'https://schema.org/InStock'
+        : 'https://schema.org/OutOfStock',
+      seller: { '@id': BUSINESS_ID },
+    },
   }
 }
 
-/** The whole catalog as the business's list of offers. */
+/** The fixed-price catalog as the business's list of products. */
 function buildOfferCatalog(url: string): Record<string, unknown> {
+  const items = products.flatMap((product) => {
+    const amount = product.price ? parsePrice(product.price) : null
+    return amount === null ? [] : [buildProduct(product, url, amount)]
+  })
+
   return {
     '@type': 'OfferCatalog',
     '@id': `${url}#catalogo`,
     name: 'Catálogo de flores eternas',
     url,
-    numberOfItems: products.length,
-    itemListElement: products.map(buildOffer),
+    numberOfItems: items.length,
+    itemListElement: items,
   }
 }
 
