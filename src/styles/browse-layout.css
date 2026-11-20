@@ -29,7 +29,9 @@
 .browse-sidebar {
   grid-column: 1;
   grid-row: 2;
-  width: 240px;
+  /* Fills its grid column (240px, or 200px on tablets); a fixed width overlapped the products */
+  width: 100%;
+  min-width: 0;
   padding: 1.35rem 1.1rem;
   background: var(--color-card-bg);
   border: 1px solid var(--line);
