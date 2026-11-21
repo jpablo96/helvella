@@ -27,6 +27,15 @@ export function galleryCardSrcSet(image: string): string {
 
 export const galleryItems: GalleryItem[] = [
   {
+    id: 'post20',
+    title: 'Broches de solapa',
+    description:
+      'Broches florales hechos a mano para complementar un atuendo: orquídea fucsia, claveles rosados y margarita blanca. Ideales para bodas, eventos y celebraciones.',
+    illustration: 'flor',
+    images: galleryImages('post20', ['post20-1.webp', 'post20-2.webp', 'post20-3.webp']),
+    color: '#C2185B',
+  },
+  {
     id: 'post19',
     title: 'Broches florales',
     description:
@@ -226,12 +235,14 @@ function pickGalleryItems(ids: readonly string[]): GalleryItem[] {
 
 // How many of the newest posts open the gallery, ahead of the hand-picked ones below.
 const GALLERY_TOP_RECENT = 4
+// Recent posts kept out of the top so it doesn't open with three posts of brooches (Broches florales).
+const galleryTopSkipIds = ['post14']
 // Rosas, Hortensia, Girasol, Clivias con Cempasúchil, Macetita de Corazones, Lavanda
 const galleryTopPickIds = ['post1', 'post3', 'post12', 'post7', 'post9', 'post18']
 
 /** The posts the gallery shows before "Ver todas las creaciones": the newest ones, then the picks. */
 export const galleryTopItems: GalleryItem[] = [
-  ...galleryItems.slice(0, GALLERY_TOP_RECENT),
+  ...galleryItems.filter((item) => !galleryTopSkipIds.includes(item.id)).slice(0, GALLERY_TOP_RECENT),
   ...pickGalleryItems(galleryTopPickIds),
 ]
 
